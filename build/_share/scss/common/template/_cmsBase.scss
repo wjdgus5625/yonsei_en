@@ -1,0 +1,70 @@
+// CMS 위지윅 에디터 분기 처리
+.cms-admin-editing {
+	.content-body {
+		&:before {
+			display: block;
+			text-align: center;
+			content: ('${Title}');
+
+			@include media-breakpoint-up(lg) {
+				margin: 73px 0 65px;
+
+				font-size: 40px;
+				line-height: 52px;
+				font-weight: bold;
+				font-family: $font-family-title;
+			}
+
+			@include media-breakpoint-down(md) {
+				margin: 36px 0 39.5px;
+
+				font-size: 24px;
+				line-height: 29px;
+			}
+		}
+	}
+
+	.tab-content {
+		display: block !important;
+
+		+.tab-content {
+			&:before {
+				margin: 40px 0;
+				content: attr(id);
+				font-weight: bold;
+				display: block;
+				text-align: center;
+				color: #fff;
+				background-color: red;
+			}
+		}
+	}
+}
+
+// CMS 템플릿 대체 레이아웃 처리
+// 타이틀 우측 위치 버튼형
+@include media-breakpoint-up(lg) {
+	.btn-content-title {
+		display: flex;
+		align-items: center;
+		height: 52px;
+		margin-top: -117px;
+		margin-bottom: 65px;
+		justify-content: space-between;
+
+		&.left {
+			justify-content: flex-start;
+		}
+
+		&.right {
+			justify-content: flex-end;
+		}
+	}
+}
+
+@include media-breakpoint-down(md) {
+	.btn-content-title {
+		margin: 40px 0;
+		text-align: center;
+	}
+}

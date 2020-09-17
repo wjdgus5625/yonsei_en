@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+//
+// 진료 예약
+//
+
+// variables
+@import "variables"; // 사이트 개별 설정
+@import "../../_share/scss/common/variables";
+
+// funtions
+@import "../../_share/scss/common/breakpoints";
+@import "../../_share/scss/common/mixins";
+
+// layout
+@import "../../_share/scss/common/layout/base";
+@import "layout/header";
+@import "layout/content";
+@import "../../_share/scss/common/layout/footer";
+
+// pages
+// [필독] SCSS 작업방법 안내
+// 1. IA에 정의된 대메뉴별 path명과 맞춰 scss 파일 추가 후 사용
+//    예) path명 + Pages
+// 2. 반응형 사이트인 경우 breakpoint mixin 사용 필수 : 사용법 _guidePages.scss 참고
+// 3. 색상값 등 변수 사용 필수 : _variables.scss 참고
+// @import "pages/guidePages"; // SCSS 작성방법 가이드
+
+@import "pages/searchPages"; // 통합검색 콘텐츠

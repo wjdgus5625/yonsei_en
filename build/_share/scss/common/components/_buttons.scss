@@ -1,0 +1,278 @@
+//
+// Buttons
+// 
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	vertical-align: middle;
+	white-space: nowrap;
+	overflow: hidden;
+
+	transition-duration: .1s;
+	transition-property: box-shadow;
+}
+
+// 크기
+.btn-sm,
+.btn-md,
+.btn-lg,
+.btn-input,
+.btn-more {
+	border-radius: 3px;
+
+}
+
+.btn-sm {
+	border: 1px solid transparent;
+
+	min-width: 65px;
+	height: 30px;
+	padding: 0 14px;
+	font-size: 14px;
+
+	@include media-breakpoint-down(md) {
+		.ico {
+			transform: scale(1);
+		}
+	}
+}
+
+.btn-md {
+	border: 1px solid transparent;
+
+	min-width: 80px;
+	height: 40px;
+	padding: 0 19px;
+	font-size: 16px;
+
+	@include media-breakpoint-down(md) {
+		min-width: 75px;
+		height: 35px;
+		padding: 0 14px;
+		font-size: 16px;
+
+		.ico {
+			transform: scale(.9);
+		}
+	}
+}
+
+.btn-lg {
+	border: 2px solid transparent;
+
+	min-width: 100px;
+	height: 50px;
+	padding: 0 28px;
+	font-size: 18px;
+
+	@include media-breakpoint-down(md) {
+		min-width: 80px;
+		height: 40px;
+		padding: 0 18px;
+		font-size: 16px;
+
+		.ico {
+			transform: scale(.9);
+		}
+	}
+}
+
+.btn-input {
+	border: 1px solid transparent;
+
+	min-width: 90px;
+	height: 45px;
+	padding: 0 24px;
+	font-size: 16px;
+
+	@include media-breakpoint-down(md) {
+		min-width: 80px;
+		height: 40px;
+		padding: 0 19px;
+		font-size: 16px;
+
+		.ico {
+			transform: scale(.9);
+		}
+	}
+}
+
+.btn-icon {
+	min-width: 60px;
+	padding: 0 10px;
+
+	@include media-breakpoint-down(md) {
+		min-width: 45px;
+	}
+}
+
+// 형태
+.btn-block {
+	display: flex;
+	width: 100%;
+}
+
+.btn-round {
+	border-radius: 25px;
+}
+
+// 색상
+.btn-default {
+	color: $white;
+	background-color: #666;
+}
+
+.btn-primary {
+	color: $white;
+	background-color: $btn-primary;
+
+	.bbs-search & {
+		background-color: $primary;
+	}
+}
+
+.btn-outline-default {
+	color: $default;
+	border-color: #959595;
+	background-color: #fff;
+}
+
+.btn-outline-primary {
+	color: $btn-primary;
+	border-color: $btn-primary;
+	background-color: #fff;
+
+	.bbs-search & {
+		color: $primary;
+		border-color: $primary;
+	}
+}
+
+.form-control {
+	+.btn-calendar {
+		margin-left: -5px;
+	}
+}
+
+// 기타
+.btn-more {
+	padding: 0 39px;
+	height: 50px;
+	font-size: 16px;
+
+	border-radius: 25px;
+	color: $default;
+	border: 1px solid #dadada;
+	background-color: $white;
+
+	&:after {
+		content: '';
+		margin-left: 6px;
+		width: 15px;
+		height: 9px;
+		background: url(#{$url-img-share}/common/ico-chevron-down-sm@2x.png) no-repeat;
+		background-size: cover;
+	}
+
+	@include media-breakpoint-down(md) {
+		height: 40px;
+		padding: 0 19px
+	}
+}
+
+.btn-share {
+	height: 30px;
+	border: 1px solid #dadada;
+	border-radius: 15px;
+	font-size: 14px;
+	padding: 0 10px;
+
+	.ico {
+		margin-right: 5px;
+	}
+
+	@include media-breakpoint-down(md) {
+		width: 27px;
+		height: 27px;
+		padding: 0;
+
+		.ico {
+			margin: 0;
+		}
+	}
+}
+
+// .btn-calendar {
+// 	@include ir;
+// 	width: .40rem;
+// 	height: .40rem;
+// 	border: 1px solid $border-base;
+// 	background: #fff url(#{$url-img-share}/common/ico-calendar-primary.png) no-repeat center center;
+// 	background-size: .20rem .20rem;
+// }
+
+/* 버튼 영역 간격 */
+.btn-section {
+	text-align: center;
+	margin: 25px 0 -5px;
+	font-size: 0;
+
+	.btn {
+		margin-top: 5px;
+		margin-bottom: 5px;
+
+		+.btn {
+			margin-left: 10px;
+		}
+	}
+
+	&.h-60 {
+		margin-top: 60px;
+		margin-bottom: 0;
+	}
+
+	&.btn-mobile-wide {
+		margin: 16px 0 0;
+
+		.btn {
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		&.h-60 {
+			margin-top: 30px;
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+		&.btn-mobile-wide {
+			.btn {
+				width: 100%;
+
+				+.btn {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+}
+
+@include media-breakpoint-down(md) {
+	.btn-text-bottom {
+		margin-top: 26px;
+		margin-bottom: 0;
+		text-align: center;
+	}
+
+	.indent {
+		.btn-text-bottom {
+			width: calc(100% + 16px);
+			margin-left: -16px;
+		}
+	}
+}
