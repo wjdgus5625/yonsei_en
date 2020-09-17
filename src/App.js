@@ -9,6 +9,6 @@ function App() {
       <Route path="/" exact component={Search}/>
     </Router>
   );
-}
+} 
 
 export default App;
