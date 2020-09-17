@@ -1,0 +1,398 @@
+// 헤더
+// MY세브란스, 통합로그인센터
+
+#header {
+	position: relative;
+	z-index: 300;
+	background: $white;
+
+	@include media-breakpoint-up(lg) {
+		border-bottom: 1px solid #e6e6e6;
+		margin-bottom: -1px;
+	}
+
+	@include media-breakpoint-down(md) {
+		height: $mobile-header-height;
+		border-bottom: 1px solid #d4d4d4;
+	}
+}
+
+.util-area {
+	position: relative;
+	background-color: $darkprimary;
+
+	color: #fff;
+	font-size: 15px;
+	text-align: right;
+
+	.container {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		height: 40px;
+
+		.item {
+			+.item {
+				position: relative;
+				margin-left: 20px;
+				padding-left: 20px;
+
+				&:before {
+					position: absolute;
+					left: 0;
+					top: 50%;
+					margin-top: -6.5px;
+					width: 1px;
+					height: 13px;
+					background: #fff;
+					opacity: .4;
+					content: '';
+				}
+			}
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		display: none;
+	}
+}
+
+#logo {
+	display: inline-block;
+	font-size: $font-size-base;
+
+	a {
+		display: block;
+	}
+
+	img {
+		height: 35px;
+		vertical-align: top;
+	}
+
+	@include media-breakpoint-up(lg) {
+		float: left;
+		margin-top: 33px;
+	}
+
+	@include media-breakpoint-down(md) {
+		display: inline-flex;
+		height: $mobile-header-height - 1px;
+		align-items: center;
+
+		img {
+			height: 24px;
+		}
+	}
+}
+
+.gnb-area {
+	@include media-breakpoint-up(lg) {
+		position: relative;
+
+		.gnb-right {
+			float: right;
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		text-align: center;
+	}
+}
+
+#gnb {
+	@include clearfix;
+	font-family: $font-family-title;
+
+	a {
+		display: block;
+	}
+
+	.gnb-list {
+		display: flex;
+		color: #333;
+		align-items: center;
+		justify-content: space-around;
+		margin-right: -30px;
+
+		>li {
+			position: relative;
+
+			>a {
+				font-size: 22px;
+				line-height: $gnb-height;
+				font-weight: bold;
+				text-align: center;
+				padding: 0 30px;
+
+				position: relative;
+
+				&:after {
+					content: '';
+					position: absolute;
+					z-index: -1;
+					top: 50%;
+					left: 50%;
+					border-radius: 50%;
+
+					width: 0;
+					height: 0;
+					margin: 0;
+
+					background-color: #d9edf8;
+
+					opacity: 0;
+					visibility: hidden;
+					transition-duration: .3s;
+				}
+
+			}
+
+			&.on,
+			&.active,
+			&:hover {
+				>a {
+					color: $header-active-color;
+
+					&:after {
+						opacity: 1;
+						visibility: visible;
+
+						width: 64px;
+						height: 64px;
+						margin: -32px 0 0 -32px;
+					}
+				}
+			}
+		}
+	}
+
+	// GNB 메뉴 간격
+	$gaps: (60, 100);
+
+	@each $gap in $gaps {
+		&.gap-#{$gap} {
+			.gnb-list {
+				margin-right: -0.5 * $gap + px;
+
+				>li {
+					>a {
+						padding: 0 $gap * 0.5 + px;
+					}
+				}
+			}
+
+			+.btn-global-search {
+				margin-left: $gap + px;
+			}
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		display: none;
+	}
+}
+
+.lnb-area {
+	display: none;
+	position: absolute;
+	left: 50%;
+	margin-left: -95px;
+	width: 190px;
+	background-color: #fff;
+	border: 1px solid $darkprimary;
+
+	li.active & {
+		display: block;
+	}
+
+	.lnb-list {
+		@include clearfix;
+		position: relative;
+		padding: 12px 19px 18px;
+		font-size: 17px;
+		font-family: $font-family-title;
+
+		>li {
+			padding: 4px 0;
+
+			&.collapse {
+				position: relative;
+
+				&:before {
+					content: '';
+					position: absolute;
+					width: 17px;
+					height: 15px;
+					right: 0;
+					top: 7px;
+					border: 1px solid #c9c9c9;
+				}
+
+				>a {
+					position: relative;
+					display: block;
+					padding-right: 20px;
+
+					&:before,
+					&:after {
+						content: '';
+						position: absolute;
+						width: 7px;
+						height: 1px;
+						right: 6px;
+						top: 11px;
+						background-color: #707070;
+						transition-duration: .3s;
+					}
+
+					&:after {
+						transform: rotate(90deg);
+					}
+				}
+
+				&.on {
+
+					>a {
+
+						&:before {
+							transform: rotate(180deg);
+						}
+
+						&:after {
+							transform: rotate(180deg);
+						}
+					}
+				}
+
+				&:focus,
+				&:hover {
+					&:before {
+						border-color: $darkprimary;
+					}
+
+					>a {
+						color: $darkprimary;
+						font-weight: bold;
+
+						&:before,
+						&:after {
+							background-color: $darkprimary;
+						}
+					}
+				}
+			}
+
+			// 4뎁스
+			ul {
+				display: none;
+				position: relative;
+				margin: 7px 0 0;
+				padding-left: 9px;
+
+				font-size: 15px;
+				font-family: $font-family-base;
+
+				&:before {
+					content: '';
+					position: absolute;
+					left: 1px;
+					top: 5px;
+					bottom: 5px;
+					width: 1px;
+					background-color: #ccc;
+				}
+
+				li {
+					line-height: 18px;
+					padding: 4px 0;
+
+					a {
+						position: relative;
+						color: #666;
+
+						&:focus,
+						&:hover {
+							color: $darkprimary;
+							font-weight: bold;
+						}
+					}
+
+					&.on {
+						>a {
+							color: $darkprimary;
+							font-weight: bold;
+						}
+					}
+				}
+			}
+		}
+
+		a {
+
+			&:hover,
+			&:focus {
+				font-weight: bold;
+				color: $darkprimary;
+			}
+		}
+	}
+
+	.btn-lnb-close {
+		display: flex !important;
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		width: 33px;
+		height: 33px;
+	}
+}
+
+/* 통합검색 버튼 */
+.btn-global-search {
+	position: absolute;
+	right: 0;
+
+	@include media-breakpoint-up(lg) {
+		position: static !important;
+		height: 30px;
+		margin-left: 60px;
+	}
+
+	@include media-breakpoint-down(md) {
+		top: 0;
+		bottom: 0;
+		padding: 0 $mobile-spacing;
+	}
+}
+
+#global-search {
+	@include media-breakpoint-up(lg) {
+		margin-top: 1px;
+		border-top: 0 !important;
+
+		.btn-search-close {
+			margin-bottom: 36px !important;
+			right: 42px !important;
+		}
+	}
+}
+
+/* 전체메뉴 버튼 */
+.btn-allmenu-open {
+	@include media-breakpoint-up(lg) {
+		position: static !important;
+		margin-left: 20px !important;
+
+		.ico-allmenu {
+			width: 22px;
+			height: 18px;
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		margin: 0 !important;
+	}
+}

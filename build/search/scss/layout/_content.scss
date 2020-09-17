@@ -1,0 +1,9 @@
+#content {
+	@include media-breakpoint-up(lg) {
+		min-height: calc(100vh - #{$header-height + $footer-height + $breadcrumb-height});
+	}
+
+	@include media-breakpoint-down(md) {
+		min-height: calc(100vh - #{$mobile-header-height + $mobile-footer-height});
+	}
+}

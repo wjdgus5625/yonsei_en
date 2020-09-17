@@ -1,0 +1,156 @@
+{
+    "totalSize": 1800,
+    "keyword": "테스트",
+    "doctor": {
+        "totalSize": 500,
+        "list": [
+            {
+                "name": "김김김",
+                "content": "하이루 ~",
+                "url": ""
+            },
+            {
+                "name": "김김김",
+                "content": "천식, 만성기침, 비염 두드러기, 약물알레르기",
+                "url": ""
+            },
+            {
+                "name": "김김김",
+                "content": "하이루 ~",
+                "url": ""
+            },
+            {
+                "name": "김김김",
+                "content": "하이루 ~",
+                "url": ""
+            },
+            {
+                "name": "김김김",
+                "content": "하이루 ~",
+                "url": ""
+            },
+            {
+                "name": "김김김",
+                "content": "하이루 ~",
+                "url": ""
+            },
+            {
+                "name": "김김김",
+                "content": "하이루 ~",
+                "url": ""
+            },
+            {
+                "name": "김김김",
+                "content": "천식, 만성기침, 비염 두드러기, 약물알레르기",
+                "url": "",
+                "imgPath": ""
+            }
+        ]
+    },
+    "center": {
+        "totalSize": 600,
+        "type": "all",
+        "list": [
+            {
+                "title": "테스트과",
+                "url": ""
+            },
+            {
+                "title": "테스트과",
+                "url": ""
+            },
+            {
+                "title": "테스트과",
+                "url": ""
+            },
+            {
+                "title": "테스트과",
+                "url": ""
+            },
+            {
+                "title": "테스트과",
+                "url": ""
+            },
+            {
+                "title": "테스트과",
+                "url": ""
+            },
+            {
+                "title": "테스트과",
+                "url": ""
+            },
+            {
+                "title": "테스트과",
+                "url": ""
+            },
+            {
+                "title": "테스트과",
+                "url": ""
+            },
+            {
+                "title": "테스트과",
+                "url": ""
+            },
+            {
+                "title": "테스트과",
+                "url": ""
+            },
+            {
+                "title": "테스트과",
+                "url": ""
+            }
+        ]
+    },
+    "noticeboard": {
+        "totalSize": 700,
+        "list": [
+            {
+                "title": "감기 - 리노 및 코로나바이러스가 원인리노123",
+                "content": "<strong class='text-primary'>감기</strong>란 상부 호흡기(코나 목 등)의 점막에 다양한 종류의 바이러스",
+                "imgPath": "",
+                "url": "",
+                "boardPath": "세브란스병원 > 진료 및 검사 > 진료과 > 호흡기내과 >"
+            },
+            {
+                "title": "감기 - 리노 및 코로나바이러스가 원인리노456",
+                "content": "<strong class='text-primary'>감기</strong>란 상부 호흡기(코나 목 등)의 점막에 다양한 종류의 바이러스",
+                "imgPath": "",
+                "url": "",
+                "boardPath": "세브란스병원 > 진료 및 검사 > 진료과 > 호흡기내과 >"
+            },
+            {
+                "title": "감기 - 리노 및 코로나바이러스가 원인리노77",
+                "content": "<strong class='text-primary'>감기</strong>란 상부 호흡기(코나 목 등)의 점막에 다양한 종류의 바이러스'",
+                "imgPath": "",
+                "url": "",
+                "boardPath": "세브란스병원 > 진료 및 검사 > 진료과 > 호흡기내과 >"
+            }
+        ]
+    },
+    "chosung": {
+        "totalSize": 100,
+        "list": [
+            {
+                "name": "초성테스트",
+                "content": "하이루 ~",
+                "url": ""
+            },
+            {
+                "name": "초성테스트",
+                "content": "천식, 만성기침, 비염 두드러기, 약물알레르기",
+                "url": ""
+            },
+            {
+                "name": "초성테스트",
+                "content": "하이루 ~",
+                "url": ""
+            },
+            {
+                "name": "초성테스트",
+                "content": "천식, 만성기침, 비염 두드러기, 약물알레르기",
+                "url": "",
+                "imgPath": ""
+            }
+        ]
+    }
+}

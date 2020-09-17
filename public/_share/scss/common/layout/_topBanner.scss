@@ -1,0 +1,141 @@
+// 최상단 공지 배너 (메인용)
+
+#top-banner {
+	position: relative;
+	z-index: 310;
+	background-color: $darkprimary;
+	color: #fff;
+	overflow: hidden;
+
+	.container {
+		position: relative;
+	}
+
+	@include media-breakpoint-down(md) {
+		padding: 20px 15px 15px;
+	}
+}
+
+.top-banner-content {
+	.item {
+		>* {
+			vertical-align: middle;
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		padding: 16px 0 19px;
+		font-family: $font-family-title;
+		font-weight: bold;
+
+		.item {
+			height: 55px;
+			line-height: 55px;
+			display: inline-block;
+			vertical-align: middle;
+
+			+.item {
+				margin-left: 26px;
+				border-left: 1px solid rgba(#fff, 0.3);
+				padding-left: 26px;
+			}
+		}
+
+		.ico {
+			margin-right: 15px;
+		}
+
+		.title {
+			font-size: 24px;
+			letter-spacing: 0;
+			margin-right: 5px;
+		}
+
+		.tel {
+			font-size: 40px;
+			letter-spacing: -0.025em;
+		}
+	}
+
+	@include media-breakpoint-only(md) {
+		.item {
+			+.item {
+				margin-left: 15px;
+				border-left: 1px solid rgba(#fff, 0.3);
+				padding-left: 15px;
+			}
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		.item {
+			display: inline-block;
+
+			>* {
+				display: inline-block;
+			}
+		}
+
+		.ico {
+			width: 25px;
+			height: 25px;
+		}
+
+		.title {
+			font-size: 15px;
+		}
+
+		.tel {
+			font-size: 20px;
+			font-weight: bold;
+			line-height: 1;
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+		.item {
+			margin-bottom: 13px;
+		}
+	}
+}
+
+.top-banner-control {
+	.btn-today-hide {
+		vertical-align: middle;
+	}
+
+	@include media-breakpoint-up(lg) {
+		position: absolute;
+		right: 0;
+		bottom: 20px;
+
+		input[type=checkbox]+label:before {
+			width: 17px;
+			height: 17px;
+			border: 0;
+		}
+	}
+
+	@include media-breakpoint-only(md) {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+	}
+
+	@include media-breakpoint-down(md) {
+		float: right;
+		font-size: 15px;
+
+		input[type=checkbox]+label:before {
+			width: 14.5px;
+			height: 14.5px;
+			border: 0;
+			margin-right: 0;
+		}
+
+		.ico-close-circle {
+			width: 20px;
+			height: 20px;
+		}
+	}
+}
