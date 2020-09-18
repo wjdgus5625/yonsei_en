@@ -4,8 +4,8 @@ import SearchMenu from './menu/index'
 import SearchContent from './content'
 
 const SearchBody = () => {
-    // const tabList = ["all", "center", "doctor", "notice1", "notice2", "notice3", "notice4", "notice5"]
-    const tabList = ["all", "center", "doctor", "notice", "notice", "notice", "notice", "notice"]
+    // const tabList = ["all", "about", "news", "recruit", "fund", "research"]
+    const tabList = ["all", "department", "doctor", "notice", "notice", "notice", "notice", "notice"]
     return (
         <div className="content-body mt-lg-16 mt-md-8 ">
             <div className="container">

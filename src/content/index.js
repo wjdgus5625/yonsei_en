@@ -9,7 +9,6 @@ import qs from 'qs';
 export const RootContext = createContext();
 
 function Search({ location }) {
-  console.log('Search')
   const query = qs.parse(location.search, {
     ignoreQueryPrefix: true
   })
@@ -31,7 +30,7 @@ function Search({ location }) {
         return resp.data;
       })
       .catch(err => {
-        console.log(err)
+        alert(err.response.data)
       });
 
       if(result) setResult(result)
@@ -40,12 +39,16 @@ function Search({ location }) {
   }, [store.request]);
 
   return (
-    <div id="content">
-      <RootContext.Provider value={store}>
-        <SearchHeader />
-        <SearchBody />
-      </RootContext.Provider>
-    </div>
+    <RootContext.Provider value={store}>
+      <div className="wrapper">
+        <header id="header"></header>
+        <div id="content">
+          <SearchHeader />
+          <SearchBody />
+        </div>
+        <footer id="footer"></footer>
+      </div>
+    </RootContext.Provider>
   );
 }
 

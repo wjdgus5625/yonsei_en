@@ -3,8 +3,6 @@ const router = express.Router();
 const sample = require('../sample/sample.json')
 
 router.get('/', (req, res) => {
-    console.log(req.query)
-
     let resp = sample
     resp.request = req.query
 

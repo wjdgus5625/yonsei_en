@@ -47,7 +47,7 @@
             }
         ]
     },
-    "center": {
+    "department": {
         "totalSize": 600,
         "type": "all",
         "list": [
@@ -101,7 +101,7 @@
             }
         ]
     },
-    "noticeboard": {
+    "notice": {
         "totalSize": 700,
         "list": [
             {

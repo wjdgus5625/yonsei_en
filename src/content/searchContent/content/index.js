@@ -23,15 +23,15 @@ const SearchContent = ({type, num}) => {
                         return (
                             <div key={index}>
                                 <SearchContentTitle 
-                                    title={data === "notice" ? SearchViewSetting["style"][data].title[index-2] : SearchViewSetting["style"][data].title} 
-                                    addClass={SearchViewSetting["style"][data].class} 
+                                    title={data === "notice" ? SearchViewSetting.tab.hospital[data].title[index-2] : SearchViewSetting.tab.hospital[data].title} 
+                                    addClass={SearchViewSetting.tab.hospital[data].class} 
                                     result={result[data]}
                                     href={"#tab-content"+(index+2)}
                                     type="default" />
                                 { 
-                                    data === "center" ? <CenterWrap addClass="mt-lg-6 mt-md-4" result={result.center} type="all"/>  : 
+                                    data === "department" ? <CenterWrap addClass="mt-lg-6 mt-md-4" result={result.department} type="all"/> : 
                                     data === "doctor" ? <DoctorWrap result={result.doctor} request={result.request} type="all" /> : 
-                                                        <NoticeBoard result={result.noticeboard}/>
+                                                        <NoticeBoard result={result.notice}/>
                                 }
                             </div>
                         )
@@ -39,23 +39,23 @@ const SearchContent = ({type, num}) => {
                 }
                  </div>
             )
-        } else if (type === 'center') {
+        } else if (type === 'department') {
             return (
                 <div className="tab-content" id={"tab-content"+num} style={num === 1 ? {display: "block"} : {}}>
                     <SearchContentTitle 
-                        title={SearchViewSetting["style"][type].title} 
+                        title={SearchViewSetting.tab.hospital[type].title} 
                         addClass=""
                         result={result[type]}
                         href={"#tab-content"+num}
                         type="select1" />
-                    <CenterWrap addClass="mt-lg-6 mt-md-4" result={result.center} type="single" />
+                    <CenterWrap addClass="mt-lg-6 mt-md-4" result={result.department} type="single" />
                 </div>
             )
         } else if (type === 'doctor') {
             return (
                 <div className="tab-content" id={"tab-content"+num} style={num === 1 ? {display: "block"} : {}}>
                     <SearchContentTitle 
-                        title={SearchViewSetting["style"][type].title} 
+                        title={SearchViewSetting.tab.hospital[type].title} 
                         addClass=""
                         result={result[type]}
                         href={"#tab-content"+num}
@@ -67,7 +67,7 @@ const SearchContent = ({type, num}) => {
             return (
                 <div className="tab-content" id={"tab-content"+num} style={num === 1 ? {display: "block"} : {}}>
                     <SearchContentTitle 
-                        title={SearchViewSetting["style"][type].title[num-4]} 
+                        title={SearchViewSetting.tab.hospital[type].title[num-4]} 
                         addClass=""
                         result={result.noticeboard}
                         href={"#tab-content"+num}
