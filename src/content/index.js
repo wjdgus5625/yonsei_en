@@ -1,27 +1,52 @@
-import React, { useState, createContext } from 'react';
-import SearchHeader from './header/index'
-import SearchBody from './body/index'
+import React, { useState, createContext, useEffect } from 'react';
+
+import SearchHeader from './searchHeader/index'
+import SearchBody from './searchContent/index'
+
+import Axios from 'axios';
+import qs from 'qs';
 
 export const RootContext = createContext();
 
-function Search() {
+function Search({ location }) {
+  console.log('Search')
+  const query = qs.parse(location.search, {
+    ignoreQueryPrefix: true
+  })
+  const [result, setResult] = useState({});
+  const [request, setRequest] = useState(query)
 
-    const [result, setResult] = useState({})
-
-    const searchResult = (result) => {
-        setResult(result)
-    }
-
-    return (
-      <div id="content">
-        <RootContext.Provider value={""}>
-          <SearchHeader searchResult={searchResult}></SearchHeader>
-          <SearchBody 
-              result={result}
-          />
-        </RootContext.Provider>
-      </div>
-    );
+  const store = {
+    request: request,
+    setRequest: setRequest,
+    result: result,
+    setResult: setResult,
+    type: "all"
   }
-  
-  export default Search;
+
+  useEffect(() => {
+    const getSearch = async () => {
+      const result = await Axios.get('http://localhost:4500/api', {params: store.request})
+      .then(resp => {
+        return resp.data;
+      })
+      .catch(err => {
+        console.log(err)
+      });
+
+      if(result) setResult(result)
+    }
+    getSearch();
+  }, [store.request]);
+
+  return (
+    <div id="content">
+      <RootContext.Provider value={store}>
+        <SearchHeader />
+        <SearchBody />
+      </RootContext.Provider>
+    </div>
+  );
+}
+
+export default Search;

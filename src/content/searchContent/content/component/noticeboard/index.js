@@ -1,5 +1,5 @@
 import React from 'react';
-import Nodata from '../../../../component/nodata/index'
+import Nodata from '../nodata/index'
 import parser from 'html-react-parser';
 
 const noticeBoard = ({result}) => {

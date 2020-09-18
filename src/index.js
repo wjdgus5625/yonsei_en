@@ -5,11 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <header id="header"></header>
-    <App />
-    <footer id="footer"></footer>
-  </React.StrictMode>,
+  <App />,
   document.getElementById('root')
 );
 

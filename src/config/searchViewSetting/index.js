@@ -1,5 +1,5 @@
 export default {
-	searchAll: {
+	style: {
 		center: {
 			title: "진료과/센터/클리닉 ",
 			class: "mt-lg-12 mt-md-6"
@@ -12,5 +12,8 @@ export default {
 			title: ["건강정보", "세미나/강좌 ", "뉴스/소식 ", "이용안내 ", "병원소개 "],
 			class: "pt-lg-16 pt-md-9"
 		}
+	},
+	tablist: {
+		yonsei: ["center", "doctor", "notice", "notice", "notice", "notice", "notice"]
 	}
 }

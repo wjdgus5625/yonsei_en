@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import Nodata from '../../../../component/nodata/index'
+import Nodata from '../nodata/index'
 import SingleTab from './singletab/index'
 
 import Axios from 'axios';
 
 const DoctorWrap = ({result, request, type}) => {
-    const [searchResult, setSearchResult] = useState({
-        list: []
-    });
+    const [searchResult, setSearchResult] = useState(result);
+
+    // console.log('DoctorWrap\t', result, '\t', type)
 
     const getSearchChosung = (chosung) => {
         let requestParam = request !== undefined ? request : {}
@@ -55,7 +55,7 @@ const DoctorWrap = ({result, request, type}) => {
                 <ul>
                     {
                         searchResult !== undefined && searchResult.list.length > 0 ? searchResult.list.map((data, index) => {
-                            if(type === 'all' && index >= 8) return ""; 
+                            if(type === 'all' && index >= 8) console.log('ghh') 
                             return (
                                 <li key={index}>
                                     <a href="#none" target="_blank" title="새창">

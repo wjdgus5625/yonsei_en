@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { RootContext } from '../..';
 
-const SearchModal = ({className, modalClose, getSearch, must, should, mustNot, changeKeyword, allClear}) => {
+const SearchModal = ({className, modalClose, getSearch, changeKeyword, allClear}) => {
+	const rootContext = useContext(RootContext);
+    let must = rootContext.request.must || "";
+	let should = rootContext.request.should || "";
+	let mustNot = rootContext.request.mustNot || "";
+
     return (
         <div className={className} id="layer-search-pop">
 			<div className="dimed d-down-md"></div>
@@ -16,7 +22,7 @@ const SearchModal = ({className, modalClose, getSearch, must, should, mustNot, c
 									   style={{width: "100%", maxWidth: "400px"}} />
                                 <input type="text" className="form-control ml-lg-3 mt-md-2" id="search-word1"
                                        onChange={(e) => changeKeyword(e.target.value, "should")} value={should}
-									placeholder="적어도 하나이상 포함할 단어를 입력해주세요" style={{width: "100%", maxWidth: "400px"}} title="포함할 단어 입력" />
+									   placeholder="적어도 하나이상 포함할 단어를 입력해주세요" style={{width: "100%", maxWidth: "400px"}} title="포함할 단어 입력" />
 							</dd>
 						</dl>
 						<dl>

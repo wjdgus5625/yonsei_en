@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { RootContext } from '../..';
 
-const SearchBar = ({modalOpen, getSearch, selectChange, category1, category2, changeKeyword, keyword}) => {
+const SearchBar = ({modalOpen, getSearch, changeKeyword}) => {
+    const rootContext = useContext(RootContext);
+    let category1 = rootContext.request.category1
+    let category2 = rootContext.request.category2
+    let keyword = rootContext.request.keyword || "";
 
 	const [select1Open, setSelect1Open] = useState(false);
 	const [select2Open, setSelect2Open] = useState(false);
@@ -21,10 +26,24 @@ const SearchBar = ({modalOpen, getSearch, selectChange, category1, category2, ch
         );
     }
 
+    const selectChange = (scope, category) => {
+		if(scope === 1) {
+			rootContext.setRequest({
+				...rootContext.request,
+				category1: category
+			})
+		} else if (scope === 2) {
+			rootContext.setRequest({
+				...rootContext.request,
+				category2: category
+			})
+		}
+	}
+
     return (
         <div className="search-bar">
             <div className={select1Open ? "dropdown-control opened" : "dropdown-control"}>
-                <button type="button" className="btn-dropdown text-xl" onClick={select1Toggle}>{category1}</button>
+                <button type="button" className="btn-dropdown text-xl" onClick={select1Toggle}>{category1 === undefined ? "기관선택" : category1}</button>
                 <div className="dropdown-list custom-scroll">
                     <ul>
                         {
@@ -38,7 +57,7 @@ const SearchBar = ({modalOpen, getSearch, selectChange, category1, category2, ch
                 </div>
             </div>
             <div className={select2Open ? "dropdown-control mt-md-2 opened" : "dropdown-control mt-md-2"}>
-                <button type="button" className="btn-dropdown text-xl" onClick={select2Toggle}>{category2}</button>
+                <button type="button" className="btn-dropdown text-xl" onClick={select2Toggle}>{category2 === undefined ? "통합검색" : category2}</button>
                 <div className="dropdown-list custom-scroll">
                     <ul>
                         {

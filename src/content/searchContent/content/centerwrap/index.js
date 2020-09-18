@@ -1,5 +1,5 @@
 import React from 'react';
-import Nodata from '../../../../component/nodata/index'
+import Nodata from '../component/nodata/index'
 
 const centerWrap = ({addClass, result, type}) => {
     return (
