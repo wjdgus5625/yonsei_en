@@ -26,7 +26,7 @@ const SearchContent = ({type, num}) => {
                                     title={data === "notice" ? SearchViewSetting["style"][data].title[index-2] : SearchViewSetting["style"][data].title} 
                                     addClass={SearchViewSetting["style"][data].class} 
                                     result={result[data]}
-                                    href={"#tab-content"+(num+1)}
+                                    href={"#tab-content"+(index+2)}
                                     type="default" />
                                 { 
                                     data === "center" ? <CenterWrap addClass="mt-lg-6 mt-md-4" result={result.center} type="all"/>  : 
@@ -71,8 +71,8 @@ const SearchContent = ({type, num}) => {
                         addClass=""
                         result={result[type]}
                         href={"#tab-content"+num}
-                        type="select1" />
-                    <NoticeBoard result={result.noticeboard} />
+                        type="select3" />
+                    <NoticeBoard result={result.noticeboard} type="single" />
                 </div>
             )
         }

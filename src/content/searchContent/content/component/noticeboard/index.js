@@ -2,7 +2,7 @@ import React from 'react';
 import Nodata from '../nodata/index'
 import parser from 'html-react-parser';
 
-const noticeBoard = ({result}) => {
+const noticeBoard = ({result, type}) => {
     return (
         <div className="notice-board">
             <ul className="notice-list">
@@ -29,6 +29,13 @@ const noticeBoard = ({result}) => {
                     }) : <Nodata />
                 }
             </ul>
+            {
+                result !== undefined && type === 'single' ? (
+                    <div className="text-center mt-lg-11 mt-md-6">
+                        <a href="#;" className="btn btn-more">더보기</a>
+                    </div>
+                ) : ""
+            }
         </div>
     )
 }
