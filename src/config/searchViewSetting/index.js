@@ -14,6 +14,9 @@ export default {
 		}
 	},
 	tablist: {
-		yonsei: ["center", "doctor", "notice", "notice", "notice", "notice", "notice"]
+		test: ["center", "doctor", "notice", "notice", "notice", "notice", "notice"],
+		nursinghome: ["news", "recruit", "fund", "research", "about"],
+		results: ["department", "doctor", "health", "seminar", "news", "guide", "about"],
+		university: ["class", "professor", "news", "admission", "about", "education", "research"]
 	}
 }
