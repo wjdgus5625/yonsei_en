@@ -6,6 +6,8 @@ router.get('/', (req, res) => {
     let resp = sample
     resp.request = req.query
 
+    console.log(req.query)
+
     if(req.query.chosung !== undefined) {
         resp = req.query.chosung === 'all' ? sample.doctor : sample.chosung
     }

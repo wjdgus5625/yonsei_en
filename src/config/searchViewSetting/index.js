@@ -17,6 +17,7 @@ export default {
 		test: ["department", "doctor", "notice", "notice", "notice", "notice", "notice"],
 		nursinghome: ["about", "news", "recruit", "fund", "research"],
 		hospital: ["department", "doctor", "health", "seminar", "news", "guide", "about"],
+		hospital_kor: ["진료과", "의료진", "건강정보", "세미나/강좌", "뉴스/소식", "이용안내", "병원소개"],
 		university: ["professor", "news", "admission", "education", "about", "research"]
 	},
 	tab: {

@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react';
-import { RootContext } from '../..';
+import React, { useState } from 'react';
+import SearchViewSetting from '../../../config/searchViewSetting/index';
 
-const SearchBar = ({modalOpen, getSearch, changeKeyword}) => {
-    const rootContext = useContext(RootContext);
-    let category1 = rootContext.request.category1
-    let category2 = rootContext.request.category2
-    let keyword = rootContext.request.keyword || "";
+const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange}) => {
+    let category1 = request.category1
+    let category2 = request.category2
+    let keyword = request.keyword || "";
+    const tabList = SearchViewSetting.tablist.hospital_kor;
 
 	const [select1Open, setSelect1Open] = useState(false);
 	const [select2Open, setSelect2Open] = useState(false);
@@ -26,19 +26,6 @@ const SearchBar = ({modalOpen, getSearch, changeKeyword}) => {
         );
     }
 
-    const selectChange = (scope, category) => {
-		if(scope === 1) {
-			rootContext.setRequest({
-				...rootContext.request,
-				category1: category
-			})
-		} else if (scope === 2) {
-			rootContext.setRequest({
-				...rootContext.request,
-				category2: category
-			})
-		}
-	}
 
     return (
         <div className="search-bar">
@@ -61,9 +48,9 @@ const SearchBar = ({modalOpen, getSearch, changeKeyword}) => {
                 <div className="dropdown-list custom-scroll">
                     <ul>
                         {
-                            [...Array(9)].map((n, index) => {
+                            tabList.map((data, index) => {
                                 return (
-                                    <SelectList key={"2"+index} onClick={() => selectChange(2, "통합"+index)} addText={"통합"+index}></SelectList>
+                                    <SelectList key={"2"+index} onClick={() => selectChange(2, data)} addText={data}></SelectList>
                                 )
                             })
                         }

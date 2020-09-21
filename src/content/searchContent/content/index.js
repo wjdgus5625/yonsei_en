@@ -6,12 +6,13 @@ import SearchViewSetting from '../../../config/searchViewSetting/index'
 import NoticeBoard from './component/noticeboard/index'
 import CenterWrap from './component/centerwrap/index'
 import DoctorWrap from './component/doctorwrap/index'
+
 import { RootContext } from '../..';
 
 const SearchContent = ({type, num}) => {
     const rootContext = useContext(RootContext);
     const result = rootContext.result;
-    const tabList = SearchViewSetting.tablist.test;
+    const tabList = SearchViewSetting.tablist.hospital;
 
     const Content = () => {
         if(type === 'all') {
@@ -23,7 +24,7 @@ const SearchContent = ({type, num}) => {
                         return (
                             <div key={index}>
                                 <SearchContentTitle 
-                                    title={data === "notice" ? SearchViewSetting.tab.hospital[data].title[index-2] : SearchViewSetting.tab.hospital[data].title} 
+                                    title={SearchViewSetting.tab.hospital[data].title} 
                                     addClass={SearchViewSetting.tab.hospital[data].class} 
                                     result={result[data]}
                                     href={"#tab-content"+(index+2)}
@@ -31,7 +32,7 @@ const SearchContent = ({type, num}) => {
                                 { 
                                     data === "department" ? <CenterWrap addClass="mt-lg-6 mt-md-4" result={result.department} type="all"/> : 
                                     data === "doctor" ? <DoctorWrap result={result.doctor} request={result.request} type="all" /> : 
-                                                        <NoticeBoard result={result.notice}/>
+                                                        <NoticeBoard result={result[data]}/>
                                 }
                             </div>
                         )
@@ -63,16 +64,16 @@ const SearchContent = ({type, num}) => {
                     <DoctorWrap result={result.doctor} request={result.request} type="single" />
                 </div>
             )
-        } else if (type === 'notice') {
+        } else {
             return (
                 <div className="tab-content" id={"tab-content"+num} style={num === 1 ? {display: "block"} : {}}>
                     <SearchContentTitle 
-                        title={SearchViewSetting.tab.hospital[type].title[num-4]} 
+                        title={SearchViewSetting.tab.hospital[type].title} 
                         addClass=""
-                        result={result.noticeboard}
+                        result={result[type]}
                         href={"#tab-content"+num}
                         type="select3" />
-                    <NoticeBoard result={result.noticeboard} type="single" />
+                    <NoticeBoard result={result[type]} type="single" />
                 </div>
             )
         }

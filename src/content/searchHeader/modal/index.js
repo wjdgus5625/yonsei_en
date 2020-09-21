@@ -1,21 +1,12 @@
-import React, { useContext } from 'react';
-import { RootContext } from '../..';
+import React from 'react';
 
-const SearchModal = ({className, modalClose, getSearch, changeKeyword, allClear}) => {
-	const rootContext = useContext(RootContext);
-    let must = rootContext.request.must || "";
-	let should = rootContext.request.should || "";
-	let mustNot = rootContext.request.mustNot || "";
+const SearchModal = ({className, modalClose, getSearch, changeKeyword, allClear, request, setDepartment}) => {
+    let must = request.must || "";
+	let should = request.should || "";
+	let mustNot = request.mustNot || "";
 
 	const type = "hospital";
 	const hospitalList = ["세브란스병원", "재활병원", "심장혈관병원", "안과병원", "어린이병원"]
-
-	const setDepartment = (data) => {
-		rootContext.setRequest({
-			...rootContext.request,
-			category3: data
-		})
-	}
 
     return (
         <div className={className} id="layer-search-pop">
@@ -32,8 +23,13 @@ const SearchModal = ({className, modalClose, getSearch, changeKeyword, allClear}
 											{
 												hospitalList.map((data, index) => {
 													return (
-														<span key={index}  onClick={() => setDepartment(data)} className={index === (hospitalList.length-1) ? "" : "mr-lg-5"}>
-															<input type="radio" name="sev-selet" id={"sev-selet"+index} className="custom-control" />
+														<span key={index} className={index === (hospitalList.length-1) ? "" : "mr-lg-5"}>
+															<input 	type="radio" 
+																	name="sev-selet" 
+																	id={"sev-selet"+index} 
+																	className="custom-control" 
+																	checked={request.category3 !== undefined && request.category3 === data ? true : false}
+																	onChange={() => setDepartment(data)} />
 															<label htmlFor={"sev-selet"+index} className="text-title-md text-normal">{data}</label>
 														</span>
 													)

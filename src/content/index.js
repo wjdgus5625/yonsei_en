@@ -2,9 +2,13 @@ import React, { useState, createContext, useEffect } from 'react';
 
 import SearchHeader from './searchHeader/index'
 import SearchBody from './searchContent/index'
+import Header from './header/index'
+import Footer from './footer/index'
 
 import Axios from 'axios';
 import qs from 'qs';
+
+import util from '../util/util'
 
 export const RootContext = createContext();
 
@@ -13,10 +17,10 @@ function Search({ location }) {
     ignoreQueryPrefix: true
   })
   const [result, setResult] = useState({});
-  const [request, setRequest] = useState(query)
+  const [request, setRequest] = useState(query);
 
   const store = {
-    request: request,
+    request: util.viewKeywordSetting(request),
     setRequest: setRequest,
     result: result,
     setResult: setResult,
@@ -24,8 +28,9 @@ function Search({ location }) {
   }
 
   useEffect(() => {
+    console.log('useEffect!')
     const getSearch = async () => {
-      const result = await Axios.get('http://localhost:4500/api', {params: store.request})
+      const result = await Axios.get('http://localhost:4500/api', {params: request})
       .then(resp => {
         return resp.data;
       })
@@ -36,17 +41,17 @@ function Search({ location }) {
       if(result) setResult(result)
     }
     getSearch();
-  }, [store.request]);
+  }, [request]);
 
   return (
     <RootContext.Provider value={store}>
       <div className="wrapper">
-        <header id="header"></header>
+        <Header />
         <div id="content">
           <SearchHeader />
           <SearchBody />
         </div>
-        <footer id="footer"></footer>
+        <Footer />
       </div>
     </RootContext.Provider>
   );
