@@ -19,6 +19,11 @@ const SearchMenu = ({request}) => {
 
 		if(request.keyword !== undefined && request.keyword.replace(/[\\ ]/gi, '')) {
             request.category2 = category2
+            if(request.category2 === "doctor" || request.category2 === "department" || request.category2 === "professor") {
+                request.size = 12
+            } else {
+                request.size = 3
+            }
 			window.location.href = '?' + qs.stringify(util.onlyKeywordSetting(request, request.keyword))
 		} else {
 			alert("검색어를 입력해주세요!!")

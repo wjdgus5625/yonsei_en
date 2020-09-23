@@ -1,13 +1,18 @@
 import React from 'react';
 import Nodata from '../nodata/index'
+import SingleTab from './singletab/index';
+import MoreBtn from '../morebtn/index';
 
 const centerWrap = ({addClass, result, type}) => {
     return (
         <div className={"center-wrap " + addClass}>
+            {
+                type === "single" ? <SingleTab /> : ""
+            }
             <ul className="depart-list">
                 {
                     result !== undefined && result.list.length > 0 ? result.list.map((data, index) => {
-                        if(type === 'all' && index >= 4) return ""; 
+                        if(type === 'all' && index >= 8) return ""; 
                         return (
                             <li key={index}>
                                 <div className="line-gray">
@@ -22,9 +27,7 @@ const centerWrap = ({addClass, result, type}) => {
             </ul>
             {
                 type === 'single' && result !== undefined && result.list !== undefined && result.list.length > 0 ? (
-                    <div className="text-center mt-lg-11 mt-md-6">
-                        <a href="#;" className="btn btn-more">더보기</a>
-                    </div>
+                    <MoreBtn />
                 ) : ''
             }
         </div>

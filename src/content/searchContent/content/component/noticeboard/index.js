@@ -2,6 +2,8 @@ import React from 'react';
 import Nodata from '../nodata/index'
 import parser from 'html-react-parser';
 
+import MoreBtn from '../morebtn/index';
+
 const noticeBoard = ({result, type}) => {
     return (
         <div className="notice-board">
@@ -31,9 +33,7 @@ const noticeBoard = ({result, type}) => {
             </ul>
             {
                 result !== undefined && result.list !== undefined && result.list.length > 0 && type === 'single' ? (
-                    <div className="text-center mt-lg-11 mt-md-6">
-                        <a href="#;" className="btn btn-more">더보기</a>
-                    </div>
+                    <MoreBtn />
                 ) : ""
             }
         </div>

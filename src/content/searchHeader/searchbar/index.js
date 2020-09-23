@@ -65,6 +65,7 @@ const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange})
             <div className="input-group mt-md-2" style={{maxWidth: "930px"}}>
                 <input type="text" className="form-control" placeholder="검색어를 입력해주세요" title="검색어를 입력해주세요"
                     onChange={(e) => changeKeyword(e.target.value, "keyword")} value={keyword} 
+                    onKeyPress={(e) => e.key === "Enter" ? getSearch() : ""}
                 />
                 <span className="input-addon">
                     <button type="button" className="btn btn-input btn-icon" onClick={getSearch}>

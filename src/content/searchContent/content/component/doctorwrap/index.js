@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Nodata from '../nodata/index'
 import SingleTab from './singletab/index'
+import MoreBtn from '../morebtn/index';
 
 import { RootContext } from '../../../..';
 import util from '../../../../../util/util'
@@ -22,7 +23,7 @@ const DoctorWrap = ({result, type}) => {
             window.location.href = '?' + qs.stringify(util.onlyKeywordSetting(request, request.keyword)) + "&chosung=" + chosung + "&department=진료과"
         }
     }
-    
+
     return (
         <div className="search-doctor-wrap">
             {
@@ -75,9 +76,7 @@ const DoctorWrap = ({result, type}) => {
             </div>
             {
                 result !== undefined && result.list !== undefined && result.list.length > 0 && type === 'single' ? (
-                    <div className="text-center mt-lg-11 mt-md-6">
-                        <a href="#;" className="btn btn-more">더보기</a>
-                    </div>
+                    <MoreBtn />
                 ) : ""
             }
         </div>

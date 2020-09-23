@@ -8,6 +8,8 @@ import CenterWrap from './component/centerwrap/index'
 import DoctorWrap from './component/doctorwrap/index'
 
 import { RootContext } from '../..';
+import qs from 'qs';
+import util from '../../../util/util'
 
 const SearchContent = ({request}) => {
     const rootContext = useContext(RootContext);
@@ -28,7 +30,11 @@ const SearchContent = ({request}) => {
                                     title={SearchViewSetting.tab[rootContext.request.siteType][data].title} 
                                     addClass={SearchViewSetting.tab[rootContext.request.siteType][data].class} 
                                     result={result[data]}
-                                    href={"#tab-content"+(index+2)}
+                                    href={'?' + qs.stringify(util.onlyKeywordSetting({
+                                        ...request,
+                                        category2: data,
+                                        size: data === "doctor" || data === "professor" || data === "department" ? 12 : 3
+                                    }, request.keyword))}
                                     type="default" />
                                 { 
                                     data === "department" ? <CenterWrap addClass="mt-lg-6 mt-md-4" result={result.department} type="all"/> : 

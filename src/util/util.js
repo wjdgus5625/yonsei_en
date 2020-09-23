@@ -80,7 +80,8 @@ let util = {
             keyword: keyword,
             category1: request.category1,
             category2: request.category2,
-            siteType: request.siteType
+            siteType: request.siteType,
+            size: request.size
         }
     },
     category1Type: (category1) => {
