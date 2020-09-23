@@ -2,12 +2,22 @@ const express = require('express')
 const router = express.Router();
 const sample = require('../../sample/sample.json')
 
+const esclient = require('../../config/elastic.config');
+
 router.get('/', (req, res) => {
     let resp = {}
     let size = 12;
     resp.request = req.query
 
-    console.log(req.query)
+    // esclient.search({
+    //     index: "v1-test_000*"
+    // })
+    // .then(resp => {
+    //     console.log((resp.body.hits))
+    // })
+    // .catch(err => {
+    //     console.log(err)
+    // })
 
     if(req.query.size > 12) {
         size = req.query.size;
