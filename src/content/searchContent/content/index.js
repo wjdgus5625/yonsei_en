@@ -12,11 +12,8 @@ import { RootContext } from '../..';
 const SearchContent = ({request}) => {
     const rootContext = useContext(RootContext);
     const result = rootContext.result;
-
     const category2 = request.category2 || "all";
-    
     const tabList = SearchViewSetting.tablist[rootContext.request.siteType].slice(1)
-    // const doctorTotalSize = useState((category2 === "all" && tabList.indexOf("doctor") > -1) || category2 === "doctor" ? result[category2].totalSize : 0)
 
     const Content = () => {
         if(category2 === 'all') {
@@ -35,7 +32,7 @@ const SearchContent = ({request}) => {
                                     type="default" />
                                 { 
                                     data === "department" ? <CenterWrap addClass="mt-lg-6 mt-md-4" result={result.department} type="all"/> : 
-                                    data === "doctor" ? <DoctorWrap result={result.doctor} request={result.request} type="all" /> : 
+                                    data === "doctor" ? <DoctorWrap result={result.doctor} type="all" /> : 
                                                         <NoticeBoard result={result[data]}/>
                                 }
                             </div>

@@ -3,7 +3,6 @@ import Nodata from '../nodata/index'
 import parser from 'html-react-parser';
 
 const noticeBoard = ({result, type}) => {
-    console.log(result)
     return (
         <div className="notice-board">
             <ul className="notice-list">

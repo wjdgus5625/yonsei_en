@@ -1,44 +1,40 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Nodata from '../nodata/index'
 import SingleTab from './singletab/index'
 
-import Axios from 'axios';
+import { RootContext } from '../../../..';
+import util from '../../../../../util/util'
+import qs from 'qs';
 
-const DoctorWrap = ({result, request, type}) => {
-    const [searchResult, setSearchResult] = useState(result);
-
-    const chosung = ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"]
+const DoctorWrap = ({result, type}) => {
+    const rootContext = useContext(RootContext);
+    const chosung = ["ALL", "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"]
 
     const getSearchChosung = (chosung) => {
-        let requestParam = request !== undefined ? request : {}
-        requestParam.chosung = chosung
-
-        // console.log(rootRequest)
-        // if(rootRequest.size !== undefined) {
-        //     requestParam.size = rootRequest.size;
-        // }
-
-        console.log(requestParam)
-
-        Axios.get('http://localhost:4500/search', {params: requestParam})
-        .then(resp => {
-			setSearchResult(resp.data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+        if(type === "single") {
+            rootContext.setRequest({
+                ...rootContext.request,
+                chosung: chosung
+            })
+        } else {
+            let request = rootContext.request;
+            request.category2 = request.siteType === "hospital" ? "doctor" : "professor"
+            window.location.href = '?' + qs.stringify(util.onlyKeywordSetting(request, request.keyword)) + "&chosung=" + chosung + "&department=진료과"
+        }
     }
+    
     return (
         <div className="search-doctor-wrap">
             {
                 result !== undefined && result.list !== undefined && result.list.length > 0 ? (
                     <div className="ordering-wrap">
                         <ul className="ordering-list pb-lg-3">
-                            <li><button type="button" style={{outline: "none"}} className="all on" onClick={() => getSearchChosung('all')}>ALL</button></li>
                             {
                                 chosung.map((data, index) => {
                                     return (
-                                        <li key={index}><button type="button" style={{outline: "none"}} onClick={() => getSearchChosung(data)}>{data}</button></li>
+                                        <li key={index}><button type="button" style={{outline: "none"}} 
+                                            className={(data === "ALL" ? "all " : "") + (data === "ALL" && rootContext.request.chosung === undefined ? "on" : "") + (rootContext.request.chosung !== undefined && rootContext.request.chosung === data ? "on" : "")} 
+                                            onClick={() => getSearchChosung(data)}>{data}</button></li>
                                     )
                                 })
                             }
@@ -54,7 +50,7 @@ const DoctorWrap = ({result, request, type}) => {
             <div className="doctor-card-wrap">
                 <ul>
                     {
-                        searchResult !== undefined && searchResult.list !== undefined && searchResult.list.length > 0 ? searchResult.list.map((data, index) => {
+                        result !== undefined && result.list !== undefined && result.list.length > 0 ? result.list.map((data, index) => {
                             if(type === 'all' && index >= 4) return ""
                             return (
                                 <li key={index}>

@@ -8,8 +8,12 @@ router.get('/', (req, res) => {
 
     console.log(req.query)
 
-    if(req.query.chosung !== undefined) {
-        resp = req.query.chosung === 'all' ? sample.doctor : sample.chosung
+    if(req.query.category2 !== undefined) {
+        resp[req.query.category2] = sample[req.query.category2]
+    }
+
+    if(req.query.chosung !== undefined && req.query.category2 === "doctor") {
+        resp = {doctor: sample.chosung}
     }
 
     res.send(resp)

@@ -20,17 +20,6 @@ const SearchContentTitle = ({title, addClass, result, href, type}) => {
     if(type === 'default') {
         floatRight = 
         <span className="float-right"><a href={href} className="btn btn-sm btn-outline-default">더보기</a></span>
-    } else if(type === 'select1') {
-        floatRight = 
-        <div className="float-right select-box-right mt-md-2">
-            <select className="form-control ml-lg-1" title="갯수" 
-                    value={size === undefined ? 12 : size} onChange={(e) => selectOnChange(e.target.value, order, category3)}>
-                <option value="12">12개</option>
-                <option value="24">24개</option>
-                <option value="36">36개</option>
-                <option value="60">60개</option>
-            </select>
-        </div>
     } else if(type === 'select2') {
         floatRight = 
         <div className="float-right select-box-right mt-md-2">
@@ -38,14 +27,6 @@ const SearchContentTitle = ({title, addClass, result, href, type}) => {
                     value={order === undefined ? "score" : order} onChange={(e) => selectOnChange(size, e.target.value, category3)}>
                 <option value="score">정확도순</option>
                 <option value="date">최신날짜순</option>
-            </select>
-            <select className="form-control ml-lg-1" title="갯수"
-                    value={size === undefined ? 10 : size} onChange={(e) => selectOnChange(e.target.value, order, category3)}>
-                <option value="10">10개</option>
-                <option value="20">20개</option>
-                <option value="30">30개</option>
-                <option value="50">50개</option>
-                <option value="100">100개</option>
             </select>
         </div>
     } else if(type === 'select3') {
@@ -68,14 +49,6 @@ const SearchContentTitle = ({title, addClass, result, href, type}) => {
                     value={order === undefined ? "score" : order} onChange={(e) => selectOnChange(size, e.target.value, category3)}>
                 <option value="score">정확도순</option>
                 <option value="date">최신날짜순</option>
-            </select>
-            <select className="form-control ml-lg-1" title="갯수"
-                    value={size === undefined ? 10 : size} onChange={(e) => selectOnChange(e.target.value, order, category3)}>
-                <option value="10">10개</option>
-                <option value="20">20개</option>
-                <option value="30">30개</option>
-                <option value="50">50개</option>
-                <option value="100">100개</option>
             </select>
         </div>
     }

@@ -76,15 +76,12 @@ let util = {
         return result
     },
     onlyKeywordSetting: (request, keyword) => {
-        const result = {
-            ...request,
+        return {
             keyword: keyword,
-            must: "",
-            mustNot: "",
-            should: ""
+            category1: request.category1,
+            category2: request.category2,
+            siteType: request.siteType
         }
-
-        return result
     },
     category1Type: (category1) => {
         switch (category1) {
