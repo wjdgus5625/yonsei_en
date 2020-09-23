@@ -16,6 +16,7 @@ const SearchContent = ({request}) => {
     const category2 = request.category2 || "all";
     
     const tabList = SearchViewSetting.tablist[rootContext.request.siteType].slice(1)
+    // const doctorTotalSize = useState((category2 === "all" && tabList.indexOf("doctor") > -1) || category2 === "doctor" ? result[category2].totalSize : 0)
 
     const Content = () => {
         if(category2 === 'all') {

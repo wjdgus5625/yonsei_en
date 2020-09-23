@@ -21,7 +21,7 @@ const centerWrap = ({addClass, result, type}) => {
                 }
             </ul>
             {
-                type === 'single' && result !== undefined ? (
+                type === 'single' && result !== undefined && result.list !== undefined && result.list.length > 0 ? (
                     <div className="text-center mt-lg-11 mt-md-6">
                         <a href="#;" className="btn btn-more">더보기</a>
                     </div>

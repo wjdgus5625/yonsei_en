@@ -13,7 +13,14 @@ const DoctorWrap = ({result, request, type}) => {
         let requestParam = request !== undefined ? request : {}
         requestParam.chosung = chosung
 
-        Axios.get('http://localhost:4500/api', {params: requestParam})
+        // console.log(rootRequest)
+        // if(rootRequest.size !== undefined) {
+        //     requestParam.size = rootRequest.size;
+        // }
+
+        console.log(requestParam)
+
+        Axios.get('http://localhost:4500/search', {params: requestParam})
         .then(resp => {
 			setSearchResult(resp.data)
         })
@@ -24,7 +31,7 @@ const DoctorWrap = ({result, request, type}) => {
     return (
         <div className="search-doctor-wrap">
             {
-                result !== undefined ? (
+                result !== undefined && result.list !== undefined && result.list.length > 0 ? (
                     <div className="ordering-wrap">
                         <ul className="ordering-list pb-lg-3">
                             <li><button type="button" style={{outline: "none"}} className="all on" onClick={() => getSearchChosung('all')}>ALL</button></li>
@@ -47,7 +54,7 @@ const DoctorWrap = ({result, request, type}) => {
             <div className="doctor-card-wrap">
                 <ul>
                     {
-                        searchResult !== undefined && searchResult.list.length > 0 ? searchResult.list.map((data, index) => {
+                        searchResult !== undefined && searchResult.list !== undefined && searchResult.list.length > 0 ? searchResult.list.map((data, index) => {
                             if(type === 'all' && index >= 4) return ""
                             return (
                                 <li key={index}>
@@ -71,7 +78,7 @@ const DoctorWrap = ({result, request, type}) => {
                 </ul>
             </div>
             {
-                result !== undefined && type === 'single' ? (
+                result !== undefined && result.list !== undefined && result.list.length > 0 && type === 'single' ? (
                     <div className="text-center mt-lg-11 mt-md-6">
                         <a href="#;" className="btn btn-more">더보기</a>
                     </div>
