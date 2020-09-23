@@ -57,7 +57,6 @@ $(document).ready(function () {
 	//끝
 	ticker();
 
-
 	/* 	var ticker1 = function () {
 			timer = setTimeout(function () {
 				$('.ticker1 li:first').animate({

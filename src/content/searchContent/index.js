@@ -1,22 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import SearchMenu from './menu/index'
 import SearchContent from './content'
 
+import { RootContext } from '..';
+
 const SearchBody = () => {
-    // const tabList = ["all", "about", "news", "recruit", "fund", "research"]
-    const tabList = ["all", "department", "doctor", "health", "seminar", "news", "guide", "about"]
+    const rootContext = useContext(RootContext);
+    
     return (
         <div className="content-body mt-lg-16 mt-md-8 ">
             <div className="container">
-                <SearchMenu site="hospital"/> 
-                {
-                    tabList.map((data, index) => {
-                        return (
-                            <SearchContent key={index} type={data} num={index+1} />
-                        )
-                    })
-                }
+                <SearchMenu request={rootContext.request} /> 
+                <SearchContent 
+                    request={rootContext.request} />
             </div>
         </div>
     )

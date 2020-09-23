@@ -1,55 +1,91 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { RootContext } from '../../..';
 
-const searchContentTitle = ({title, addClass, result, href, type}) => {
-    let count = 0;
-
-    if(result !== undefined && result.totalSize !== undefined) {
-        count = result.totalSize;
+const SearchContentTitle = ({title, addClass, result, href, type}) => {
+    const rootContext = useContext(RootContext);
+    const size = rootContext.request.size;
+    const order = rootContext.request.order;
+    const category3 = rootContext.request.category3;
+    const selectOnChange = (size, order, category3) => {
+        rootContext.setRequest({
+            ...rootContext.request,
+            size,
+            order,
+            category3
+        })
     }
 
     let floatRight;
 
     if(type === 'default') {
-        floatRight = <span className="float-right"><a href={href} className="btn btn-sm btn-outline-default">더보기</a></span>
+        floatRight = 
+        <span className="float-right"><a href={href} className="btn btn-sm btn-outline-default">더보기</a></span>
     } else if(type === 'select1') {
-        floatRight = <div className="float-right select-box-right mt-md-2"><select className="form-control ml-lg-1" title="갯수"><option>12개</option><option>24개</option><option>36개</option><option>60개</option></select></div>
+        floatRight = 
+        <div className="float-right select-box-right mt-md-2">
+            <select className="form-control ml-lg-1" title="갯수" 
+                    value={size === undefined ? 12 : size} onChange={(e) => selectOnChange(e.target.value, order, category3)}>
+                <option value="12">12개</option>
+                <option value="24">24개</option>
+                <option value="36">36개</option>
+                <option value="60">60개</option>
+            </select>
+        </div>
     } else if(type === 'select2') {
-        floatRight = <div className="float-right select-box-right mt-md-2"><select className="form-control" title="정확도순"><option>최신날짜순</option><option>정확도순</option></select><select className="form-control ml-lg-1" title="갯수"><option>10개</option><option>20개</option><option>30개</option><option>50개</option><option>100개</option></select></div>
+        floatRight = 
+        <div className="float-right select-box-right mt-md-2">
+            <select className="form-control" title="정확도순" 
+                    value={order === undefined ? "score" : order} onChange={(e) => selectOnChange(size, e.target.value, category3)}>
+                <option value="score">정확도순</option>
+                <option value="date">최신날짜순</option>
+            </select>
+            <select className="form-control ml-lg-1" title="갯수"
+                    value={size === undefined ? 10 : size} onChange={(e) => selectOnChange(e.target.value, order, category3)}>
+                <option value="10">10개</option>
+                <option value="20">20개</option>
+                <option value="30">30개</option>
+                <option value="50">50개</option>
+                <option value="100">100개</option>
+            </select>
+        </div>
     } else if(type === 'select3') {
         floatRight = 
         <div className="float-right select-box-right mt-md-2">
-            <select className="form-control" title="전체">
-                <option>전체</option>
-                <option>질병정보</option>
-                <option>검사/치료정보</option>
-                <option>생활속 건강관리</option>
-                <option>건강한 영양관리</option>
-                <option>어린이 건강관리</option>
-                <option>건강카드뉴스</option>
-                <option>건강동영상</option>
-                <option>의료진칼럼</option>
-                <option>건강도서추천</option>
+            <select className="form-control" title="전체" 
+                    value={category3 === undefined ? "all" : category3} onChange={(e) => selectOnChange(size, order, e.target.value)}>
+                <option value="all">전체</option>
+                <option value="질병정보">질병정보</option>
+                <option value="검사/치료정보">검사/치료정보</option>
+                <option value="생활속 건강관리">생활속 건강관리</option>
+                <option value="건강한 영양관리">건강한 영양관리</option>
+                <option value="어린이 건강관리">어린이 건강관리</option>
+                <option value="건강카드뉴스">건강카드뉴스</option>
+                <option value="건강동영상">건강동영상</option>
+                <option value="의료진칼럼">의료진칼럼</option>
+                <option value="건강도서추천">건강도서추천</option>
             </select>
-            <select className="form-control ml-lg-1" title="정확도순">
-                <option>정확도순</option>
-                <option>최신날짜순</option>
+            <select className="form-control ml-lg-1" title="정확도순"
+                    value={order === undefined ? "score" : order} onChange={(e) => selectOnChange(size, e.target.value, category3)}>
+                <option value="score">정확도순</option>
+                <option value="date">최신날짜순</option>
             </select>
-            <select className="form-control ml-lg-1" title="갯수">
-                <option>10개</option>
-                <option>20개</option>
-                <option>30개</option>
-                <option>50개</option>
-                <option>100개</option>
+            <select className="form-control ml-lg-1" title="갯수"
+                    value={size === undefined ? 10 : size} onChange={(e) => selectOnChange(e.target.value, order, category3)}>
+                <option value="10">10개</option>
+                <option value="20">20개</option>
+                <option value="30">30개</option>
+                <option value="50">50개</option>
+                <option value="100">100개</option>
             </select>
         </div>
     }
     
     return (
         <div className={"search-cont-title border-bottom "+addClass}>
-            <span className="text-lg">{title} <span className="text-primary">{count}</span> 건</span>
+            <span className="text-lg">{title} <span className="text-primary">{result !== undefined && result.totalSize !== undefined ? result.totalSize : 0}</span> 건</span>
             {floatRight}
         </div>
     )
 }
 
-export default searchContentTitle;
+export default SearchContentTitle;

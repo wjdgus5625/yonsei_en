@@ -7,7 +7,7 @@ const centerWrap = ({addClass, result, type}) => {
             <ul className="depart-list">
                 {
                     result !== undefined && result.list.length > 0 ? result.list.map((data, index) => {
-                        if(type === 'all' && index >= 8) return ""; 
+                        if(type === 'all' && index >= 4) return ""; 
                         return (
                             <li key={index}>
                                 <div className="line-gray">

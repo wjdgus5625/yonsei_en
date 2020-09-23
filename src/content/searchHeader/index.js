@@ -20,12 +20,6 @@ const SearchHeader = () => {
 			alert('기관을 선택해주세요!!')
 			return;
 		}
-		if(request.category2 === undefined) {
-			setRequest({
-				...request,
-				category2: "통합검색"
-			})
-		}
 		if(request.keyword !== undefined && request.keyword.replace(/[\\ ]/gi, '')) {
 			if(modalOpen) {
 				window.location.href = '?' + qs.stringify(util.searchKeywordSetting(request))
@@ -69,18 +63,12 @@ const SearchHeader = () => {
 		})
 	}
 
-	const selectChange = (scope, category) => {
-		if(scope === 1) {
-			setRequest({
-				...request,
-				category1: category
-			})
-		} else if (scope === 2) {
-			setRequest({
-				...request,
-				category2: category
-			})
-		}
+	const selectChange = (category) => {
+		setRequest({
+			...request,
+			category1: category,
+			category2: "all"
+		})
 	}
 
 	const setDepartment = (data) => {

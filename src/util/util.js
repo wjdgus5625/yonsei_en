@@ -85,6 +85,32 @@ let util = {
         }
 
         return result
+    },
+    category1Type: (category1) => {
+        switch (category1) {
+            case "yuhs": 
+                return "headquarter"
+            case "sev": 
+                return "hospital"
+            case "gs": 
+                return "hospital"
+            case "cancer": 
+                return "hospital"
+            case "dental": 
+                return "hospital"
+            case "ys": 
+                return "hospital"
+            case "medicine": 
+                return "school"
+            case "dentistry": 
+                return "school"
+            case "nursingcolleage": 
+                return "school"
+            case "gsph": 
+                return "school"
+            default: 
+                return "hospital"
+        }
     }
 }
 

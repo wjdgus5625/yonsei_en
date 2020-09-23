@@ -15,13 +15,18 @@ export default {
 	},
 	tablist: {
 		test: ["department", "doctor", "notice", "notice", "notice", "notice", "notice"],
-		nursinghome: ["about", "news", "recruit", "fund", "research"],
-		hospital: ["department", "doctor", "health", "seminar", "news", "guide", "about"],
-		hospital_kor: ["진료과", "의료진", "건강정보", "세미나/강좌", "뉴스/소식", "이용안내", "병원소개"],
-		university: ["professor", "news", "admission", "education", "about", "research"]
+		headquarter: ["all", "about", "news", "recruit", "fund", "research"],
+		headquarter_kor: ["통합검색", "의료원", "뉴스", "채용", "기금", "연구"],
+		hospital: ["all", "department", "doctor", "health", "seminar", "news", "guide", "about"],
+		hospital_kor: ["통합검색", "진료과", "의료진", "건강정보", "세미나/강좌", "뉴스/소식", "이용안내", "병원소개"],
+		school: ["all", "professor", "news", "admission", "education", "about"],
+		school_kor: ["통합검색", "교수진", "뉴스", "입학", "교육/연구", "소개"]
 	},
 	tab: {
 		headquarter: {
+			all: {
+				title: "통합검색"
+			},
 			about: {
 				title: "의료원",
 				class: "mt-lg-12 mt-md-6",
@@ -49,6 +54,9 @@ export default {
 			}
 		},
 		hospital: {
+			all: {
+				title: "통합검색"
+			},
 			notice: {
 				title: ["건강정보", "세미나/강좌 ", "뉴스/소식 ", "이용안내 ", "병원소개 "],
 				class: "pt-lg-16 pt-md-9"
@@ -90,6 +98,9 @@ export default {
 			}
 		},
 		school: {
+			all: {
+				title: "통합검색"
+			},
 			professor: {
 				title: "교수진",
 				class: "mt-lg-12 mt-md-6",
@@ -116,5 +127,19 @@ export default {
 				singletab: "select2"
 			}
 		}
-	}
+	},
+	category1: {
+		yuhs: "연세의료원",
+		sev: "연세세브란스 병원",
+		gs: "강남세브란스 병원", 
+		cancer: "연세암병원",
+		dental: "치과대학병원",
+		ys: "용인세브란스 병원",
+		medicine: "의과대학",
+		dentistry: "치과대학",
+		nursingcolleage: "간호대학",
+		gsph: "보건대학원"
+	},
+	category1List: ["yuhs", "sev", "gs", "cancer", "dental", "ys", "medicine", "dentistry", "nursingcolleage", "gsph"],
+	category1List_kor: ["연세의료원", "연세세브란스 병원", "강남세브란스 병원", "연세암병원", "치과대학병원", "용인세브란스 병원", "의과대학", "치과대학", "간호대학", "보건대학원"]
 }

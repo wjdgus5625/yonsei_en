@@ -12,12 +12,16 @@ import util from '../util/util'
 
 export const RootContext = createContext();
 
-function Search({ location }) {
+function Content({ location }) {
   const query = qs.parse(location.search, {
     ignoreQueryPrefix: true
   })
+
   const [result, setResult] = useState({});
-  const [request, setRequest] = useState(query);
+  const [request, setRequest] = useState({
+    ...query,
+    siteType: util.category1Type(query.category1)
+  });
 
   const store = {
     request: util.viewKeywordSetting(request),
@@ -29,6 +33,7 @@ function Search({ location }) {
 
   useEffect(() => {
     console.log('useEffect!')
+    console.log(request)
     const getSearch = async () => {
       const result = await Axios.get('http://localhost:4500/api', {params: request})
       .then(resp => {
@@ -40,21 +45,27 @@ function Search({ location }) {
 
       if(result) setResult(result)
     }
-    getSearch();
+
+    if(request.category1 === undefined) {
+      alert("기관을 선택해주세요!")
+    } else {
+      getSearch();
+    }
+    
   }, [request]);
 
   return (
-    <RootContext.Provider value={store}>
       <div className="wrapper">
         <Header />
         <div id="content">
-          <SearchHeader />
-          <SearchBody />
+          <RootContext.Provider value={store}>
+            <SearchHeader />
+            <SearchBody />
+          </RootContext.Provider>
         </div>
         <Footer />
       </div>
-    </RootContext.Provider>
   );
 }
 
-export default Search;
+export default Content;

@@ -95,7 +95,6 @@ tableScroll();
 // 탭메뉴
 var tabCurrentIndex;
 $('.tab-list .on a').each(function () {
-	console.log('hi')
 	var tg = $(this).attr('href');
 	if (tg !== '#' && tg.charAt(0) === '#') {
 		
@@ -246,7 +245,6 @@ $(document).on('click', '.btn-tab-prev, .btn-tab-next', function () {
 			tabCurrentIndex = prevIndex + 1;
 		}
 	}
-
 	$tabList.children('li').eq(tabCurrentIndex).children().click();
 });
 
@@ -589,6 +587,7 @@ function _modeDetect() {
 	console.log('device : ' + _mode);
 
 	if (beforeMode !== _mode) {
+		console.log('beforeMode')
 		// 게시판 상단 공지 슬라이더
 		bbsNoticeSlider();
 
