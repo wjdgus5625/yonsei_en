@@ -35,7 +35,7 @@ function Content({ location }) {
     console.log('useEffect!')
     console.log(request)
     const getSearch = async () => {
-      const result = await Axios.get('http://localhost:4500/api', {params: request})
+      const result = await Axios.get('http://localhost:4500/search', {params: request})
       .then(resp => {
         return resp.data;
       })

@@ -9,6 +9,8 @@ const SearchMenu = ({request}) => {
     const tabList = SearchViewSetting.tablist[request.siteType]
     const tabList_kor = SearchViewSetting.tablist[request.siteType+"_kor"]
 
+    const category2 = request.category2 || "all";
+
     const getCategorySearch = (category2) => {
 		if(request.category1 === undefined) {
 			alert('기관을 선택해주세요!!')
@@ -31,7 +33,7 @@ const SearchMenu = ({request}) => {
                     {
                         tabList.map((data, index) => {
                             return (                               
-                                <li key={index} className={request.category2 === data ? "on" : ""}>
+                                <li key={index} className={category2 === data ? "on" : ""}>
                                     <a href={"#;"} onClick={() => getCategorySearch(data)}><span>{tabList_kor[index]}</span></a>
                                 </li>
                             )
