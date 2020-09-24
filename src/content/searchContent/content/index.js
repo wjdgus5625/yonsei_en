@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import SearchInfo from './info/index'
 import SearchContentTitle from './title/index'
@@ -10,12 +10,43 @@ import DoctorWrap from './component/doctorwrap/index'
 import { RootContext } from '../..';
 import qs from 'qs';
 import util from '../../../util/util'
+import Axios from 'axios';
 
 const SearchContent = ({request}) => {
     const rootContext = useContext(RootContext);
     const result = rootContext.result;
+    const [searchResult, setSearchResult] = useState({})
     const category2 = request.category2 || "all";
     const tabList = SearchViewSetting.tablist[rootContext.request.siteType].slice(1)
+
+    useEffect(() => {
+        setSearchResult(result[request.siteType === "hospital" ? "doctor" : "professor"])
+    }, [result, request])
+    
+    const [chosung, setChosung] = useState("ALL")
+    const getSearchChosung = async (chosung, type) => {
+        if(type === "single") {
+            rootContext.setRequest({
+                ...rootContext.request,
+                chosung: chosung
+            })
+        } else {
+            const getSearchResult = await Axios.get('http://localhost:4500/search', {params: {
+                ...rootContext.request,
+                chosung: chosung
+            }})
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+                alert(err.response.data)
+            });
+            if(getSearchResult) {
+                setChosung(chosung)
+                setSearchResult(getSearchResult[rootContext.request.siteType === "hospital" ? "doctor" : "professor"])
+            }
+        }
+    }
 
     const Content = () => {
         if(category2 === 'all') {
@@ -29,16 +60,18 @@ const SearchContent = ({request}) => {
                                 <SearchContentTitle 
                                     title={SearchViewSetting.tab[rootContext.request.siteType][data].title} 
                                     addClass={SearchViewSetting.tab[rootContext.request.siteType][data].class} 
-                                    result={result[data]}
+                                    result={data === "doctor" || data === "professor" ? searchResult : result[data]}
                                     href={'?' + qs.stringify(util.onlyKeywordSetting({
                                         ...request,
                                         category2: data,
                                         size: data === "doctor" || data === "professor" || data === "department" ? 12 : 3
                                     }, request.keyword))}
+                                    chosung={chosung}
+                                    category2={data}
                                     type="default" />
                                 { 
                                     data === "department" ? <CenterWrap addClass="mt-lg-6 mt-md-4" result={result.department} type="all"/> : 
-                                    data === "doctor" ? <DoctorWrap result={result.doctor} type="all" /> : 
+                                    data === "doctor" ? <DoctorWrap result={searchResult} type="all" getSearchChosung={getSearchChosung} chosung={chosung} /> : 
                                                         <NoticeBoard result={result[data]}/>
                                 }
                             </div>
@@ -68,7 +101,7 @@ const SearchContent = ({request}) => {
                         result={result[category2]}
                         href={"#tab-content"}
                         type={SearchViewSetting.tab[rootContext.request.siteType][category2].singletab} />
-                    <DoctorWrap result={result.doctor} request={result.request} type="single" />
+                    <DoctorWrap result={searchResult} request={result.request} type="single" getSearchChosung={getSearchChosung} chosung={chosung} />
                 </div>
             )
         } else {

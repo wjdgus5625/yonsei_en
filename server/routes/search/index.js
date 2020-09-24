@@ -9,6 +9,8 @@ router.get('/', (req, res) => {
     let size = 12;
     resp.request = req.query
 
+    console.log(resp.request)
+
     // esclient.search({
     //     index: "v1-test_000*"
     // })
@@ -34,8 +36,8 @@ router.get('/', (req, res) => {
         resp[req.query.category2] = sample[req.query.category2]
     }
 
-    if(req.query.chosung !== undefined && req.query.category2 === "doctor") {
-        resp = {doctor: sample.chosung}
+    if(req.query.chosung !== undefined && (req.query.category2 === "doctor" || req.query.category2 === "all")) {
+        req.query.chosung === "ALL" ? resp = {doctor: sample.doctor} : resp = {doctor: sample.chosung}
     }
 
     res.send(resp)

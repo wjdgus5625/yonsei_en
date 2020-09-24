@@ -4,25 +4,11 @@ import SingleTab from './singletab/index'
 import MoreBtn from '../morebtn/index';
 
 import { RootContext } from '../../../..';
-import util from '../../../../../util/util'
-import qs from 'qs';
 
-const DoctorWrap = ({result, type}) => {
+const DoctorWrap = ({result, type, getSearchChosung, chosung}) => {
     const rootContext = useContext(RootContext);
-    const chosung = ["ALL", "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"]
-
-    const getSearchChosung = (chosung) => {
-        if(type === "single") {
-            rootContext.setRequest({
-                ...rootContext.request,
-                chosung: chosung
-            })
-        } else {
-            let request = rootContext.request;
-            request.category2 = request.siteType === "hospital" ? "doctor" : "professor"
-            window.location.href = '?' + qs.stringify(util.onlyKeywordSetting(request, request.keyword)) + "&chosung=" + chosung + "&department=진료과"
-        }
-    }
+    const chosungList = ["ALL", "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"]
+    const rootChosung = rootContext.request.chosung !== undefined ? rootContext.request.chosung : chosung
 
     return (
         <div className="search-doctor-wrap">
@@ -31,11 +17,11 @@ const DoctorWrap = ({result, type}) => {
                     <div className="ordering-wrap">
                         <ul className="ordering-list pb-lg-3">
                             {
-                                chosung.map((data, index) => {
+                                chosungList.map((data, index) => {
                                     return (
                                         <li key={index}><button type="button" style={{outline: "none"}} 
-                                            className={(data === "ALL" ? "all " : "") + (data === "ALL" && rootContext.request.chosung === undefined ? "on" : "") + (rootContext.request.chosung !== undefined && rootContext.request.chosung === data ? "on" : "")} 
-                                            onClick={() => getSearchChosung(data)}>{data}</button></li>
+                                            className={(data === "ALL" ? "all " : "") + (data === "ALL" && rootChosung === undefined ? "on" : "") + (rootChosung !== undefined && rootChosung === data ? "on" : "")} 
+                                            onClick={() => getSearchChosung(data, type)}>{data}</button></li>
                                     )
                                 })
                             }

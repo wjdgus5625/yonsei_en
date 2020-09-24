@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { RootContext } from '../../..';
 
-const SearchContentTitle = ({title, addClass, result, href, type}) => {
+const SearchContentTitle = ({title, addClass, result, href, type, chosung, category2}) => {
     const rootContext = useContext(RootContext);
     const size = rootContext.request.size;
     const order = rootContext.request.order;
@@ -19,7 +19,7 @@ const SearchContentTitle = ({title, addClass, result, href, type}) => {
 
     if(type === 'default') {
         floatRight = 
-        <span className="float-right"><a href={href} className="btn btn-sm btn-outline-default">더보기</a></span>
+        <span className="float-right"><a href={href + (category2 === "doctor" || category2 === "professor" ? "&chosung="+chosung : "")} className="btn btn-sm btn-outline-default">더보기</a></span>
     } else if(type === 'select2') {
         floatRight = 
         <div className="float-right select-box-right mt-md-2">

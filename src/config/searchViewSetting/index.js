@@ -14,7 +14,6 @@ export default {
 		}
 	},
 	tablist: {
-		test: ["department", "doctor", "notice", "notice", "notice", "notice", "notice"],
 		headquarter: ["all", "about", "news", "recruit", "fund", "research"],
 		headquarter_kor: ["통합검색", "의료원", "뉴스", "채용", "기금", "연구"],
 		hospital: ["all", "department", "doctor", "health", "seminar", "news", "guide", "about"],
