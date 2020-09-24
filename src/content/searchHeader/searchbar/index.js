@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import SearchViewSetting from '../../../config/searchViewSetting/index';
 
 const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange}) => {
-    let category1 = request.category1
+    let m_site_cd = request.m_site_cd
     let keyword = request.keyword || "";
     
-    const category1List = SearchViewSetting.category1List;
-    const category1List_kor = SearchViewSetting.category1List_kor;
+    const m_site_cdList = SearchViewSetting.m_site_cdList;
+    const m_site_cdList_kor = SearchViewSetting.m_site_cdList_kor;
 
 	const [select1Open, setSelect1Open] = useState(false);
 	
@@ -18,7 +18,7 @@ const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange})
 	// const select2Toggle = () => {
 	// 	select2Open ? setSelect2Open(false) : setSelect2Open(true);
     // }
-    // let category2 = request.category2 || "all";
+    // let cate_cd = request.cate_cd || "all";
     // const tabList = SearchViewSetting.tablist[request.siteType];
     // const tab_kor = SearchViewSetting.tab[request.siteType];
     // const [select2Open, setSelect2Open] = useState(false);
@@ -34,13 +34,13 @@ const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange})
     return (
         <div className="search-bar">
             <div className={select1Open ? "dropdown-control opened" : "dropdown-control"}>
-                <button type="button" className="btn-dropdown text-xl" onClick={select1Toggle}>{category1 === undefined ? "기관선택" : SearchViewSetting.category1[category1]}</button>
+                <button type="button" className="btn-dropdown text-xl" onClick={select1Toggle}>{m_site_cd === undefined ? "기관선택" : SearchViewSetting.m_site_cd[m_site_cd]}</button>
                 <div className="dropdown-list custom-scroll">
                     <ul>
                         {
-                            category1List.map((data, index) => {
+                            m_site_cdList.map((data, index) => {
                                 return (
-                                    <SelectList key={data} onClick={() => selectChange(data)} addText={category1List_kor[index]}></SelectList>
+                                    <SelectList key={data} onClick={() => selectChange(data)} addText={m_site_cdList_kor[index]}></SelectList>
                                 )
                             })
                         }
@@ -48,7 +48,7 @@ const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange})
                 </div>
             </div>
             {/* <div className={select2Open ? "dropdown-control mt-md-2 opened" : "dropdown-control mt-md-2"}>
-                <button type="button" className="btn-dropdown text-xl" onClick={select2Toggle}>{category2 === undefined || category2 === "all" ? "통합검색" : tab_kor[category2].title}</button>
+                <button type="button" className="btn-dropdown text-xl" onClick={select2Toggle}>{cate_cd === undefined || cate_cd === "all" ? "통합검색" : tab_kor[cate_cd].title}</button>
                 <div className="dropdown-list custom-scroll">
                     <ul>
                         {

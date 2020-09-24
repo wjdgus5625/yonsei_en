@@ -127,7 +127,7 @@ export default {
 			}
 		}
 	},
-	category1: {
+	m_site_cd: {
 		yuhs: "연세의료원",
 		sev: "연세세브란스 병원",
 		gs: "강남세브란스 병원", 
@@ -139,6 +139,6 @@ export default {
 		nursingcolleage: "간호대학",
 		gsph: "보건대학원"
 	},
-	category1List: ["yuhs", "sev", "gs", "cancer", "dental", "ys", "medicine", "dentistry", "nursingcolleage", "gsph"],
-	category1List_kor: ["연세의료원", "연세세브란스 병원", "강남세브란스 병원", "연세암병원", "치과대학병원", "용인세브란스 병원", "의과대학", "치과대학", "간호대학", "보건대학원"]
+	m_site_cdList: ["yuhs", "sev", "gs", "cancer", "dental", "ys", "medicine", "dentistry", "nursingcolleage", "gsph"],
+	m_site_cdList_kor: ["연세의료원", "연세세브란스 병원", "강남세브란스 병원", "연세암병원", "치과대학병원", "용인세브란스 병원", "의과대학", "치과대학", "간호대학", "보건대학원"]
 }

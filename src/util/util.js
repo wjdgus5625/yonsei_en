@@ -78,14 +78,14 @@ let util = {
     onlyKeywordSetting: (request, keyword) => {
         return {
             keyword: keyword,
-            category1: request.category1,
-            category2: request.category2,
+            m_site_cd: request.m_site_cd,
+            cate_cd: request.cate_cd,
             siteType: request.siteType,
             size: request.size
         }
     },
-    category1Type: (category1) => {
-        switch (category1) {
+    m_site_cdType: (m_site_cd) => {
+        switch (m_site_cd) {
             case "yuhs": 
                 return "headquarter"
             case "sev": 

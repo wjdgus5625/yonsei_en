@@ -7,7 +7,7 @@ const MoreBtn = () => {
     const moreBtnClick = () => {
         let plusSize = 9;
 
-        if(rootContext.request.category2 === "doctor" || rootContext.request.category2 === "professor" || rootContext.request.category2 === "department") {
+        if(rootContext.request.cate_cd === "doctor" || rootContext.request.cate_cd === "professor" || rootContext.request.cate_cd === "department") {
             plusSize = 8;
         }
 

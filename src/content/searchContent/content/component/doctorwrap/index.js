@@ -9,7 +9,6 @@ const DoctorWrap = ({result, type, getSearchChosung, chosung}) => {
     const rootContext = useContext(RootContext);
     const chosungList = ["ALL", "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"]
     const rootChosung = rootContext.request.chosung !== undefined ? rootContext.request.chosung : chosung
-
     return (
         <div className="search-doctor-wrap">
             {
@@ -48,8 +47,8 @@ const DoctorWrap = ({result, type, getSearchChosung, chosung}) => {
                                                     <img src="/_share/img/common/_profile-thumb1.png" alt="프로필 사진" />
                                                 </div>
                                                 <dl>
-                                                    <dt className="text-title text-lg">{data.name}</dt>
-                                                    <dd className="mb-0">{data.content}</dd>
+                                                    <dt className="text-title text-lg">{data.nm}</dt>
+                                                    <dd className="mb-0">{data.detail_major === undefined || data.detail_major.length === 0 ? "test" : data.detail_major}</dd>
                                                 </dl>
                                             </div>
                                         </div>
@@ -61,7 +60,7 @@ const DoctorWrap = ({result, type, getSearchChosung, chosung}) => {
                 </ul>
             </div>
             {
-                result !== undefined && result.list !== undefined && result.list.length > 0 && type === 'single' ? (
+                result !== undefined && result.list !== undefined && result.list.length > 0 && type === 'single' && result.totalSize > rootContext.request.size ? (
                     <MoreBtn />
                 ) : ""
             }

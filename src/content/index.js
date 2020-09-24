@@ -20,7 +20,7 @@ function Content({ location }) {
   const [result, setResult] = useState({});
   const [request, setRequest] = useState({
     ...query,
-    siteType: util.category1Type(query.category1)
+    siteType: util.m_site_cdType(query.m_site_cd)
   });
 
   const store = {
@@ -40,13 +40,13 @@ function Content({ location }) {
         return resp.data;
       })
       .catch(err => {
-        alert(err.response.data)
+        alert(err.response.data.message)
       });
-
+      console.log(result)
       if(result) setResult(result)
     }
 
-    if(request.category1 === undefined) {
+    if(request.m_site_cd === undefined) {
       alert("기관을 선택해주세요!")
     } else {
       getSearch();

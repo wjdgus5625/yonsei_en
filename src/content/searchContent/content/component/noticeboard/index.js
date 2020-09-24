@@ -20,7 +20,7 @@ const noticeBoard = ({result, type}) => {
                                         <a href="#none" target="_blank" title="새창" className="text-title">
                                             {data.title}
                                         </a>
-                                        <p className="text-area">{parser(data.content)}</p>
+                                        <p className="text-area">{data.content !== undefined ? parser(data.content) : ""}</p>
                                         <p className="route">
                                             <a href="#none" target="_blank" title="새창">{data.boardPath}</a>
                                         </p>

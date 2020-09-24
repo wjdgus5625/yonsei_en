@@ -16,7 +16,7 @@ const SearchHeader = () => {
 	const [request, setRequest] = useState(rootContext.request);
 	
 	const getSearch = () => {
-		if(request.category1 === undefined) {
+		if(request.m_site_cd === undefined) {
 			alert('기관을 선택해주세요!!')
 			return;
 		}
@@ -66,8 +66,8 @@ const SearchHeader = () => {
 	const selectChange = (category) => {
 		setRequest({
 			...request,
-			category1: category,
-			category2: "all"
+			m_site_cd: category,
+			cate_cd: "all"
 		})
 	}
 
