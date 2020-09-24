@@ -40,7 +40,12 @@ function Content({ location }) {
         return resp.data;
       })
       .catch(err => {
-        alert(err.response.data.message)
+        if(err.response === undefined) {
+          alert(err.message)
+        } else {
+          alert(err.response.data.message)
+        }
+        
       });
       console.log(result)
       if(result) setResult(result)

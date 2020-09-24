@@ -146,8 +146,12 @@ router.get('/', (req, res, next) => {
 
 const resultSetting = (resp, cate_cdList, keyword) => {
     let result = {};
+    let totalSize = 0;
+
+    result.keyword = keyword
 
     resp.map((data, index) => {
+        totalSize += data.hits.total.value
         result[cate_cdList[index]] = {
             totalSize: data.hits.total.value,
             keyword: keyword,
@@ -157,6 +161,8 @@ const resultSetting = (resp, cate_cdList, keyword) => {
             return data._source;
         })
     })
+
+    result.totalSize = totalSize
 
     return result;
 }
