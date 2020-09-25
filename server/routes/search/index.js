@@ -66,8 +66,7 @@ router.get('/', (req, res, next) => {
         }
     
         if (cate_cd === "all") {
-            // cate_cdList = [cate_cd]
-            cate_cdList = ["doctor"]
+            cate_cdList = properties.tabList(m_site_cd)
         } else {
             cate_cdList = [cate_cd]
         }
@@ -81,6 +80,14 @@ router.get('/', (req, res, next) => {
                 index = {
                     index: properties.indexName(data)
                 }
+            }
+
+            if(cate_cd === "all"  && ( data === "doctor" || data === "professor" )) {
+                size = 4;
+            } else if(cate_cd === "all" && data === "department") {
+                size = 8;
+            } else if(cate_cd === "all"){
+                size = 3;
             }
             
             let queryBody = {
@@ -96,10 +103,21 @@ router.get('/', (req, res, next) => {
                 _source: [],
                 sort: []
             }
+
+            let searchFields = properties.searchFields(data)
     
-            mustKeyword.length > 0 ? queryBody.query.bool.must.push(queryUtil.multi_match(mustKeyword, [], "AND")) : "";
-            mustNotKeyword.length > 0 ? queryBody.query.bool.must_not.push(queryUtil.multi_match(mustNotKeyword, [], "OR")) : "";
-            shouldKeyword.length > 0 ? queryBody.query.bool.should.push(queryUtil.multi_match(shouldKeyword, [])) : "";
+            if(mustKeyword.length > 0) {
+                queryBody.query.bool.must.push(queryUtil.multi_match(mustKeyword, searchFields, "AND"))
+            }
+
+            if(mustNotKeyword.length > 0) {
+                queryBody.query.bool.must_not.push(queryUtil.multi_match(mustNotKeyword, searchFields, "OR"))
+            }
+
+            if(shouldKeyword.length > 0) {
+                queryBody.query.bool.should.push(queryUtil.multi_match(shouldKeyword, searchFields))
+                queryBody.query.bool.minimum_should_match = 1;
+            }
 
             if (m_site_cd !== undefined && m_site_cd.length > 0) {
                 queryBody.query.bool.filter.push(queryUtil.filter_term("m_site_cd", m_site_cd))
@@ -109,13 +127,14 @@ router.get('/', (req, res, next) => {
                 queryBody.query.bool.filter.push(queryUtil.filter_term("department", department))
             }
     
-            if (chosung !== undefined && chosung.length > 0) {
+            if (chosung !== undefined && chosung.length > 0 && chosung.toUpperCase() !== "ALL") {
                 queryBody.query.bool.filter.push(queryUtil.filter_term("chosung", chosung))
             }
     
             if (category3 !== undefined && category3.length > 0) {
                 queryBody.query.bool.filter.push(queryUtil.filter_term("category3", category3))
             }
+
             if (order !== undefined && order.length > 0 && cate_cd !== "all") {
                 queryBody.sort.push({
                     date_field: {
@@ -123,6 +142,7 @@ router.get('/', (req, res, next) => {
                     }
                 })
             }
+            
             body.push(index)
             body.push(queryBody);
         })

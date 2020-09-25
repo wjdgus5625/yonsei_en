@@ -6,32 +6,93 @@ const properties = {
             case "doctor" :
                 return "doctor";
             case "news" :
-                return "";
+                return "board";
             case "recruit" :
-                return "";
+                return "board";
             case "fund" :
-                return "";
+                return "board";
             case "research" :
-                return "";
+                return "board";
             case "about" :
-                return "";
+                return "board";
             case "health" :
-                return "";
+                return "board";
             case "seminar" :
-                return "";
+                return "board";
             case "guide" :
-                return "";
+                return "board";
             case "class" :
-                return "";
+                return "board";
             case "professor" :
-                return "";
+                return "doctor";
             case "admission" :
-                return "";
+                return "board";
             case "education" :
-                return "";
+                return "board";
             default:
                 console.log("존재하지 않는 카테고리 코드입니다!")
                 return "";
+        }
+    },
+    tabList: (m_site_cd) => {
+        switch (m_site_cd) {
+            case "yuhs": 
+                return ["about", "news", "recruit", "fund", "research"]
+            case "sev": 
+                return ["department", "doctor", "health", "seminar", "news", "guide", "about"]
+            case "gs": 
+                return ["department", "doctor", "health", "seminar", "news", "guide", "about"]
+            case "cancer": 
+                return ["department", "doctor", "health", "seminar", "news", "guide", "about"]
+            case "dental": 
+                return ["department", "doctor", "health", "seminar", "news", "guide", "about"]
+            case "ys": 
+                return ["department", "doctor", "health", "seminar", "news", "guide", "about"]
+            case "medicine": 
+                return ["professor", "news", "admission", "education", "about"]
+            case "dentistry": 
+                return ["professor", "news", "admission", "education", "about"]
+            case "nursingcolleage": 
+                return ["professor", "news", "admission", "education", "about"]
+            case "gsph": 
+                return ["professor", "news", "admission", "education", "about"]
+            default: 
+                return []
+        }
+    },
+    searchFields: (cate_cd) => {
+        switch (cate_cd) {
+            case "department" :
+                return ["dept_nm.*"];
+            case "doctor" :
+                return ["detail_major.*", "nm.*", "nm_en.*", "intrst_realm.*", "clnic_realm.*"];
+            case "news" :
+                return ["content.*"];
+            case "recruit" :
+                return ["content.*"];
+            case "fund" :
+                return ["content.*"];
+            case "research" :
+                return ["content.*"];
+            case "about" :
+                return ["content.*"];
+            case "health" :
+                return ["content.*"];
+            case "seminar" :
+                return ["content.*"];
+            case "guide" :
+                return ["content.*"];
+            case "class" :
+                return ["content.*"];
+            case "professor" :
+                return ["doctor"];
+            case "admission" :
+                return ["content.*"];
+            case "education" :
+                return ["content.*"];
+            default:
+                console.log("존재하지 않는 카테고리 코드입니다!")
+                return "not_field";
         }
     }
 }

@@ -3,7 +3,7 @@ import Nodata from '../nodata/index'
 import SingleTab from './singletab/index';
 import MoreBtn from '../morebtn/index';
 
-const centerWrap = ({addClass, result, type}) => {
+const centerWrap = ({addClass, result, type, request}) => {
     return (
         <div className={"center-wrap " + addClass}>
             {
@@ -17,7 +17,7 @@ const centerWrap = ({addClass, result, type}) => {
                             <li key={index}>
                                 <div className="line-gray">
                                     <a href="#none" title="새창" target="_blank">
-                                        <span>{data.title}</span>
+                                        <span>{data.dept_nm}</span>
                                     </a>
                                 </div>
                             </li>
@@ -26,7 +26,7 @@ const centerWrap = ({addClass, result, type}) => {
                 }
             </ul>
             {
-                type === 'single' && result !== undefined && result.list !== undefined && result.list.length > 0 ? (
+                type === 'single' && result !== undefined && result.list !== undefined && result.list.length > 0 && result.totalSize > request.size ? (
                     <MoreBtn />
                 ) : ''
             }

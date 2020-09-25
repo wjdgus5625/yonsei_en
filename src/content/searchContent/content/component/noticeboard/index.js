@@ -4,12 +4,13 @@ import parser from 'html-react-parser';
 
 import MoreBtn from '../morebtn/index';
 
-const noticeBoard = ({result, type}) => {
+const noticeBoard = ({result, type, request}) => {
     return (
         <div className="notice-board">
             <ul className="notice-list">
                 {
                     result !== undefined && result.list.length > 0 ? result.list.map((data, index) => {
+                        if(type === 'all' && index >= 3) return ""
                         return (
                             <li key={index}>
                                 <div className="notice-wrap">
@@ -20,7 +21,8 @@ const noticeBoard = ({result, type}) => {
                                         <a href="#none" target="_blank" title="새창" className="text-title">
                                             {data.title}
                                         </a>
-                                        <p className="text-area">{data.content !== undefined ? parser(data.content) : ""}</p>
+                                        {/* <p className="text-area">{data.content !== undefined ? parser(data.content) : ""}</p> */}
+                                        <p className="text-area">{data.content}</p>
                                         <p className="route">
                                             <a href="#none" target="_blank" title="새창">{data.boardPath}</a>
                                         </p>
@@ -32,7 +34,7 @@ const noticeBoard = ({result, type}) => {
                 }
             </ul>
             {
-                result !== undefined && result.list !== undefined && result.list.length > 0 && type === 'single' ? (
+                result !== undefined && result.list !== undefined && result.list.length > 0 && type === 'single' && result.totalSize > request.size ? (
                     <MoreBtn />
                 ) : ""
             }
