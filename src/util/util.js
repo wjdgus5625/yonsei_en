@@ -10,7 +10,7 @@ let util = {
         let must = "";
         let mustNot = "";
         let should = "";
-        let keyword = request.keyword;
+        let keyword = request.keyword || "";
 
         keyword.split(' ').forEach(d => {
             if(d.indexOf('+') === 0) {
