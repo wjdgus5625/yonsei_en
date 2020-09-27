@@ -1,4 +1,5 @@
 import React from 'react';
+import searchViewSetting from '../../../config/searchViewSetting';
 
 const SearchModal = ({className, modalClose, getSearch, changeKeyword, allClear, request, setDepartment}) => {
     let must = request.must || "";
@@ -6,7 +7,9 @@ const SearchModal = ({className, modalClose, getSearch, changeKeyword, allClear,
 	let mustNot = request.mustNot || "";
 
 	const type = "hospital";
-	const hospitalList = ["세브란스병원", "재활병원", "심장혈관병원", "안과병원", "어린이병원"]
+	const hospitalList = searchViewSetting.hospitalList[request.m_site_cd] || [];
+
+	console.log(request)
 
     return (
         <div className={className} id="layer-search-pop">
@@ -15,7 +18,7 @@ const SearchModal = ({className, modalClose, getSearch, changeKeyword, allClear,
 				<div className="popup-cont">
 					<div className="pop-form">
 						{
-							type === "hospital" ? (
+							type === "hospital" && hospitalList.length > 0 ? (
 								<dl>
 									<dt className="text-title-md text-normal">검색기관 :</dt>
 									<dd className="mb-md-2">
