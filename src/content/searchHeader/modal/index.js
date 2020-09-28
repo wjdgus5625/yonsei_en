@@ -9,8 +9,6 @@ const SearchModal = ({className, modalClose, getSearch, changeKeyword, allClear,
 	const type = "hospital";
 	const hospitalList = searchViewSetting.hospitalList[request.m_site_cd] || [];
 
-	console.log(request)
-
     return (
         <div className={className} id="layer-search-pop">
 			<div className="dimed d-down-md"></div>

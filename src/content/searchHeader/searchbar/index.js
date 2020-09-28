@@ -34,7 +34,7 @@ const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange})
     return (
         <div className="search-bar">
             <div className={select1Open ? "dropdown-control opened" : "dropdown-control"}>
-                <button type="button" className="btn-dropdown text-xl" onClick={select1Toggle}>{m_site_cd === undefined ? "기관선택" : SearchViewSetting.m_site_cd[m_site_cd]}</button>
+                <button type="button" className="btn-dropdown text-xl" onClick={select1Toggle}>{m_site_cd === undefined ? "기관선택" : SearchViewSetting.m_site_cd[m_site_cd] || "기관선택"}</button>
                 <div className="dropdown-list custom-scroll">
                     <ul>
                         {

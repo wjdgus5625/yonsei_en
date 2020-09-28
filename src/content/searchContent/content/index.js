@@ -109,14 +109,18 @@ const SearchContent = ({request}) => {
                 </div>
             )
         } else {
+            let contentTitle = SearchViewSetting.tab[rootContext.request.siteType] !== undefined ? (
+                       SearchViewSetting.tab[rootContext.request.siteType][cate_cd] !== undefined ? 
+                       SearchViewSetting.tab[rootContext.request.siteType][cate_cd] : ""
+                       ) : ""
             return (
                 <div className="tab-content" id={"tab-content"} style={{display: "block"}}>
                     <SearchContentTitle 
-                        title={SearchViewSetting.tab[rootContext.request.siteType][cate_cd].title} 
+                        title={contentTitle.title} 
                         addClass=""
                         result={result[cate_cd]}
                         href={"#tab-content"}
-                        type={SearchViewSetting.tab[rootContext.request.siteType][cate_cd].singletab} />
+                        type={contentTitle.singletab} />
                     <NoticeBoard result={result[cate_cd]} type="single" request={request} />
                 </div>
             )

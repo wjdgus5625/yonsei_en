@@ -124,7 +124,7 @@ router.get('/', (req, res, next) => {
             }
 
             if (department !== undefined && department.length > 0) {
-                queryBody.query.bool.filter.push(queryUtil.filter_term("department", department))
+                queryBody.query.bool.filter.push(queryUtil.filter_term("department", properties.stringToCode(department)))
             }
     
             if (chosung !== undefined && chosung.length > 0 && chosung.toUpperCase() !== "ALL") {

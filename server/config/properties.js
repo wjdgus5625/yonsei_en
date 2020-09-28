@@ -94,6 +94,16 @@ const properties = {
                 console.log("존재하지 않는 카테고리 코드입니다!")
                 return "not_field";
         }
+    },
+    stringToCode: (str) => {
+        switch (str) {
+            case "진료과" :
+                return "department";
+            case "클리닉" :
+                return "clinic";
+            case "센터" :
+                return "center";
+        }
     }
 }
 
