@@ -42,12 +42,14 @@ router.get('/', (req, res, next) => {
             cate_cdList = properties.tabList(m_site_cd)
         } else {
             cate_cdList = [cate_cd]
+            // 의료진, 교수진의 경우 초성검색(agg) 추가
             cate_cd === "doctor" || cate_cd === "professor" ? cate_cdList.push("chosung") : "";
         }
 
         cate_cdList.map( data => {
             let index = {}
 
+            // 인덱스명 매칭
             if(properties.indexName(data).length === 0) {
                 return;
             } else {
@@ -62,7 +64,7 @@ router.get('/', (req, res, next) => {
                 size = 8;
             } else if(cate_cd === "all"){
                 size = 3;
-            } else if(cate_cd === "chosung") {
+            } else if(cate_cd === "chosung") { // 초성은 agg용이므로 다른 결과 필요 없음
                 size = 0;
             }
             
@@ -80,6 +82,7 @@ router.get('/', (req, res, next) => {
                 sort: []
             }
 
+            // 의료진, 교수진, 진려과의 경우 하이라이팅 없음
             if( data !== "doctor" && data !== "professor" && data !== "department" ) {
                 queryBody.highlight = {
                     number_of_fragments: 3,
@@ -144,6 +147,15 @@ router.get('/', (req, res, next) => {
                     }
                 })
             }
+
+            // 의료진, 교수진의 경우 정렬 옵션 고정(가나다 순)
+            if (data === "doctor" || data === "professor") {
+                queryBody.sort.push({
+                    nm: {
+                        order: "asc"
+                    }
+                })
+            }
             
             body.push(index)
             body.push(queryBody);
@@ -182,6 +194,7 @@ const resultSetting = (resp, cate_cdList, keyword) => {
             chosung: []
         }
 
+        // 화면상의 초성 버튼부분용 result 값
         if(cate_cdList[index] === "chosung" ) {
             data.aggregations.chosung.buckets.map(data => {
                 result[cate_cdList[index]].chosung.push(data.key)

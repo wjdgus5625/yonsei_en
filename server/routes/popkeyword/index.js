@@ -16,22 +16,17 @@ router.get('/', (req, res, next) => {
         }
     }
 
-    try {
-        esclient.search({
-            index: index,
-            body: queryBody
-        })
-        .then(resp => {
-            res.send(resp.body.hits.hits[0]._source.popqueryJSON)
-        })
-        .catch(err => {
-            console.log(err)
-            next(err)
-        })
-
-    } catch (error) {
-        next(error)
-    }
+    esclient.search({
+        index: index,
+        body: queryBody
+    })
+    .then(resp => {
+        res.send(resp.body.hits.hits[0]._source.popqueryJSON)
+    })
+    .catch(err => {
+        console.log(err)
+        next(err)
+    })
 });
 
 module.exports = router;
