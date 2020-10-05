@@ -65,9 +65,9 @@ const properties = {
     searchFields: (cate_cd) => {
         switch (cate_cd) {
             case "department" :
-                return ["dept_nm.*"];
+                return ["dept_nm*"];
             case "doctor" :
-                return ["detail_major.*", "nm.*", "nm_en.*", "intrst_realm.*", "clnic_realm.*"];
+                return ["detail_major*", "nm*", "nm_en*", "intrst_realm*", "clnic_realm*"];
             case "news" :
                 return ["contents"];
             case "recruit" :
@@ -87,13 +87,13 @@ const properties = {
             case "class" :
                 return ["contents"];
             case "professor" :
-                return ["detail_major.*", "nm.*", "nm_en.*", "intrst_realm.*", "clnic_realm.*"];
+                return ["detail_major*", "nm*", "nm_en*", "intrst_realm*", "clnic_realm*"];
             case "admission" :
                 return ["contents"];
             case "education" :
                 return ["contents"];
             case "chosung" :
-                return ["detail_major.*", "nm.*", "nm_en.*", "intrst_realm.*", "clnic_realm.*"];
+                return ["detail_major*", "nm*", "nm_en*", "intrst_realm*", "clnic_realm*"];
             default:
                 console.log("존재하지 않는 카테고리 코드입니다! ", cate_cd)
                 return "not_field";
