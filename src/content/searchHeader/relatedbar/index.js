@@ -11,7 +11,6 @@ const ReatedBar = ({checked, onChange, m_site_cd}) => {
           // const result = await Axios.get('http://10.9.32.17:19700/popkeyword?m_site_cd=' + m_site_cd)
           const result = await Axios.get('http://localhost:19700/popkeyword?m_site_cd=' + m_site_cd)
           .then(resp => {
-              console.log(resp)
             return resp.data;
           })
           .catch(err => {

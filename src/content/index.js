@@ -20,7 +20,8 @@ function Content({ location }) {
   const [result, setResult] = useState({});
   const [request, setRequest] = useState({
     ...query,
-    siteType: util.m_site_cdType(query.m_site_cd)
+    siteType: util.m_site_cdType(query.m_site_cd),
+    m_site_cd_default: query.m_site_cd
   });
 
   const store = {

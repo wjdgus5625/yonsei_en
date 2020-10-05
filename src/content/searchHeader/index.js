@@ -104,7 +104,7 @@ const SearchHeader = () => {
 					<RelatedBar 
 						checked={checked}
 						onChange={() => setChecked(!checked)}
-						m_site_cd={request.m_site_cd}
+						m_site_cd={request.m_site_cd_default}
 					/>
 				</div>
 			</div>
@@ -122,4 +122,3 @@ const SearchHeader = () => {
 }
 
 export default SearchHeader;
-
