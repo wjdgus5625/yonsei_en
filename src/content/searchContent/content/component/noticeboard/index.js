@@ -22,7 +22,6 @@ const noticeBoard = ({result, type, request}) => {
                                             {data.title}
                                         </a>
                                         <p className="text-area">{data.contents !== undefined ? parser(data.contents) : ""}</p>
-                                        {/* <p className="text-area">{data.contents}</p> */}
                                         <p className="route">
                                             <a href="#none" target="_blank" title="새창">{data.boardPath}</a>
                                         </p>

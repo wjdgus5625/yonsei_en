@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
+import ApiConfig from '../../../config/apiConfig/index'
+
 const ReatedBar = ({checked, onChange, m_site_cd}) => {
 
     const [popKeyword, setPopKeyword] = useState([]);
@@ -8,8 +10,7 @@ const ReatedBar = ({checked, onChange, m_site_cd}) => {
     useEffect(() => {
         console.log('popKeyword useEffect')
         const getPopKeyword = async () => {
-          // const result = await Axios.get('http://10.9.32.17:19700/popkeyword?m_site_cd=' + m_site_cd)
-          const result = await Axios.get('http://localhost:19700/popkeyword?m_site_cd=' + m_site_cd)
+          const result = await Axios.get(ApiConfig.pop_path + '?m_site_cd=' + m_site_cd)
           .then(resp => {
             return resp.data;
           })

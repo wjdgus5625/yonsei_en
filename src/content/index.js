@@ -5,6 +5,7 @@ import SearchBody from './searchContent/index'
 import Header from './header/index'
 import Footer from './footer/index'
 import SearchViewSetting from '../config/searchViewSetting/index'
+import ApiConfig from '../config/apiConfig/index';
 
 import Axios from 'axios';
 import qs from 'qs';
@@ -37,8 +38,7 @@ function Content({ location }) {
     console.log('useEffect!')
     console.log(request)
     const getSearch = async () => {
-      // const result = await Axios.get('http://10.9.32.17:19700/search', {params: request})
-      const result = await Axios.get('http://localhost:19700/search', {params: request})
+      const result = await Axios.get(ApiConfig.search_path, {params: request})
       .then(resp => {
         return resp.data;
       })

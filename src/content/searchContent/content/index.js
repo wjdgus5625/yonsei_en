@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import SearchInfo from './info/index'
 import SearchContentTitle from './title/index'
 import SearchViewSetting from '../../../config/searchViewSetting/index'
+import ApiConfig from '../../../config/apiConfig/index';
 import NoticeBoard from './component/noticeboard/index'
 import CenterWrap from './component/centerwrap/index'
 import DoctorWrap from './component/doctorwrap/index'
@@ -36,8 +37,7 @@ const SearchContent = ({request}) => {
                 ...rootContext.request,
                 chosung: chosung
             })
-            // const getSearchResult = await Axios.get('http://10.9.32.17:19700/search', {params: {
-            const getSearchResult = await Axios.get('http://localhost:19700/search', {params: {
+            const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
                 ...rootContext.request,
                 chosung: chosung
             }})
