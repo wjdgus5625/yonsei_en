@@ -29,8 +29,10 @@ const properties = {
                 return "board";
             case "education" :
                 return "board";
+            case "chosung" :
+                return "doctor";
             default:
-                console.log("존재하지 않는 카테고리 코드입니다!")
+                console.log("존재하지 않는 카테고리 코드입니다! ", cate_cd)
                 return "";
         }
     },
@@ -39,23 +41,23 @@ const properties = {
             case "yuhs": 
                 return ["about", "news", "recruit", "fund", "research"]
             case "sev": 
-                return ["department", "doctor", "health", "seminar", "news", "guide", "about"]
+                return ["department", "doctor", "chosung", "health", "seminar", "news", "guide", "about"]
             case "gs": 
-                return ["department", "doctor", "health", "seminar", "news", "guide", "about"]
+                return ["department", "doctor", "chosung", "health", "seminar", "news", "guide", "about"]
             case "cancer": 
-                return ["department", "doctor", "health", "seminar", "news", "guide", "about"]
+                return ["department", "doctor", "chosung", "health", "seminar", "news", "guide", "about"]
             case "dental": 
-                return ["department", "doctor", "health", "seminar", "news", "guide", "about"]
+                return ["department", "doctor", "chosung", "health", "seminar", "news", "guide", "about"]
             case "ys": 
-                return ["department", "doctor", "health", "seminar", "news", "guide", "about"]
+                return ["department", "doctor", "chosung", "health", "seminar", "news", "guide", "about"]
             case "medicine": 
-                return ["professor", "news", "admission", "education", "about"]
+                return ["professor", "chosung", "news", "admission", "education", "about"]
             case "dentistry": 
-                return ["professor", "news", "admission", "education", "about"]
+                return ["professor", "chosung", "news", "admission", "education", "about"]
             case "nursingcolleage": 
-                return ["professor", "news", "admission", "education", "about"]
+                return ["professor", "chosung", "news", "admission", "education", "about"]
             case "gsph": 
-                return ["professor", "news", "admission", "education", "about"]
+                return ["professor", "chosung", "news", "admission", "education", "about"]
             default: 
                 return []
         }
@@ -85,13 +87,15 @@ const properties = {
             case "class" :
                 return ["contents"];
             case "professor" :
-                return ["doctor"];
+                return ["detail_major.*", "nm.*", "nm_en.*", "intrst_realm.*", "clnic_realm.*"];
             case "admission" :
                 return ["contents"];
             case "education" :
                 return ["contents"];
+            case "chosung" :
+                return ["detail_major.*", "nm.*", "nm_en.*", "intrst_realm.*", "clnic_realm.*"];
             default:
-                console.log("존재하지 않는 카테고리 코드입니다!")
+                console.log("존재하지 않는 카테고리 코드입니다! ", cate_cd)
                 return "not_field";
         }
     },

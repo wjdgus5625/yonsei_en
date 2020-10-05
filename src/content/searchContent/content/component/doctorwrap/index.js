@@ -5,20 +5,21 @@ import MoreBtn from '../morebtn/index';
 
 import { RootContext } from '../../../..';
 
-const DoctorWrap = ({result, type, getSearchChosung, chosung}) => {
+const DoctorWrap = ({result, type, getSearchChosung, chosung, chosungResult}) => {
     const rootContext = useContext(RootContext);
     const chosungList = ["ALL", "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"]
     const rootChosung = rootContext.request.chosung !== undefined ? rootContext.request.chosung : chosung
+
     return (
         <div className="search-doctor-wrap">
             {
-                result !== undefined && result.list !== undefined && result.list.length > 0 ? (
+                result !== undefined && result.list !== undefined ? (
                     <div className="ordering-wrap">
                         <ul className="ordering-list pb-lg-3">
                             {
                                 chosungList.map((data, index) => {
                                     return (
-                                        <li key={index}><button type="button" style={{outline: "none"}} 
+                                        <li key={index}><button type="button" disabled={chosungResult.chosung.indexOf(data) > -1 || data === "ALL" ? false : true} style={{outline: "none"}} 
                                             className={(data === "ALL" ? "all " : "") + (data === "ALL" && rootChosung === undefined ? "on" : "") + (rootChosung !== undefined && rootChosung === data ? "on" : "")} 
                                             onClick={() => getSearchChosung(data, type)}>{data}</button></li>
                                     )

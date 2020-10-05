@@ -35,7 +35,8 @@ const SearchContent = ({request}) => {
                 ...rootContext.request,
                 chosung: chosung
             })
-            const getSearchResult = await Axios.get('http://10.9.32.17:19700/search', {params: {
+            // const getSearchResult = await Axios.get('http://10.9.32.17:19700/search', {params: {
+            const getSearchResult = await Axios.get('http://localhost:19700/search', {params: {
                 ...rootContext.request,
                 chosung: chosung
             }})
@@ -75,7 +76,7 @@ const SearchContent = ({request}) => {
                                     type="default" />
                                 { 
                                     data === "department" ? <CenterWrap addClass="mt-lg-6 mt-md-4" result={result.department} type="all" request={request}/> : 
-                                    data === "doctor" ? <DoctorWrap result={searchResult} type="all" getSearchChosung={getSearchChosung} chosung={chosung} /> : 
+                                    data === "doctor" ? <DoctorWrap result={searchResult} type="all" getSearchChosung={getSearchChosung} chosung={chosung} chosungResult={result.chosung} /> : 
                                                         <NoticeBoard result={result[data]} type="all" request={request} />
                                 }
                             </div>
@@ -105,7 +106,7 @@ const SearchContent = ({request}) => {
                         result={result[cate_cd]}
                         href={"#tab-content"}
                         type={SearchViewSetting.tab[rootContext.request.siteType][cate_cd].singletab} />
-                    <DoctorWrap result={searchResult} type="single" getSearchChosung={getSearchChosung} chosung={chosung} />
+                    <DoctorWrap result={searchResult} type="single" getSearchChosung={getSearchChosung} chosung={chosung} chosungResult={result.chosung} />
                 </div>
             )
         } else {

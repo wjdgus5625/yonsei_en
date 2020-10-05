@@ -42,6 +42,7 @@ router.get('/', (req, res, next) => {
             cate_cdList = properties.tabList(m_site_cd)
         } else {
             cate_cdList = [cate_cd]
+            cate_cd === "doctor" || cate_cd === "professor" ? cate_cdList.push("chosung") : "";
         }
 
         cate_cdList.map( data => {
@@ -61,6 +62,8 @@ router.get('/', (req, res, next) => {
                 size = 8;
             } else if(cate_cd === "all"){
                 size = 3;
+            } else if(cate_cd === "chosung") {
+                size = 0;
             }
             
             let queryBody = {
@@ -89,6 +92,20 @@ router.get('/', (req, res, next) => {
                 }
             }
 
+            if ( data === "chosung" ) {
+                queryBody.aggs = {
+                    chosung: {
+                        terms: {
+                            field: "nm_chosung",
+                            size: 20,
+                            order: {
+                                _key: "asc"
+                            }
+                        }
+                    }
+                }
+            }
+
             let searchFields = properties.searchFields(data)
     
             if(mustKeyword.length > 0) {
@@ -112,8 +129,8 @@ router.get('/', (req, res, next) => {
                 queryBody.query.bool.filter.push(queryUtil.filter_term("department", properties.stringToCode(department)))
             }
     
-            if (chosung !== undefined && chosung.length > 0 && chosung.toUpperCase() !== "ALL") {
-                queryBody.query.bool.filter.push(queryUtil.filter_term("chosung", chosung))
+            if (chosung !== undefined && chosung.length > 0 && chosung.toUpperCase() !== "ALL" && ( data === "doctor" || data === "professor" )) {
+                queryBody.query.bool.filter.push(queryUtil.filter_term("nm_chosung", chosung))
             }
     
             if (category3 !== undefined && category3.length > 0) {
@@ -157,13 +174,20 @@ const resultSetting = (resp, cate_cdList, keyword) => {
     result.keyword = keyword
 
     resp.map((data, index) => {
-        
         totalSize += data.hits.total.value
         result[cate_cdList[index]] = {
             totalSize: data.hits.total.value,
             keyword: keyword,
-            list: []
+            list: [],
+            chosung: []
         }
+
+        if(cate_cdList[index] === "chosung" ) {
+            data.aggregations.chosung.buckets.map(data => {
+                result[cate_cdList[index]].chosung.push(data.key)
+            })
+        }
+
         result[cate_cdList[index]].list = data.hits.hits.map(data => {
             if(data.highlight !== undefined) {
                 data._source.contents = data.highlight.contents[0]
