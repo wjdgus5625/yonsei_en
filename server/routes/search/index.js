@@ -186,7 +186,9 @@ const resultSetting = (resp, cate_cdList, keyword) => {
     result.keyword = keyword
 
     resp.map((data, index) => {
-        totalSize += data.hits.total.value
+        if(cate_cdList[index] !== "chosung" ) {
+            totalSize += data.hits.total.value
+        }
         result[cate_cdList[index]] = {
             totalSize: data.hits.total.value,
             keyword: keyword,
