@@ -4,6 +4,7 @@ import SearchHeader from './searchHeader/index'
 import SearchBody from './searchContent/index'
 import Header from './header/index'
 import Footer from './footer/index'
+import SearchViewSetting from '../config/searchViewSetting/index'
 
 import Axios from 'axios';
 import qs from 'qs';
@@ -50,7 +51,11 @@ function Content({ location }) {
         
       });
       console.log(result)
-      if(result) setResult(result)
+      if(result) {
+        const htmlTitle = document.querySelector("title");
+        htmlTitle.innerText = "통합검색 | " + SearchViewSetting.m_site_cd[request.m_site_cd]
+        setResult(result)
+      }
     }
 
     if(request.m_site_cd === undefined) {
