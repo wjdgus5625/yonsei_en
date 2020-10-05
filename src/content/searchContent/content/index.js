@@ -11,6 +11,7 @@ import { RootContext } from '../..';
 import qs from 'qs';
 import util from '../../../util/util'
 import Axios from 'axios';
+import NoData from './component/nodata';
 
 const SearchContent = ({request}) => {
     const rootContext = useContext(RootContext);
@@ -58,31 +59,36 @@ const SearchContent = ({request}) => {
             return (
                 <div className="tab-content" id={"tab-content"} style={{display: "block"}}>
                     <SearchInfo keyword={result.keyword} totalSize={result.totalSize}/>
-                {
-                    tabList.map((data, index) => {
-                        return (
-                            <div key={index}>
-                                <SearchContentTitle 
-                                    title={SearchViewSetting.tab[rootContext.request.siteType][data].title} 
-                                    addClass={SearchViewSetting.tab[rootContext.request.siteType][data].class} 
-                                    result={data === "doctor" || data === "professor" ? searchResult : result[data]}
-                                    href={'?' + qs.stringify(util.onlyKeywordSetting({
-                                        ...request,
-                                        cate_cd: data,
-                                        size: data === "doctor" || data === "professor" || data === "department" ? 12 : 3
-                                    }, request.keyword))}
-                                    chosung={chosung}
-                                    cate_cd={data}
-                                    type="default" />
-                                { 
-                                    data === "department" ? <CenterWrap addClass="mt-lg-6 mt-md-4" result={result.department} type="all" request={request}/> : 
-                                    data === "doctor" ? <DoctorWrap result={searchResult} type="all" getSearchChosung={getSearchChosung} chosung={chosung} chosungResult={result.chosung} /> : 
-                                                        <NoticeBoard result={result[data]} type="all" request={request} />
-                                }
-                            </div>
-                        )
-                    })
-                }
+                    {
+                        tabList.map((data, index) => {
+                            return (
+                                result[data] !== undefined && result[data].list !== undefined && result[data].list.length > 0 ? 
+                                <div key={index}>
+                                    <SearchContentTitle 
+                                        title={SearchViewSetting.tab[rootContext.request.siteType][data].title} 
+                                        addClass={SearchViewSetting.tab[rootContext.request.siteType][data].class} 
+                                        result={data === "doctor" || data === "professor" ? searchResult : result[data]}
+                                        href={'?' + qs.stringify(util.onlyKeywordSetting({
+                                            ...request,
+                                            cate_cd: data,
+                                            size: data === "doctor" || data === "professor" || data === "department" ? 12 : 3
+                                        }, request.keyword))}
+                                        chosung={chosung}
+                                        cate_cd={data}
+                                        type="default" />
+                                    { 
+                                        data === "department" ? <CenterWrap addClass="mt-lg-6 mt-md-4" result={result.department} type="all" request={request}/> : 
+                                        data === "doctor" ? <DoctorWrap result={searchResult} type="all" getSearchChosung={getSearchChosung} chosung={chosung} chosungResult={result.chosung} /> : 
+                                                            <NoticeBoard result={result[data]} type="all" request={request} />
+                                    }
+                                </div>
+                                : ""
+                            )
+                        })
+                    }
+                    {
+                        result.totalSize === 0 ? <NoData /> : ""
+                    }
                  </div>
             )
         } else if (cate_cd === 'department') {
