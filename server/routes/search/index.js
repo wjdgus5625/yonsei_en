@@ -1,37 +1,10 @@
 const express = require('express')
 const router = express.Router();
-const sample = require('../../sample/sample.json')
 
 const esclient = require('../../config/elastic.config');
 
 const queryUtil = require('../../util/query');
 const properties = require('../../config/properties')
-
-// router.get('/', (req, res) => {
-//     let resp = {}
-//     let size = 12
-
-//     if(req.query.size > 12) {
-//         size = req.query.size;
-//     }
-
-//     if(req.query.cate_cd === "doctor") {
-//         resp[req.query.cate_cd] = {
-//             totalSize: sample[req.query.cate_cd].totalSize,
-//             list:  sample[req.query.cate_cd].list.slice(0, size)
-//         }
-//     } else if(req.query.cate_cd === "all") {
-//         resp = sample;
-//     } else if(req.query.cate_cd !== undefined) {
-//         resp[req.query.cate_cd] = sample[req.query.cate_cd]
-//     }
-
-//     if(req.query.chosung !== undefined && (req.query.cate_cd === "doctor" || req.query.cate_cd === "all")) {
-//         req.query.chosung === "ALL" ? resp = {doctor: sample.doctor} : resp = {doctor: sample.chosung}
-//     }
-
-//     res.send(resp)
-// });
 
 router.get('/', (req, res, next) => {
     const keyword = req.query.keyword;
@@ -104,6 +77,18 @@ router.get('/', (req, res, next) => {
                 sort: []
             }
 
+            if( data !== "doctor" && data !== "professor" && data !== "department" ) {
+                queryBody.highlight = {
+                    number_of_fragments: 3,
+                    fragment_size: 150,
+                    pre_tags: ["<strong class='text-primary'>"],
+                    post_tags: ["</strong>"],
+                    fields: {
+                        contents: {}
+                    }
+                }
+            }
+
             let searchFields = properties.searchFields(data)
     
             if(mustKeyword.length > 0) {
@@ -156,6 +141,7 @@ router.get('/', (req, res, next) => {
             res.send(resultSetting(resp, cate_cdList, keyword))
         })
         .catch(err => {
+            console.log(err)
             next(err)
         })
 
@@ -171,6 +157,7 @@ const resultSetting = (resp, cate_cdList, keyword) => {
     result.keyword = keyword
 
     resp.map((data, index) => {
+        
         totalSize += data.hits.total.value
         result[cate_cdList[index]] = {
             totalSize: data.hits.total.value,
@@ -178,6 +165,9 @@ const resultSetting = (resp, cate_cdList, keyword) => {
             list: []
         }
         result[cate_cdList[index]].list = data.hits.hits.map(data => {
+            if(data.highlight !== undefined) {
+                data._source.contents = data.highlight.contents[0]
+            }
             return data._source;
         })
     })

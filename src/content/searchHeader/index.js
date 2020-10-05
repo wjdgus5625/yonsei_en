@@ -14,7 +14,8 @@ const SearchHeader = () => {
 	const rootContext = useContext(RootContext);
 	const [modalOpen, setModalOpen] = useState(false);
 	const [request, setRequest] = useState(rootContext.request);
-	
+	const [checked, setChecked] = useState(false);
+
 	const getSearch = () => {
 		if(request.m_site_cd === undefined) {
 			alert('기관을 선택해주세요!!')
@@ -54,12 +55,22 @@ const SearchHeader = () => {
 				...request,
 				mustNot: keyword
 			})
+		} else if(type === "reSearchKeyword") {
+			setRequest({
+				...request,
+				reSearchKeyword: keyword
+			})
 		}
 	}
 
 	const allClear = () => {
 		setRequest({
-			keyword: ""
+			...request,
+			keyword: util.clearKeywordSetting(request.keyword),
+			must: "",
+			mustNot: "",
+			should: "",
+			category3: "전체"
 		})
 	}
 
@@ -88,8 +99,13 @@ const SearchHeader = () => {
 						changeKeyword={changeKeyword}
 						request={request}
 						selectChange={selectChange}
+						checked={checked}
 					/>
-					<RelatedBar/>
+					<RelatedBar 
+						checked={checked}
+						onChange={() => setChecked(!checked)}
+						m_site_cd={request.m_site_cd}
+					/>
 				</div>
 			</div>
 			<SearchModal 

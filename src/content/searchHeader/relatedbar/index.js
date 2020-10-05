@@ -1,6 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 
-const ReatedBar = () => {
+const ReatedBar = ({checked, onChange, m_site_cd}) => {
+
+    const [popKeyword, setPopKeyword] = useState([]);
+
+    useEffect(() => {
+        console.log('popKeyword useEffect')
+        const getPopKeyword = async () => {
+          // const result = await Axios.get('http://10.9.32.17:19700/popkeyword?m_site_cd=' + m_site_cd)
+          const result = await Axios.get('http://localhost:19700/popkeyword?m_site_cd=' + m_site_cd)
+          .then(resp => {
+              console.log(resp)
+            return resp.data;
+          })
+          .catch(err => {
+            if(err.response === undefined) {
+              alert(err.message)
+            } else {
+              alert(err.response.data.message)
+            }
+            
+          });
+          if(result) setPopKeyword(result)
+        }
+    
+        if(m_site_cd === undefined) {
+          alert("기관을 선택해주세요!")
+        } else {
+          getPopKeyword();
+        }
+        
+      }, [m_site_cd]);
+
     return (
         <div className="related-keyword-bar mt-lg-10">
             <div className="relat-item">
@@ -46,9 +78,9 @@ const ReatedBar = () => {
                     <div className="text-title">
                         <ul className="ticker">
                             {
-                                [...Array(9)].map((n, index) => {
+                                popKeyword.map((data) => {
                                     return (
-                                        <li key={index}>{index+1}소아백혈병{index+1}</li>
+                                        <li key={data.rank}>{data.query}</li>
                                     )
                                 })
                             }
@@ -60,11 +92,11 @@ const ReatedBar = () => {
                     <p className="text-title-md">인기검색어</p>
                     <ol className="list mb-md-0">
                         {
-                            [...Array(9)].map((n, index) => {
+                            popKeyword.map((data) => {
                                 return (
-                                    <li key={index}>
-                                        <a href="#none"><span className="bg-secondary mr-lg-4 mr-md-2">{index+1}</span>
-                                            <p>소아백혈병{index+1}</p>
+                                    <li key={data.rank}>
+                                        <a href="#none"><span className="bg-secondary mr-lg-4 mr-md-2">{data.rank}</span>
+                                            <p>{data.query}</p>
                                         </a>
                                     </li>
                                 )
@@ -78,7 +110,7 @@ const ReatedBar = () => {
                 </div>
             </div>
             <div className="float-right sorting-check">
-                <input type="checkbox" id="re-search" className="custom-control search-check" />
+                <input type="checkbox" id="re-search" className="custom-control search-check" checked={checked} onChange={onChange} />
                 <label htmlFor="re-search" className="text-lg text-normal">결과내재검색</label>
             </div>
         </div>

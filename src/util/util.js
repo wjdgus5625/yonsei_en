@@ -37,6 +37,7 @@ let util = {
         const afterMust = request.must || "";
         const afterMustNot = request.mustNot || "";
         const afterShould = request.should || "";
+
         let afterKeyword = "";
 
         let onlyKeyword = "";
@@ -64,7 +65,7 @@ let util = {
                 afterKeyword += " |" + d
             }
         })
-
+        
         const result = {
             ...request,
             keyword: afterKeyword,
@@ -75,9 +76,25 @@ let util = {
 
         return result
     },
+    clearKeywordSetting: (keyword) => {
+        let clearKeyword = "";
+
+        keyword.split(' ').forEach(data => {
+            if(data.indexOf('+') !== 0 && data.indexOf('-') !== 0 && data.indexOf('|') !== 0) {
+                clearKeyword += data.trim() + " ";
+            }
+        })
+
+        return clearKeyword;
+    },
     onlyKeywordSetting: (request, keyword) => {
+        const reSearchKeyword = request.reSearchKeyword || "";
+        let searchKeyword = keyword
+        if(reSearchKeyword.length > 0) {
+            searchKeyword = keyword + " +" + reSearchKeyword
+        }
         return {
-            keyword: keyword,
+            keyword: searchKeyword,
             m_site_cd: request.m_site_cd,
             cate_cd: request.cate_cd,
             siteType: request.siteType,

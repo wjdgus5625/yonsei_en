@@ -21,6 +21,15 @@ const SearchModal = ({className, modalClose, getSearch, changeKeyword, allClear,
 									<dt className="text-title-md text-normal">검색기관 :</dt>
 									<dd className="mb-md-2">
 										<div className="radio-box">
+											<span key="all" className="mr-lg-5">
+												<input 	type="radio" 
+														name="sev-selet-all" 
+														id="sev-selet-all"
+														className="custom-control" 
+														checked={request.category3 === undefined || request.category3 === "전체" ? true : false}
+														onChange={() => setDepartment("전체")} />
+												<label htmlFor="sev-selet-all" className="text-title-md text-normal">전체</label>
+											</span>
 											{
 												hospitalList.map((data, index) => {
 													return (

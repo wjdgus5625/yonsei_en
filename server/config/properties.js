@@ -67,29 +67,29 @@ const properties = {
             case "doctor" :
                 return ["detail_major.*", "nm.*", "nm_en.*", "intrst_realm.*", "clnic_realm.*"];
             case "news" :
-                return ["content.*"];
+                return ["contents"];
             case "recruit" :
-                return ["content.*"];
+                return ["contents"];
             case "fund" :
-                return ["content.*"];
+                return ["contents"];
             case "research" :
-                return ["content.*"];
+                return ["contents"];
             case "about" :
-                return ["content.*"];
+                return ["contents"];
             case "health" :
-                return ["content.*"];
+                return ["contents"];
             case "seminar" :
-                return ["content.*"];
+                return ["contents"];
             case "guide" :
-                return ["content.*"];
+                return ["contents"];
             case "class" :
-                return ["content.*"];
+                return ["contents"];
             case "professor" :
                 return ["doctor"];
             case "admission" :
-                return ["content.*"];
+                return ["contents"];
             case "education" :
-                return ["content.*"];
+                return ["contents"];
             default:
                 console.log("존재하지 않는 카테고리 코드입니다!")
                 return "not_field";

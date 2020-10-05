@@ -35,7 +35,7 @@ const SearchContent = ({request}) => {
                 ...rootContext.request,
                 chosung: chosung
             })
-            const getSearchResult = await Axios.get('http://localhost:4500/search', {params: {
+            const getSearchResult = await Axios.get('http://10.9.32.17:19700/search', {params: {
                 ...rootContext.request,
                 chosung: chosung
             }})
