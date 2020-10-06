@@ -99,6 +99,7 @@ const SearchHeader = () => {
 						changeKeyword={changeKeyword}
 						request={request}
 						selectChange={selectChange}
+						modalClose={() => setModalOpen(false)}
 						checked={checked}
 					/>
 					<RelatedBar 

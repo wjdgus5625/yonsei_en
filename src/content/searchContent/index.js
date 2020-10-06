@@ -11,7 +11,7 @@ const SearchBody = () => {
     return (
         <div className="content-body mt-lg-16 mt-md-8 ">
             <div className="container">
-                <SearchMenu request={rootContext.request} /> 
+                <SearchMenu request={rootContext.request} result={rootContext.result} /> 
                 <SearchContent 
                     request={rootContext.request} />
             </div>

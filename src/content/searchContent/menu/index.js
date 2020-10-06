@@ -5,7 +5,7 @@ import SearchViewSetting from '../../../config/searchViewSetting/index'
 import qs from 'qs';
 import util from '../../../util/util';
 
-const SearchMenu = ({request}) => {
+const SearchMenu = ({request, result}) => {
     const tabList = SearchViewSetting.tablist[request.siteType]
     const tabList_kor = SearchViewSetting.tablist[request.siteType+"_kor"]
 
@@ -39,7 +39,12 @@ const SearchMenu = ({request}) => {
                         tabList.map((data, index) => {
                             return (                               
                                 <li key={index} className={cate_cd === data ? "on" : ""}>
-                                    <a href={"#;"} onClick={() => getCategorySearch(data)}><span>{tabList_kor[index]}</span></a>
+                                    <a href={"#;"} onClick={() => getCategorySearch(data)}>
+                                        <span>{tabList_kor[index] + "(" + 
+                                        ( data === "all" && result.totalSize !== undefined ? result.totalSize : 
+                                            result[data] !== undefined && result[data].totalSize !== undefined ? result[data].totalSize : 0 )
+                                         + ")"}</span>
+                                    </a>
                                 </li>
                             )
                         })

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SearchViewSetting from '../../../config/searchViewSetting/index';
 
-const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange, checked}) => {
+const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange, modalClose, checked}) => {
     let m_site_cd = request.m_site_cd
     let keyword = request.keyword || "";
     let reSearchKeyword = request.reSearchKeyword || "";
@@ -13,6 +13,7 @@ const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange, 
 	
 
 	const select1Toggle = () => {
+        modalClose()
 		select1Open ? setSelect1Open(false) : setSelect1Open(true);
 	}
         

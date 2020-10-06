@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import SearchInfo from './info/index'
 import SearchContentTitle from './title/index'
 import SearchViewSetting from '../../../config/searchViewSetting/index'
 import ApiConfig from '../../../config/apiConfig/index';
@@ -58,7 +57,6 @@ const SearchContent = ({request}) => {
         if(cate_cd === 'all') {
             return (
                 <div className="tab-content" id={"tab-content"} style={{display: "block"}}>
-                    <SearchInfo keyword={result.keyword} totalSize={result.totalSize}/>
                     {
                         tabList.map((data, index) => {
                             return (

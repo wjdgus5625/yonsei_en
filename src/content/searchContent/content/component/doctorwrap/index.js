@@ -13,7 +13,7 @@ const DoctorWrap = ({result, type, getSearchChosung, chosung, chosungResult}) =>
     return (
         <div className="search-doctor-wrap">
             {
-                result !== undefined && result.list !== undefined && chosungResult.chosung.length > 0 ? (
+                result !== undefined && result.list !== undefined ? (
                     <div className="ordering-wrap">
                         <ul className="ordering-list pb-lg-3">
                             {
