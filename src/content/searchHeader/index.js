@@ -105,6 +105,7 @@ const SearchHeader = () => {
 						checked={checked}
 						onChange={() => setChecked(!checked)}
 						m_site_cd={request.m_site_cd_default}
+						request={request}
 					/>
 				</div>
 			</div>

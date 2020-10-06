@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import qs from 'qs';
 
+import util from '../../../util/util';
 import ApiConfig from '../../../config/apiConfig/index'
 
-const ReatedBar = ({checked, onChange, m_site_cd}) => {
+
+const ReatedBar = ({checked, onChange, m_site_cd, request}) => {
 
     const [popKeyword, setPopKeyword] = useState([]);
 
@@ -95,7 +98,7 @@ const ReatedBar = ({checked, onChange, m_site_cd}) => {
                             popKeyword.map((data) => {
                                 return (
                                     <li key={data.rank}>
-                                        <a href="#none"><span className="bg-secondary mr-lg-4 mr-md-2">{data.rank}</span>
+                                        <a href={'?' + qs.stringify(util.onlyKeywordSetting(request, data.query))}><span className="bg-secondary mr-lg-4 mr-md-2">{data.rank}</span>
                                             <p>{data.query}</p>
                                         </a>
                                     </li>
