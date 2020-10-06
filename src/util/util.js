@@ -96,6 +96,7 @@ let util = {
         return {
             keyword: searchKeyword,
             m_site_cd: request.m_site_cd,
+            s_site_cd: request.s_site_cd,
             cate_cd: request.cate_cd,
             siteType: request.siteType,
             size: request.size

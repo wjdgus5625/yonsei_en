@@ -1,7 +1,7 @@
 import React from 'react';
 import searchViewSetting from '../../../config/searchViewSetting';
 
-const SearchModal = ({className, modalClose, getSearch, changeKeyword, allClear, request, setDepartment}) => {
+const SearchModal = ({className, modalClose, getSearch, changeKeyword, allClear, request, setSubSiteCd}) => {
     let must = request.must || "";
 	let should = request.should || "";
 	let mustNot = request.mustNot || "";
@@ -26,8 +26,8 @@ const SearchModal = ({className, modalClose, getSearch, changeKeyword, allClear,
 														name="sev-selet-all" 
 														id="sev-selet-all"
 														className="custom-control" 
-														checked={request.category3 === undefined || request.category3 === "전체" ? true : false}
-														onChange={() => setDepartment("전체")} />
+														checked={request.s_site_cd === undefined || request.s_site_cd === "전체" ? true : false}
+														onChange={() => setSubSiteCd("전체")} />
 												<label htmlFor="sev-selet-all" className="text-title-md text-normal">전체</label>
 											</span>
 											{
@@ -38,8 +38,8 @@ const SearchModal = ({className, modalClose, getSearch, changeKeyword, allClear,
 																	name="sev-selet" 
 																	id={"sev-selet"+index} 
 																	className="custom-control" 
-																	checked={request.category3 !== undefined && request.category3 === data ? true : false}
-																	onChange={() => setDepartment(data)} />
+																	checked={request.s_site_cd !== undefined && request.s_site_cd === data ? true : false}
+																	onChange={() => setSubSiteCd(data)} />
 															<label htmlFor={"sev-selet"+index} className="text-title-md text-normal">{data}</label>
 														</span>
 													)

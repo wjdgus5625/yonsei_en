@@ -82,10 +82,10 @@ const SearchHeader = () => {
 		})
 	}
 
-	const setDepartment = (data) => {
+	const setSubSiteCd = (data) => {
 		setRequest({
 			...request,
-			category3: data
+			s_site_cd: data
 		})
 	}
 
@@ -117,7 +117,7 @@ const SearchHeader = () => {
 				changeKeyword={changeKeyword}
 				request={request}
 				allClear={() => allClear()}
-				setDepartment={setDepartment}
+				setSubSiteCd={setSubSiteCd}
 			/>
 		</div>
     )
