@@ -114,13 +114,13 @@ let util = {
                 return "hospital"
             case "dental": 
                 return "hospital"
-            case "ys": 
+            case "yi": 
                 return "hospital"
             case "medicine": 
                 return "school"
             case "dentistry": 
                 return "school"
-            case "nursingcolleage": 
+            case "nursing": 
                 return "school"
             case "gsph": 
                 return "school"

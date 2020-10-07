@@ -75,9 +75,26 @@ const SearchContent = ({request}) => {
                                         cate_cd={data}
                                         type="default" />
                                     { 
-                                        data === "department" ? <CenterWrap addClass="mt-lg-6 mt-md-4" result={result.department} type="all" request={request}/> : 
-                                        data === "doctor" ? <DoctorWrap result={searchResult} type="all" getSearchChosung={getSearchChosung} chosung={chosung} chosungResult={result.chosung} /> : 
-                                                            <NoticeBoard result={result[data]} type="all" request={request} />
+                                        data === "department" ? 
+                                            <CenterWrap 
+                                                addClass="mt-lg-6 mt-md-4" 
+                                                result={result.department} 
+                                                type="all" 
+                                                request={request}
+                                            /> : 
+                                        data === "doctor" || data === "professor" ? 
+                                            <DoctorWrap 
+                                                result={searchResult} 
+                                                type="all" 
+                                                getSearchChosung={getSearchChosung} 
+                                                chosung={chosung} 
+                                                chosungResult={result.chosung} 
+                                            /> : 
+                                            <NoticeBoard 
+                                                result={result[data]} 
+                                                type="all" 
+                                                request={request} 
+                                            />
                                     }
                                 </div>
                                 : ""
@@ -98,10 +115,15 @@ const SearchContent = ({request}) => {
                         result={result[cate_cd]}
                         href={"#tab-content"}
                         type={SearchViewSetting.tab[rootContext.request.siteType][cate_cd].singletab} />
-                    <CenterWrap addClass="mt-lg-6 mt-md-4" result={result.department} type="single" request={request} />
+                    <CenterWrap 
+                        addClass="mt-lg-6 mt-md-4" 
+                        result={result.department} 
+                        type="single" 
+                        request={request} 
+                    />
                 </div>
             )
-        } else if (cate_cd === 'doctor') {
+        } else if (cate_cd === 'doctor' || cate_cd === "professor") {
             return (
                 <div className="tab-content" id={"tab-content"} style={{display: "block"}}>
                     <SearchContentTitle 
@@ -110,14 +132,20 @@ const SearchContent = ({request}) => {
                         result={result[cate_cd]}
                         href={"#tab-content"}
                         type={SearchViewSetting.tab[rootContext.request.siteType][cate_cd].singletab} />
-                    <DoctorWrap result={searchResult} type="single" getSearchChosung={getSearchChosung} chosung={chosung} chosungResult={result.chosung} />
+                    <DoctorWrap 
+                        result={searchResult} 
+                        type="single" 
+                        getSearchChosung={getSearchChosung} 
+                        chosung={chosung} 
+                        chosungResult={result.chosung}
+                    />
                 </div>
             )
         } else {
             let contentTitle = SearchViewSetting.tab[rootContext.request.siteType] !== undefined ? (
-                       SearchViewSetting.tab[rootContext.request.siteType][cate_cd] !== undefined ? 
-                       SearchViewSetting.tab[rootContext.request.siteType][cate_cd] : ""
-                       ) : ""
+                                  SearchViewSetting.tab[rootContext.request.siteType][cate_cd] !== undefined ? 
+                                  SearchViewSetting.tab[rootContext.request.siteType][cate_cd] : ""
+                               ) : ""
             return (
                 <div className="tab-content" id={"tab-content"} style={{display: "block"}}>
                     <SearchContentTitle 
