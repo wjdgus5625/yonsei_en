@@ -70,7 +70,7 @@ const SearchHeader = () => {
 			must: "",
 			mustNot: "",
 			should: "",
-			category3: "전체"
+			board_nm: "전체"
 		})
 	}
 

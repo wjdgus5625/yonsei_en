@@ -5,13 +5,13 @@ const SearchContentTitle = ({title, addClass, result, href, type, chosung, cate_
     const rootContext = useContext(RootContext);
     const size = rootContext.request.size;
     const order = rootContext.request.order;
-    const category3 = rootContext.request.category3;
-    const selectOnChange = (size, order, category3) => {
+    const board_nm = rootContext.request.board_nm;
+    const selectOnChange = (size, order, board_nm) => {
         rootContext.setRequest({
             ...rootContext.request,
             size,
             order,
-            category3
+            board_nm
         })
     }
 
@@ -24,7 +24,7 @@ const SearchContentTitle = ({title, addClass, result, href, type, chosung, cate_
         floatRight = 
         <div className="float-right select-box-right mt-md-2">
             <select className="form-control" title="정확도순" 
-                    value={order === undefined ? "score" : order} onChange={(e) => selectOnChange(size, e.target.value, category3)}>
+                    value={order === undefined ? "score" : order} onChange={(e) => selectOnChange(size, e.target.value, board_nm)}>
                 <option value="score">정확도순</option>
                 <option value="date">최신날짜순</option>
             </select>
@@ -33,7 +33,7 @@ const SearchContentTitle = ({title, addClass, result, href, type, chosung, cate_
         floatRight = 
         <div className="float-right select-box-right mt-md-2">
             <select className="form-control" title="전체" 
-                    value={category3 === undefined ? "all" : category3} onChange={(e) => selectOnChange(size, order, e.target.value)}>
+                    value={board_nm === undefined ? "all" : board_nm} onChange={(e) => selectOnChange(size, order, e.target.value)}>
                 <option value="all">전체</option>
                 <option value="질병정보">질병정보</option>
                 <option value="검사/치료정보">검사/치료정보</option>
@@ -46,7 +46,7 @@ const SearchContentTitle = ({title, addClass, result, href, type, chosung, cate_
                 <option value="건강도서추천">건강도서추천</option>
             </select>
             <select className="form-control ml-lg-1" title="정확도순"
-                    value={order === undefined ? "score" : order} onChange={(e) => selectOnChange(size, e.target.value, category3)}>
+                    value={order === undefined ? "score" : order} onChange={(e) => selectOnChange(size, e.target.value, board_nm)}>
                 <option value="score">정확도순</option>
                 <option value="date">최신날짜순</option>
             </select>
