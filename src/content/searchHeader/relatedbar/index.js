@@ -28,10 +28,8 @@ const ReatedBar = ({checked, onChange, m_site_cd, request}) => {
           if(result) setPopKeyword(result)
         }
     
-        if(m_site_cd === undefined) {
-          alert("기관을 선택해주세요!")
-        } else {
-          getPopKeyword();
+        if(m_site_cd !== undefined && m_site_cd.length > 0) {
+            getPopKeyword();
         }
         
       }, [m_site_cd]);

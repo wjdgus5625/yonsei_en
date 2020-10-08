@@ -17,7 +17,7 @@ const SearchHeader = () => {
 	const [checked, setChecked] = useState(false);
 
 	const getSearch = () => {
-		if(request.m_site_cd === undefined) {
+		if(request.m_site_cd === undefined || (request.m_site_cd !== undefined && request.m_site_cd.length === 0)) {
 			alert('기관을 선택해주세요!!')
 			return;
 		}
