@@ -21,7 +21,7 @@ const DoctorWrap = ({result, type, getSearchChosung, chosung, chosungResult}) =>
                                     return (
                                         <li key={index}><button type="button" disabled={chosungResult.chosung.indexOf(data) > -1 || data === "ALL" ? false : true} style={{outline: "none"}} 
                                             className={(data === "ALL" ? "all " : "") + (data === "ALL" && rootChosung === undefined ? "on" : "") + (rootChosung !== undefined && rootChosung === data ? "on" : "")} 
-                                            onClick={() => getSearchChosung(data, type)}>{data}</button></li>
+                                            onClick={() => getSearchChosung(data)}>{data}</button></li>
                                     )
                                 })
                             }

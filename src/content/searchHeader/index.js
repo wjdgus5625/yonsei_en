@@ -78,7 +78,7 @@ const SearchHeader = () => {
 		setRequest({
 			...request,
 			m_site_cd: category,
-			cate_cd: "all"
+			menu_cd: "all"
 		})
 	}
 

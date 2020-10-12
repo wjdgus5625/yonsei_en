@@ -9,17 +9,17 @@ const SearchMenu = ({request, result}) => {
     const tabList = SearchViewSetting.tablist[request.siteType]
     const tabList_kor = SearchViewSetting.tablist[request.siteType+"_kor"]
 
-    const cate_cd = request.cate_cd || "all";
+    const menu_cd = request.menu_cd || "all";
 
-    const getCategorySearch = (cate_cd) => {
+    const getCategorySearch = (menu_cd) => {
 		if(request.m_site_cd === undefined) {
 			alert('기관을 선택해주세요!!')
 			return;
 		}
 
 		if(request.keyword !== undefined && request.keyword.replace(/[\\ ]/gi, '')) {
-            request.cate_cd = cate_cd
-            if(request.cate_cd === "doctor" || request.cate_cd === "department" || request.cate_cd === "professor") {
+            request.menu_cd = menu_cd
+            if(request.menu_cd === "doctor" || request.menu_cd === "department" || request.menu_cd === "professor") {
                 request.size = 12
             } else {
                 request.size = 3
@@ -37,7 +37,7 @@ const SearchMenu = ({request, result}) => {
                 {
                     tabList.map((data, index) => {
                         return (
-                            <li key={index} className={cate_cd === data ? "on" : ""}>
+                            <li key={index} className={menu_cd === data ? "on" : ""}>
                                 <a href={"#;"} onClick={() => getCategorySearch(data)}>
                                     <span>{tabList_kor[index] + "(" + 
                                     ( data === "all" && result.totalSize !== undefined ? result.totalSize : // 통합검색
@@ -47,7 +47,6 @@ const SearchMenu = ({request, result}) => {
                             </li>
                         )
                     })
-                    
                 }
             </ul>
         </nav>

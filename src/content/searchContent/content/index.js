@@ -17,44 +17,37 @@ const SearchContent = ({request}) => {
     const rootContext = useContext(RootContext);
     const result = rootContext.result;
     const [searchResult, setSearchResult] = useState({})
-    const cate_cd = request.cate_cd || "all";
-    const tabList = SearchViewSetting.tablist[rootContext.request.siteType].slice(1)
+    const menu_cd = request.menu_cd || "all";
+    const tabList = SearchViewSetting.tablist[request.siteType].slice(1)
 
     useEffect(() => {
         setSearchResult(result[request.siteType === "hospital" ? "doctor" : "professor"])
     }, [result, request])
     
     const [chosung, setChosung] = useState("ALL")
-    const getSearchChosung = async (chosung, type) => {
-        if(type === "single") {
-            rootContext.setRequest({
-                ...rootContext.request,
-                chosung: chosung
-            })
-        } else {
-            console.log({
-                ...rootContext.request,
-                chosung: chosung
-            })
-            const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
-                ...rootContext.request,
-                chosung: chosung
-            }})
-            .then(resp => {
-                return resp.data;
-            })
-            .catch(err => {
-                alert(err.response.data)
-            });
-            if(getSearchResult) {
-                setChosung(chosung)
-                setSearchResult(getSearchResult[rootContext.request.siteType === "hospital" ? "doctor" : "professor"])
-            }
+    const getSearchChosung = async (chosung) => {
+        console.log({
+            ...rootContext.request,
+            chosung: chosung
+        })
+        const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
+            ...rootContext.request,
+            chosung: chosung
+        }})
+        .then(resp => {
+            return resp.data;
+        })
+        .catch(err => {
+            alert(err.response.data)
+        });
+        if(getSearchResult) {
+            setChosung(chosung)
+            setSearchResult(getSearchResult[rootContext.request.siteType === "hospital" ? "doctor" : "professor"])
         }
     }
 
     const Content = () => {
-        if(cate_cd === 'all') {
+        if(menu_cd === 'all') {
             return (
                 <div className="tab-content" id={"tab-content"} style={{display: "block"}}>
                     {
@@ -68,11 +61,11 @@ const SearchContent = ({request}) => {
                                         result={data === "doctor" || data === "professor" ? searchResult : result[data]}
                                         href={'?' + qs.stringify(util.onlyKeywordSetting({
                                             ...request,
-                                            cate_cd: data,
+                                            menu_cd: data,
                                             size: data === "doctor" || data === "professor" || data === "department" ? 12 : 3
                                         }, request.keyword))}
                                         chosung={chosung}
-                                        cate_cd={data}
+                                        menu_cd={data}
                                         type="default" />
                                     { 
                                         data === "department" ? 
@@ -106,15 +99,15 @@ const SearchContent = ({request}) => {
                     }
                  </div>
             )
-        } else if (cate_cd === 'department') {
+        } else if (menu_cd === 'department') {
             return (
                 <div className="tab-content" id={"tab-content"} style={{display: "block"}}>
                     <SearchContentTitle 
-                        title={SearchViewSetting.tab[rootContext.request.siteType][cate_cd].title} 
+                        title={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].title} 
                         addClass=""
-                        result={result[cate_cd]}
+                        result={result[menu_cd]}
                         href={"#tab-content"}
-                        type={SearchViewSetting.tab[rootContext.request.siteType][cate_cd].singletab} />
+                        type={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].singletab} />
                     <CenterWrap 
                         addClass="mt-lg-6 mt-md-4" 
                         result={result.department} 
@@ -123,15 +116,15 @@ const SearchContent = ({request}) => {
                     />
                 </div>
             )
-        } else if (cate_cd === 'doctor' || cate_cd === "professor") {
+        } else if (menu_cd === 'doctor' || menu_cd === "professor") {
             return (
                 <div className="tab-content" id={"tab-content"} style={{display: "block"}}>
                     <SearchContentTitle 
-                        title={SearchViewSetting.tab[rootContext.request.siteType][cate_cd].title} 
+                        title={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].title} 
                         addClass=""
-                        result={result[cate_cd]}
+                        result={searchResult}
                         href={"#tab-content"}
-                        type={SearchViewSetting.tab[rootContext.request.siteType][cate_cd].singletab} />
+                        type={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].singletab} />
                     <DoctorWrap 
                         result={searchResult} 
                         type="single" 
@@ -143,18 +136,18 @@ const SearchContent = ({request}) => {
             )
         } else {
             let contentTitle = SearchViewSetting.tab[rootContext.request.siteType] !== undefined ? (
-                                  SearchViewSetting.tab[rootContext.request.siteType][cate_cd] !== undefined ? 
-                                  SearchViewSetting.tab[rootContext.request.siteType][cate_cd] : ""
+                                  SearchViewSetting.tab[rootContext.request.siteType][menu_cd] !== undefined ? 
+                                  SearchViewSetting.tab[rootContext.request.siteType][menu_cd] : ""
                                ) : ""
             return (
                 <div className="tab-content" id={"tab-content"} style={{display: "block"}}>
                     <SearchContentTitle 
                         title={contentTitle.title} 
                         addClass=""
-                        result={result[cate_cd]}
+                        result={result[menu_cd]}
                         href={"#tab-content"}
                         type={contentTitle.singletab} />
-                    <NoticeBoard result={result[cate_cd]} type="single" request={request} />
+                    <NoticeBoard result={result[menu_cd]} type="single" request={request} />
                 </div>
             )
         }
