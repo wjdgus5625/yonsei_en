@@ -24,7 +24,7 @@ const SearchContent = ({request}) => {
         setSearchResult(result)
     }, [result, request])
     
-    const [chosung, setChosung] = useState("ALL")
+    const [chosung, setChosung] = useState(rootContext.request.chosung !== undefined ? rootContext.request.chosung : "ALL")
     const getSearchChosung = async (chosung) => {
         console.log({
             ...rootContext.request,
@@ -49,7 +49,7 @@ const SearchContent = ({request}) => {
     }
 
     const [cate_cd, setCate_cd] = useState("")
-    const getSearchDepartment = async (cate_cd, menu_cd) => {
+    const getSearchDepartment = async (cate_cd) => {
         console.log({
             ...rootContext.request,
             chosung: chosung,
@@ -84,7 +84,7 @@ const SearchContent = ({request}) => {
                                     <SearchContentTitle 
                                         title={SearchViewSetting.tab[rootContext.request.siteType][data].title} 
                                         addClass={SearchViewSetting.tab[rootContext.request.siteType][data].class} 
-                                        result={data === "doctor" || data === "professor" ? searchResult : result[data]}
+                                        result={data === "doctor" || data === "professor" ? searchResult[data] : result[data]}
                                         href={'?' + qs.stringify(util.onlyKeywordSetting({
                                             ...request,
                                             menu_cd: data,
@@ -105,7 +105,7 @@ const SearchContent = ({request}) => {
                                             /> : 
                                         data === "doctor" || data === "professor" ? 
                                             <DoctorWrap 
-                                                result={searchResult} 
+                                                result={searchResult[data]} 
                                                 type="all" 
                                                 getSearchChosung={getSearchChosung} 
                                                 chosung={chosung} 
