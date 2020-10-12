@@ -3,11 +3,11 @@ import Nodata from '../nodata/index'
 import SingleTab from './singletab/index';
 import MoreBtn from '../morebtn/index';
 
-const centerWrap = ({addClass, result, type, request}) => {
+const centerWrap = ({addClass, result, type, request, cate_cd, getSearchDepartment}) => {
     return (
         <div className={"center-wrap " + addClass}>
             {
-                type === "single" ? <SingleTab /> : ""
+                type === "single" ? <SingleTab cate_cd={cate_cd} getSearchDepartment={getSearchDepartment}/> : ""
             }
             <ul className="depart-list">
                 {

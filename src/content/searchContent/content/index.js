@@ -21,18 +21,20 @@ const SearchContent = ({request}) => {
     const tabList = SearchViewSetting.tablist[request.siteType].slice(1)
 
     useEffect(() => {
-        setSearchResult(result[request.siteType === "hospital" ? "doctor" : "professor"])
+        setSearchResult(result)
     }, [result, request])
     
     const [chosung, setChosung] = useState("ALL")
     const getSearchChosung = async (chosung) => {
         console.log({
             ...rootContext.request,
-            chosung: chosung
+            chosung: chosung,
+            cate_cd: cate_cd
         })
         const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
             ...rootContext.request,
-            chosung: chosung
+            chosung: chosung,
+            cate_cd: cate_cd
         }})
         .then(resp => {
             return resp.data;
@@ -42,7 +44,31 @@ const SearchContent = ({request}) => {
         });
         if(getSearchResult) {
             setChosung(chosung)
-            setSearchResult(getSearchResult[rootContext.request.siteType === "hospital" ? "doctor" : "professor"])
+            setSearchResult(getSearchResult)
+        }
+    }
+
+    const [cate_cd, setCate_cd] = useState("")
+    const getSearchDepartment = async (cate_cd, menu_cd) => {
+        console.log({
+            ...rootContext.request,
+            chosung: chosung,
+            cate_cd: cate_cd
+        })
+        const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
+            ...rootContext.request,
+            chosung: chosung,
+            cate_cd: cate_cd
+        }})
+        .then(resp => {
+            return resp.data;
+        })
+        .catch(err => {
+            alert(err.response.data)
+        });
+        if(getSearchResult) {
+            setCate_cd(cate_cd)
+            setSearchResult(getSearchResult)
         }
     }
 
@@ -74,6 +100,8 @@ const SearchContent = ({request}) => {
                                                 result={result.department} 
                                                 type="all" 
                                                 request={request}
+                                                cate_cd={cate_cd}
+                                                getSearchDepartment={getSearchDepartment}
                                             /> : 
                                         data === "doctor" || data === "professor" ? 
                                             <DoctorWrap 
@@ -82,6 +110,8 @@ const SearchContent = ({request}) => {
                                                 getSearchChosung={getSearchChosung} 
                                                 chosung={chosung} 
                                                 chosungResult={result.chosung} 
+                                                cate_cd={cate_cd}
+                                                getSearchDepartment={getSearchDepartment}
                                             /> : 
                                             <NoticeBoard 
                                                 result={result[data]} 
@@ -105,14 +135,16 @@ const SearchContent = ({request}) => {
                     <SearchContentTitle 
                         title={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].title} 
                         addClass=""
-                        result={result[menu_cd]}
+                        result={searchResult[menu_cd]}
                         href={"#tab-content"}
                         type={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].singletab} />
                     <CenterWrap 
                         addClass="mt-lg-6 mt-md-4" 
-                        result={result.department} 
+                        result={searchResult[menu_cd]} 
                         type="single" 
                         request={request} 
+                        cate_cd={cate_cd}
+                        getSearchDepartment={getSearchDepartment}
                     />
                 </div>
             )
@@ -122,15 +154,17 @@ const SearchContent = ({request}) => {
                     <SearchContentTitle 
                         title={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].title} 
                         addClass=""
-                        result={searchResult}
+                        result={searchResult[menu_cd]}
                         href={"#tab-content"}
                         type={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].singletab} />
                     <DoctorWrap 
-                        result={searchResult} 
+                        result={searchResult[menu_cd]} 
                         type="single" 
                         getSearchChosung={getSearchChosung} 
                         chosung={chosung} 
                         chosungResult={result.chosung}
+                        cate_cd={cate_cd}
+                        getSearchDepartment={getSearchDepartment}
                     />
                 </div>
             )

@@ -1,22 +1,10 @@
-import React, { useContext } from 'react';
-import { RootContext } from '../../../../..';
+import React from 'react';
 
-const SingleTab = () => {
-    const rootContext = useContext(RootContext);
-
-    const cate_cd = rootContext.request.cate_cd;
-
-    const getSearchDepartment = (cate_cd) => {
-        rootContext.setRequest({
-            ...rootContext.request,
-            cate_cd: cate_cd
-        })
-    }
-
+const SingleTab = ({cate_cd, getSearchDepartment}) => {
     return (
         <div className="doctor-check">
             <span className="mr-5 ml-lg-7">
-                <input type="radio" name="radio1" id="radio1-1" className="custom-control" onChange={() => getSearchDepartment("진료과")} checked={cate_cd === undefined || cate_cd === "진료과" ? true : false} />
+                <input type="radio" name="radio1" id="radio1-1" className="custom-control" onChange={() => getSearchDepartment("진료과")} checked={cate_cd === undefined || cate_cd === "" || cate_cd === "진료과" ? true : false} />
                 <label htmlFor="radio1-1">진료과</label>
             </span>
             <span className="mr-5">

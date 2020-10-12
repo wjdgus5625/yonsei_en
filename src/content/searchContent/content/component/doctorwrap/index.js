@@ -5,7 +5,7 @@ import MoreBtn from '../morebtn/index';
 
 import { RootContext } from '../../../..';
 
-const DoctorWrap = ({result, type, getSearchChosung, chosung, chosungResult}) => {
+const DoctorWrap = ({result, type, getSearchChosung, chosung, chosungResult, cate_cd, getSearchDepartment}) => {
     const rootContext = useContext(RootContext);
     const chosungList = ["ALL", "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"]
     const rootChosung = rootContext.request.chosung !== undefined ? rootContext.request.chosung : chosung
@@ -28,7 +28,10 @@ const DoctorWrap = ({result, type, getSearchChosung, chosung, chosungResult}) =>
                         </ul>
                         {
                             type === 'single' ? 
-                                <SingleTab /> : ""
+                                <SingleTab 
+                                    cate_cd={cate_cd}
+                                    getSearchDepartment={getSearchDepartment}
+                                /> : ""
                         }
                     </div>
                 ) : ""
