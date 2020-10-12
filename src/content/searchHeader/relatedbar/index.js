@@ -5,7 +5,6 @@ import qs from 'qs';
 import util from '../../../util/util';
 import ApiConfig from '../../../config/apiConfig/index'
 
-
 const ReatedBar = ({checked, onChange, m_site_cd, request}) => {
 
     const [popKeyword, setPopKeyword] = useState([]);

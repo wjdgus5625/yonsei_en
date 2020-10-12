@@ -45,7 +45,7 @@ const DoctorWrap = ({result, type, getSearchChosung, chosung, chosungResult}) =>
                                         <div className="doctor-card-box">
                                             <div className="card-view">
                                                 <div className="photo">
-                                                    <img src="/_share/img/common/_profile-thumb1.png" alt="프로필 사진" />
+                                                    <img src="./_share/img/common/_profile-thumb1.png" alt="프로필 사진" />
                                                 </div>
                                                 <dl>
                                                     <dt className="text-title text-lg">{data.nm}</dt>

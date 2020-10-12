@@ -15,7 +15,7 @@ const noticeBoard = ({result, type, request}) => {
                             <li key={index}>
                                 <div className="notice-wrap">
                                     <div className="img-area">
-                                        <img src="/_share/img/common/_sample.jpg" alt="이미지" />
+                                        <img src="./_share/img/common/_sample.jpg" alt="이미지" />
                                     </div>
                                     <div className="notice-cont ml-lg-6 ml-md-3">
                                         <a href="#none" target="_blank" title="새창" className="text-title">
