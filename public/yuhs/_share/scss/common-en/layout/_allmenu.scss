@@ -1,0 +1,787 @@
+/* 전체메뉴 */
+.btn-allmenu-open {
+	position: absolute;
+	left: 0;
+
+	@include media-breakpoint-up(lg) {
+		height: 30px;
+		bottom: 20px;
+	}
+
+	@include media-breakpoint-down(md) {
+		top: 0;
+		bottom: 0;
+		padding: 0 $mobile-spacing;
+	}
+}
+
+.allmenu-open {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	height: 100vh;
+	overflow: hidden !important;
+
+	#header {
+		z-index: 1000;
+	}
+
+	#allmenu {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	@include media-breakpoint-down(md) {
+		height: 100%;
+
+		.wrapper {
+			height: 100%;
+		}
+	}
+}
+
+#allmenu {
+	// display: none;
+	opacity: 0;
+	visibility: hidden;
+
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 2000;
+
+	@include media-breakpoint-up(lg) {
+		@if ($allmenu-desktop) {
+			background-color: #0054d1;
+
+			color: #fff;
+			overflow-y: auto;
+
+			.hide {
+				position: absolute;
+				top: 15px;
+				left: 0;
+				margin-bottom: -1px;
+				height: 1px;
+				text-decoration: none;
+				overflow: hidden;
+				z-index: 600;
+
+				&:focus,
+				&:active {
+					height: auto;
+					color: #fff;
+				}
+			}
+
+			.container {
+				position: relative;
+			}
+
+			.allmenu-list {
+				margin-left: -30px;
+				padding-bottom: 60px;
+				padding-right: 45px;
+				padding-top: 18px;
+
+				@include clearfix;
+
+				font-size: 24px;
+				font-family: $font-family-title;
+
+				a {
+					display: block;
+
+					&:hover {
+						color: $bg-lightyellow;
+					}
+				}
+
+				// 1뎁스
+				>li {
+					margin-top: 30px;
+					float: left;
+					width: 25%;
+					padding: 30px 0 0 50px;
+
+					&:nth-child(4n+1) {
+						clear: both;
+					}
+
+					>a,
+					>span {
+						display: block;
+						padding-bottom: 20px;
+						line-height: 1;
+						border-bottom: 1px solid #127eef;
+					}
+
+					&.menu-network {
+						padding: 30px 0 0 60px;
+						width: calc(75% - 70px);
+						display: flex;
+						flex-wrap: wrap;
+						// justify-content: space-between;
+
+						>a {
+							width: 100%;
+						}
+
+						>ul {
+							margin-right: 55px;
+							max-width: 385px;
+						}
+					}
+
+					// 2뎁스
+					>ul {
+						font-size: 22px;
+						padding-top: 5px;
+
+						>li {
+							margin-top: 17px;
+
+							// 3뎁스
+							>ul {
+								margin-top: 2px;
+
+								margin-left: 10px;
+								font-family: $font-family-base;
+								font-size: 16px;
+
+								>li {
+									position: relative;
+									line-height: 22px;
+
+									>a {
+										display: block;
+										padding: 4px 0 4px 8px;
+
+										&:before {
+											content: '';
+											position: absolute;
+											top: 14px;
+											left: 0;
+											width: 3px;
+											height: 3px;
+											background-color: #fff;
+										}
+
+										&:hover {
+											&:before {
+												color: $bg-lightyellow;
+											}
+										}
+									}
+
+									&.collapse {
+										position: relative;
+
+										&:before {
+											content: '';
+											position: absolute;
+											width: 17px;
+											height: 15px;
+											right: 0;
+											top: 5px;
+											// border: 1px solid #c9c9c9;
+										}
+
+										>a {
+											position: relative;
+											display: block;
+											padding-right: 20px;
+
+											&:before,
+											&:after {
+												content: '';
+												position: absolute;
+												width: 12px;
+												height: 2px;
+												right: 6px;
+												top: 13px;
+												background-color: #fff;
+												transition-duration: .3s;
+											}
+
+											&:after {
+												transform: rotate(90deg);
+											}
+										}
+
+										&.on {
+											// &:before {
+											// 	border-color: $primary;
+											// }
+
+											>a {
+
+												// &:before,
+												// &:after {
+												// 	background-color: $primary;
+												// }
+
+												&:before {
+													transform: rotate(180deg);
+												}
+
+												&:after {
+													transform: rotate(180deg);
+												}
+											}
+										}
+
+										&:focus,
+										&:hover {
+											&:before {
+												border-color: $primary;
+											}
+
+											>a {
+												// color: $primary;
+												font-weight: bold;
+
+												// &:before,
+												// &:after {
+												// background-color: $primary;
+												// }
+											}
+										}
+									}
+								}
+
+								// 4뎁스
+								ul {
+									display: none;
+									position: relative;
+									margin: 0 0 5px 10px;
+									padding-left: 9px;
+
+									font-size: 15px;
+									font-family: $font-family-base;
+
+									&:before {
+										content: '';
+										position: absolute;
+										left: 1px;
+										top: 6px;
+										bottom: 5px;
+										width: 1px;
+										background-color: #4fa9e9;
+									}
+
+									li {
+										padding: 2px 0;
+									}
+								}
+							}
+						}
+					}
+				}
+
+				+.btn-allmenu-close {
+					position: fixed;
+					top: 30px;
+					left: 50%;
+					margin-left: #{$max-width * 0.5 - 40px + 10px};
+				}
+			}
+
+		}
+
+		@else {
+			display: none;
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		background-color: rgba(#000, .5);
+		transition-duration: .3s;
+
+		.mobile-allmenu {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			width: 414px;
+			max-width: 100%;
+			min-height: 100%;
+			background-color: #f1f1f1;
+
+			transform: translateX(-100%);
+			transition-duration: .3s;
+
+			.allmenu-open & {
+				transform: translateX(0);
+			}
+		}
+
+		.allmenu-header {
+			height: $mobile-allmenu-header;
+			padding: $mobile-spacing;
+			color: #fff;
+
+			@if ($sitetype==yonsei or $sitetype==yuhs or $sitetype==community) {
+				background-color: $primary;
+			}
+
+			@else {
+				background-color: $darkprimary;
+			}
+
+			.btn-allmenu-close {
+				position: absolute;
+
+				@if ($mobile-allmenu-header==60px or $sitetype==community) {
+					top: 18px;
+				}
+
+				@else if ($mobile-allmenu-header==57px) {
+					top: 19px;
+				}
+
+				@else {
+					top: 15px;
+				}
+
+				right: 15px;
+			}
+
+			.logo {
+				display: inline-block;
+
+				img {
+					vertical-align: top;
+
+					@if ($sitetype==yonsei or $sitetype==hospital) {
+						// 병원군
+						height: 24px;
+					}
+
+					@else {
+						height: 30px;
+					}
+				}
+			}
+
+			.member-menu,
+			.login-info {
+				margin-top: 21px;
+				height: 26px;
+			}
+
+			.member-menu {
+				@include clearfix;
+				display: flex;
+				justify-content: flex-end;
+
+				li {
+					margin-left: 5px;
+				}
+
+				a {
+					width: 80px;
+					height: 26px;
+					border: 1px solid rgba(#fff, .47);
+					border-radius: 14px;
+					vertical-align: top;
+
+					color: #fff;
+					text-align: center;
+					font-size: 15px;
+					line-height: 24px;
+				}
+			}
+
+			.login-info {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				.welcome {
+					font-size: 16px;
+					line-height: 26px;
+
+					.ico {
+						margin-top: -2px;
+					}
+				}
+
+				.btn {
+					font-size: 15px;
+
+					+.btn {
+						margin-left: 15px;
+					}
+				}
+
+				.ico-mypage-white {
+					width: 13.5px;
+					height: 14.5px;
+				}
+
+				.ico-logout-white {
+					width: 14px;
+					height: 14px;
+				}
+
+				@if ($sitetype==community) {
+					background-color: #003876;
+					height: auto;
+					margin: $mobile-spacing -1 * $mobile-spacing -1 * $mobile-spacing;
+					padding: $mobile-spacing - 5px $mobile-spacing;
+
+					.welcome {
+						font-size: 17px;
+					}
+
+					.department {
+						font-size: 16px;
+					}
+
+					.btn {
+						height: 26px;
+						padding: 0 10px;
+						border: 1px solid rgba(#fff, .5);
+						border-radius: 20px;
+					}
+				}
+			}
+
+			.find-menu {
+				margin: 15px -1 * $mobile-spacing -15px;
+			}
+		}
+
+		.find-menu {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			height: 50px;
+			color: #fff;
+			background-color: #003d7d;
+
+			a {
+				flex: 0 0 50%;
+				line-height: 50px;
+				text-align: center;
+
+				.ico {
+					margin-top: -2px;
+				}
+
+				+a {
+					position: relative;
+
+					&:before {
+						content: '';
+						position: absolute;
+						left: 0;
+						top: 50%;
+						margin-top: -10px;
+						width: 1px;
+						height: 20px;
+						background-color: rgba(#fff, 0.2);
+					}
+				}
+			}
+		}
+
+		#layer-find-department {
+			display: none;
+			position: absolute;
+			z-index: 100;
+			margin-top: 8px;
+			width: 155px;
+			right: calc(25% - 77px);
+			background-color: $primary;
+
+			.find-list {
+				padding: 15px 10px 11px;
+				font-size: 16px;
+				color: #fff;
+
+				li {
+					a {
+						line-height: 20px;
+						padding: 5px 10px;
+						display: block;
+					}
+				}
+			}
+
+			.btn-find-close {
+				position: absolute;
+				top: 10px;
+				right: 10px;
+			}
+		}
+
+		.allmenu-body {
+			height: calc(100% - #{$mobile-allmenu-header});
+			padding-bottom: $mobile-allmenu-footer;
+
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		.allmenu-list {
+			padding-top: 11px;
+			background-color: #f1f1f1;
+
+			font-size: 20px;
+
+			a {
+				display: block;
+			}
+
+			// 1뎁스
+			>li {
+				border-bottom: 7px solid #f1f1f1;
+
+				>a {
+					position: relative;
+					display: block;
+					padding: 0 20px;
+					line-height: 60px;
+					background-color: #fff;
+
+					.ico {
+						margin-top: -2px;
+						margin-right: 6px;
+					}
+				}
+
+				&.collapse {
+					>a {
+						&:after {
+							content: '';
+							position: absolute;
+							right: 20px;
+							top: 25px;
+							width: 16px;
+							height: 9px;
+							background: url(#{$url-img-share}/common/ico-chevron-gray@2x.png) no-repeat;
+							background-size: cover;
+							transition-duration: .3s;
+						}
+					}
+
+					&.on {
+						>a {
+							&:after {
+								transform: rotate(180deg);
+							}
+						}
+					}
+				}
+
+				// 2뎁스
+				>ul {
+					display: none;
+					font-size: 18px;
+					background-color: #f1f1f1;
+					padding: 15px 40px;
+
+					@if ($sitetype==community) {
+						// 교수공간, 커뮤니티 아이콘 하단 2뎁스 줄맞춤
+						padding-left: 57px;
+					}
+
+					>li {
+						>a {
+							padding: 5px 0;
+						}
+
+						&.collapse {
+							position: relative;
+
+							>a {
+								padding-right: 15px;
+
+								&:after {
+									content: '';
+									position: absolute;
+									right: 0;
+									top: 15px;
+									width: 12px;
+									height: 7px;
+									background: url(#{$url-img-share}/common/ico-chevron-gray@2x.png) no-repeat;
+									background-size: cover;
+
+									transition-duration: .3s;
+								}
+							}
+
+							&.on {
+								>a {
+									&:after {
+										transform: rotate(180deg);
+									}
+								}
+							}
+						}
+
+						// 3뎁스
+						>ul {
+							display: none;
+							background-color: #fff;
+							margin: 5px 0 10px;
+							padding: 10px 20px;
+							font-size: 16px;
+
+							>li {
+								>a {
+									padding: 5px 0;
+								}
+
+								&.collapse {
+									position: relative;
+
+									&:before {
+										content: '';
+										position: absolute;
+										width: 17px;
+										height: 15px;
+										right: 0;
+										top: 5px;
+										// border: 1px solid #c9c9c9;
+									}
+
+									>a {
+										position: relative;
+										display: block;
+										padding-right: 20px;
+
+										&:before,
+										&:after {
+											content: '';
+											position: absolute;
+											width: 11px;
+											height: 1px;
+											right: 0;
+											top: 15px;
+											background-color: #888;
+											transition-duration: .3s;
+										}
+
+										&:after {
+											transform: rotate(90deg);
+										}
+									}
+
+									&.on {
+										>a {
+
+											&:before {
+												transform: rotate(180deg);
+											}
+
+											&:after {
+												transform: rotate(180deg);
+											}
+										}
+									}
+								}
+
+								// 4뎁스
+								>ul {
+									display: none;
+									font-size: 15px;
+									padding-left: 12px;
+
+									li {
+										padding: 4px 0;
+									}
+
+									a {
+										position: relative;
+										padding-left: 12px;
+
+										&:before {
+											content: '';
+											position: absolute;
+											left: 0;
+											top: 6px;
+											width: 7px;
+											height: 7px;
+											background: url(#{$url-img-share}/common/ico-reply-dot@2x.png) no-repeat;
+											background-size: cover;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.util-menu {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			background-color: #003d7d;
+			height: $mobile-allmenu-footer;
+
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+
+			font-size: 15px;
+			color: #fff;
+
+			.language-list {
+				display: flex;
+				width: 100%;
+				text-align: center;
+
+				li {
+					&.on {
+						background-color: $secondary;
+						color: #333;
+					}
+
+					a {
+						display: block;
+					}
+				}
+
+				@if($sitetype==hospital) {
+					li {
+						flex: 1 1 16.66666%;
+						width: 16.66666%;
+						line-height: $mobile-allmenu-footer;
+					}
+				}
+
+				@else {
+					justify-content: flex-end;
+					padding: 0 20px;
+
+					li {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						margin-left: 15px;
+
+						&.on {
+							border-radius: 3px;
+						}
+
+						a {
+							width: 44px;
+							line-height: 27px;
+							text-align: center;
+						}
+					}
+				}
+			}
+		}
+	}
+}

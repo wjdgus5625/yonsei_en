@@ -1,0 +1,71 @@
+//
+// Local variables
+//
+
+// 모드 설정
+$responsive: true;
+$lang : en;
+$site : search-en;
+$sitetype: hospital;
+$allmenu-desktop: true;
+$footer-familysite: false;
+$footer-shortcut-link: 1;
+
+$letter-spacing: 0;
+$letter-spacing-mobile: 0;
+
+// 컬러
+$default: #444;
+
+// 폰트
+$font-family-base: -apple-system,
+BlinkMacSystemFont,
+'Open Sans',
+Arial,
+sans-serif,
+"Helvetica Neue",
+"malgungothic",
+"Apple Color Emoji",
+"Segoe UI Emoji",
+"Segoe UI Symbol",
+"Noto Color Emoji";
+
+$font-family-title: // -apple-system,
+// BlinkMacSystemFont,
+'Lato',
+Arial,
+sans-serif,
+"Helvetica Neue",
+"malgungothic",
+"Apple Color Emoji",
+"Segoe UI Emoji",
+"Segoe UI Symbol",
+"Noto Color Emoji";
+
+$font-family-mobile: -apple-system,
+BlinkMacSystemFont,
+'Open Sans',
+Arial,
+"malgungothic",
+"Helvetica Neue",
+sans-serif,
+"Apple Color Emoji",
+"Segoe UI Emoji",
+"Segoe UI Symbol",
+"Noto Color Emoji" !default;
+
+// 경로
+$url-img: '../../#{$site}/img';
+$url-img-sitetype: "../../_share/img/#{$sitetype}";
+
+// 그리드
+// PC
+// $header-height: 145px;
+// $breadcrumb-height: 0;
+$footer-height: 125px;
+
+// Mobile
+// $mobile-spacing: 15px;
+$mobile-allmenu-header: 104px !default;
+// $mobile-header-height: 60px;
+$mobile-footer-height: 150px !default;
