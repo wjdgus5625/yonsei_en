@@ -56,7 +56,13 @@
 
 	@include media-breakpoint-up(lg) {
 		@if ($allmenu-desktop) {
-			background-color: #0070e4;
+			@if ($lang==ko) {
+				background-color: #0070e4;
+			}
+
+			@else {
+				background-color: #0054d1;
+			}
 
 			color: #fff;
 			overflow-y: auto;
@@ -85,6 +91,12 @@
 			.allmenu-list {
 				margin-left: -30px;
 				padding-bottom: 60px;
+
+				@if ($lang !=ko) {
+					padding-right: 60px;
+					padding-top: 18px;
+				}
+
 				@include clearfix;
 
 				font-size: 24px;
@@ -92,17 +104,42 @@
 
 				a {
 					display: block;
+
+					@if ($lang !=ko) {
+						&:hover {
+							color: $bg-lightyellow;
+						}
+					}
 				}
 
 				// 1뎁스
 				>li {
 					margin-top: 30px;
 					float: left;
-					width: 20%;
-					padding: 30px 0 0 30px;
 
-					&:nth-child(5n+1) {
-						clear: both;
+					@if ($lang==ko) {
+						@if ($sitetype==yuhs) {
+							width: 20%;
+						}
+
+						@else {
+							width: 25%;
+						}
+
+						padding: 30px 0 0 30px;
+
+						&:nth-child(5n+1) {
+							clear: both;
+						}
+					}
+
+					@else {
+						width: 25%;
+						padding: 30px 0 0 55px;
+
+						&:nth-child(4n+1) {
+							clear: both;
+						}
 					}
 
 					>a,
@@ -119,11 +156,24 @@
 						padding-top: 5px;
 
 						>li {
-							margin-top: 20px;
+							@if ($lang==ko) {
+								margin-top: 20px;
+							}
+
+							@else {
+								margin-top: 17px;
+							}
 
 							// 3뎁스
 							>ul {
-								margin-top: 5px;
+								@if ($lang==ko) {
+									margin-top: 5px;
+								}
+
+								@else {
+									margin-top: 2px;
+								}
+
 								margin-left: 10px;
 								font-family: $font-family-base;
 								font-size: 16px;
@@ -136,9 +186,32 @@
 										display: block;
 										padding: 4px 0;
 
+										@if ($lang !=ko) {
+											padding-left: 8px;
+
+											&:before {
+												content: '';
+												position: absolute;
+												top: 14px;
+												left: 0;
+												width: 3px;
+												height: 3px;
+												background-color: #fff;
+											}
+										}
+
 										&:hover {
+
 											// color: $primary;
-											font-weight: bold;
+											@if ($lang==ko) {
+												font-weight: bold;
+											}
+
+											@else {
+												&:before {
+													color: $bg-lightyellow;
+												}
+											}
 										}
 									}
 

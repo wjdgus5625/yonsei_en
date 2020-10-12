@@ -419,21 +419,21 @@
   background-image: url(../../_share/img/common/ico-external-link-white@2x.png);
 }
 
+#footer.dark .familysite-list > li {
+  min-width: 213px;
+}
+
 #footer.dark .familysite-list > li + li {
   margin-left: 0;
 }
 
 #footer.dark .familysite-list > li.on {
   background-color: #3f464d;
+  color: #fff;
 }
 
 #footer.dark .familysite-list > li.on > a {
-  color: #fff;
   font-weight: normal;
-}
-
-#footer.dark .familysite-list > li > a {
-  min-width: 213px;
 }
 
 #footer.dark .shortcut-link .btn-toggle {
@@ -1298,6 +1298,9 @@
 
 .doctor-card-wrap ul li .doctor-card-box .card-view dl dt {
   margin: 15px 0 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .doctor-card-wrap ul li .doctor-card-box .card-view dl dt .sub-spot {
@@ -1684,69 +1687,35 @@
 }
 
 .tab-menu-search {
-  position: relative;
-  text-align: center;
-  color: #fff;
+  background-color: #f2f2f2;
 }
 
 .tab-menu-search::before {
   background-color: #959595;
-  border: none;
 }
 
 .tab-menu-search li {
-  border: 0;
-  background-color: #959595;
+  width: 16.666% !important;
+}
+
+.tab-menu-search li a span > strong {
+  font-weight: normal;
 }
 
 .tab-menu-search li.on {
-  background-color: #ffd553;
   color: #333;
 }
 
 .tab-menu-search li.on a {
-  background-color: #ffd553;
+  color: #333;
 }
 
 .tab-menu-search li.on a::before {
-  border-color: #ffd553;
+  border: 2px solid #ffd553;
 }
 
-.tab-menu-search li.on a .ico-external-link--normal-white {
-  background-image: url(../../_share/img/common/ico-external-link-black@2x.png);
-}
-
-.tab-menu-search .control .btn-tab-prev {
-  background-color: #fff;
-  background-image: url(../../_share/img/common/ico-arrow-left-gray@2x.png);
-}
-
-.tab-menu-search .control .btn-tab-prev:hover {
-  background-image: url(../../_share/img/common/ico-arrow-left-white@2x.png);
-}
-
-.tab-menu-search .control .btn-tab-next {
-  background-color: #fff;
-  background-image: url(../../_share/img/common/ico-arrow-right-gray@2x.png);
-}
-
-.tab-menu-search .control .btn-tab-next:hover {
-  background-image: url(../../_share/img/common/ico-arrow-right-white@2x.png);
-}
-
-@media (max-width: 1024.98px) {
-  .tab-menu-search .control .btn-tab-prev {
-    background-image: url(../../_share/img/common/ico-arrow-left-gray@2x.png) !important;
-  }
-  .tab-menu-search .control .btn-tab-prev:active {
-    background-image: url(../../_share/img/common/ico-arrow-left-white@2x.png) !important;
-  }
-  .tab-menu-search .control .btn-tab-next {
-    background-image: url(../../_share/img/common/ico-arrow-right-gray@2x.png) !important;
-  }
-  .tab-menu-search .control .btn-tab-next:active {
-    background-image: url(../../_share/img/common/ico-arrow-right-white@2x.png) !important;
-  }
+.tab-menu-search li.on a span > strong {
+  font-weight: bold;
 }
 
 .ticker li {

@@ -11,6 +11,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Content}/>
         <Route path="/test" component={Test}/>
+        <Route path="/srh" component={Content}/>
         <Route path="/tsearch" component={Content}/>
         <Route component={NotFound}/>
       </Switch>

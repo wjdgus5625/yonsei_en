@@ -749,6 +749,9 @@
 					dl {
 						dt {
 							margin: 15px 0 5px;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+							overflow: hidden;
 
 							.sub-spot {
 								font-size: 18px;
@@ -1168,73 +1171,37 @@
 
 //탭
 .tab-menu-search {
-	position: relative;
-	text-align: center;
-	color: #fff;
+	background-color: #f2f2f2;
 
 	&::before {
 		background-color: #959595;
-		border: none;
 	}
 
 	li {
-		border: 0;
-		background-color: #959595;
+		width: 16.666% !important;
+
+		a {
+			span {
+				>strong {
+					font-weight: normal;
+				}
+			}
+		}
 
 		&.on {
-			background-color: $yellow;
 			color: $default;
 
 			a {
-				background-color: $yellow;
+				color: $default;
 
 				&::before {
-					border-color: $yellow;
+					border: 2px solid $yellow;
 				}
 
-				.ico-external-link--normal-white {
-					background-image: url(#{$url-img-share}/common/ico-external-link-black@2x.png);
-				}
-			}
-		}
-	}
-
-	.control {
-		.btn-tab-prev {
-			background-color: $white;
-			background-image: url(#{$url-img-share}/common/ico-arrow-left-gray@2x.png);
-
-			&:hover {
-				background-image: url(#{$url-img-share}/common/ico-arrow-left-white@2x.png);
-			}
-		}
-
-		.btn-tab-next {
-			background-color: $white;
-			background-image: url(#{$url-img-share}/common/ico-arrow-right-gray@2x.png);
-
-			&:hover {
-				background-image: url(#{$url-img-share}/common/ico-arrow-right-white@2x.png);
-			}
-		}
-	}
-
-
-	@include media-breakpoint-down(md) {
-		.control {
-			.btn-tab-prev {
-				background-image: url(#{$url-img-share}/common/ico-arrow-left-gray@2x.png) !important;
-
-				&:active {
-					background-image: url(#{$url-img-share}/common/ico-arrow-left-white@2x.png) !important;
-				}
-			}
-
-			.btn-tab-next {
-				background-image: url(#{$url-img-share}/common/ico-arrow-right-gray@2x.png) !important;
-
-				&:active {
-					background-image: url(#{$url-img-share}/common/ico-arrow-right-white@2x.png) !important;
+				span {
+					>strong {
+						font-weight: bold;
+					}
 				}
 			}
 		}

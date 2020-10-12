@@ -32,25 +32,24 @@ const SearchMenu = ({request, result}) => {
     }
     
     return (
-        <nav className="tab-menu tab-menu1 tab-menu-search tab-menu-flicking">
-            <div className="tab-scroll-container">
-                <ul className="tab-list">
-                    {
-                        tabList.map((data, index) => {
-                            return (                               
-                                <li key={index} className={cate_cd === data ? "on" : ""}>
-                                    <a href={"#;"} onClick={() => getCategorySearch(data)}>
-                                        <span>{tabList_kor[index] + "(" + 
-                                        ( data === "all" && result.totalSize !== undefined ? result.totalSize : 
-                                            result[data] !== undefined && result[data].totalSize !== undefined ? result[data].totalSize : 0 )
-                                         + ")"}</span>
-                                    </a>
-                                </li>
-                            )
-                        })
-                    }
-                </ul>
-            </div>
+        <nav className="tab-menu tab-menu-matrix tab-menu-search">
+            <ul className="tab-list">
+                {
+                    tabList.map((data, index) => {
+                        return (
+                            <li key={index} className={cate_cd === data ? "on" : ""}>
+                                <a href={"#;"} onClick={() => getCategorySearch(data)}>
+                                    <span>{tabList_kor[index] + "(" + 
+                                    ( data === "all" && result.totalSize !== undefined ? result.totalSize : // 통합검색
+                                        result[data] !== undefined && result[data].totalSize !== undefined ? result[data].totalSize : 0 ) // 일반메뉴
+                                        + ")"}</span>
+                                </a>
+                            </li>
+                        )
+                    })
+                    
+                }
+            </ul>
         </nav>
     )
 }

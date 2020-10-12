@@ -250,6 +250,77 @@
 			}
 		}
 	}
+
+	@if ($lang !=ko) {
+		position: relative;
+		text-align: center;
+		color: #fff;
+
+		&::before {
+			background-color: #959595;
+			border: none;
+		}
+
+		li {
+			border: 0;
+			background-color: #959595;
+
+			&.on {
+				background-color: $yellow;
+				color: $default;
+
+				a {
+					background-color: $yellow;
+					color: #333;
+
+					&::before {
+						border-color: $yellow;
+					}
+				}
+			}
+		}
+
+		.control {
+			.btn-tab-prev {
+				background-color: $white;
+				background-image: url(#{$url-img-share}/common/ico-arrow-left-gray@2x.png);
+
+				&:hover {
+					background-image: url(#{$url-img-share}/common/ico-arrow-left-white@2x.png);
+				}
+			}
+
+			.btn-tab-next {
+				background-color: $white;
+				background-image: url(#{$url-img-share}/common/ico-arrow-right-gray@2x.png);
+
+				&:hover {
+					background-image: url(#{$url-img-share}/common/ico-arrow-right-white@2x.png);
+				}
+			}
+		}
+
+
+		@include media-breakpoint-down(md) {
+			.control {
+				.btn-tab-prev {
+					background-image: url(#{$url-img-share}/common/ico-arrow-left-gray@2x.png) !important;
+
+					&:active {
+						background-image: url(#{$url-img-share}/common/ico-arrow-left-white@2x.png) !important;
+					}
+				}
+
+				.btn-tab-next {
+					background-image: url(#{$url-img-share}/common/ico-arrow-right-gray@2x.png) !important;
+
+					&:active {
+						background-image: url(#{$url-img-share}/common/ico-arrow-right-white@2x.png) !important;
+					}
+				}
+			}
+		}
+	}
 }
 
 .tab-menu2 {

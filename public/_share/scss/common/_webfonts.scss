@@ -11,51 +11,64 @@ $font-weights2: (Light: 300,
 	Bold: 600,
 );
 
+@if ($lang==ko) {
 
-$font-weights3: (light: 300,
-	regular: 400,
-	// medium: 500,
-	bold: 700,
-);
+	@each $weight-name,
+	$weight-size in $font-weights1 {
+		$font-family: "NanumGothic";
+		$font-file-name: "NanumGothic";
 
-@each $weight-name,
-$weight-size in $font-weights1 {
-	$font-family: "NanumGothic";
-	$font-file-name: "NanumGothic";
+		@font-face {
+			font-family: $font-family;
+			font-style: normal;
+			font-weight: $weight-size;
+			src: // url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff2") format("woff2"),
+			url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff") format("woff");
+		}
+	}
 
-	@font-face {
-		font-family: $font-family;
-		font-style: normal;
-		font-weight: $weight-size;
-		src: // url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff2") format("woff2"),
-		url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff") format("woff");
+	@each $weight-name,
+	$weight-size in $font-weights2 {
+		$font-family: "NanumSquare";
+		$font-file-name: "NanumSquare";
+
+		@font-face {
+			font-family: $font-family;
+			font-style: normal;
+			font-weight: $weight-size;
+			src: // url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff2") format("woff2"),
+			url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff") format("woff");
+		}
 	}
 }
 
-@each $weight-name,
-$weight-size in $font-weights2 {
-	$font-family: "NanumSquare";
-	$font-file-name: "NanumSquare";
+@else if ($lang==en) {
 
-	@font-face {
-		font-family: $font-family;
-		font-style: normal;
-		font-weight: $weight-size;
-		src: // url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff2") format("woff2"),
-		url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff") format("woff");
+	@each $weight-name,
+	$weight-size in $font-weights1 {
+		$font-family: "Open Sans";
+		$font-file-name: "OpenSans";
+
+		@font-face {
+			font-family: $font-family;
+			font-style: normal;
+			font-weight: $weight-size;
+			src: // url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff2") format("woff2"),
+			url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff") format("woff");
+		}
+	}
+
+	@each $weight-name,
+	$weight-size in $font-weights1 {
+		$font-family: "Lato";
+		$font-file-name: "Lato";
+
+		@font-face {
+			font-family: $font-family;
+			font-style: normal;
+			font-weight: $weight-size;
+			src: // url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff2") format("woff2"),
+			url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff") format("woff");
+		}
 	}
 }
-
-// @each $weight-name,
-// $weight-size in $font-weights3 {
-// 	$font-family: "NotoSansKR";
-// 	$font-file-name: "notokr";
-
-// 	@font-face {
-// 		font-family: $font-family;
-// 		font-style: normal;
-// 		font-weight: $weight-size;
-// 		src: url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff2") format("woff2"),
-// 		url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff") format("woff");
-// 	}
-// }

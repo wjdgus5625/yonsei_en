@@ -16,8 +16,10 @@ export default {
 	tablist: {
 		headquarter: ["all", "about", "news", "recruit", "fund", "research"],
 		headquarter_kor: ["통합검색", "의료원", "뉴스", "채용", "기금", "연구"],
-		hospital: ["all", "department", "doctor", "health", "seminar", "news", "guide", "about"],
-		hospital_kor: ["통합검색", "진료과", "의료진", "건강정보", "세미나/강좌", "뉴스/소식", "이용안내", "병원소개"],
+		hospital: ["all", "department", "doctor", "health", "news", "about"],
+		hospital_kor: ["통합검색", "진료과", "의료진", "건강정보", "뉴스/소식", "병원안내"],
+		// hospital: ["all", "department", "doctor", "health", "seminar", "news", "guide", "about"],
+		// hospital_kor: ["통합검색", "진료과", "의료진", "건강정보", "세미나/강좌", "뉴스/소식", "이용안내", "병원소개"],
 		school: ["all", "professor", "news", "admission", "education", "about"],
 		school_kor: ["통합검색", "교수진", "뉴스", "입학", "교육/연구", "소개"]
 	},

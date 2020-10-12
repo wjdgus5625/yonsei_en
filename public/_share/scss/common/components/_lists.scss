@@ -36,8 +36,11 @@
 			padding-left: 12px;
 
 			&:before {
-				// top: 10px;
 				top: .7em;
+
+				@if ($lang !=ko) {
+					top: .6em;
+				}
 			}
 		}
 	}
@@ -48,6 +51,10 @@
 
 			&:before {
 				top: 10px;
+
+				@if ($lang !=ko) {
+					top: 8px;
+				}
 			}
 		}
 	}
@@ -76,6 +83,12 @@
 			width: 4px;
 			height: 2px;
 			background-color: #999;
+		}
+
+		@if ($lang !=ko) {
+			+li {
+				margin-top: 2px;
+			}
 		}
 	}
 

@@ -91,7 +91,7 @@ const SearchHeader = () => {
 
     return (
         <div id="sub-search" className="bg-darkprimary">
-			<div className="container pt-lg-17 pb-lg-18 p-md-3 pt-md-6 pb-md-6">
+			<div className="container pt-lg-8 pb-lg-9 p-md-3 pt-md-6 pb-md-6">
 				<div className="search-area">
 					<SearchBar 
 						modalOpen={() => setModalOpen(true)} 

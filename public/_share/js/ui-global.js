@@ -16,6 +16,12 @@
 	window.CustomEvent = CustomEvent;
 })();
 
+// IE 감지
+var agent = navigator.userAgent.toLowerCase();
+if (agent.indexOf("msie") > -1 || agent.indexOf("trident") > -1) {
+	$('body').addClass('ie');
+}
+
 //모달 이벤트 핸들링을 위한 커스텀 이벤트 추가
 var hiddenEvent = new CustomEvent("hidden-modal", {});
 var showEvent = new CustomEvent("show-modal", {});
@@ -97,7 +103,6 @@ var tabCurrentIndex;
 $('.tab-list .on a').each(function () {
 	var tg = $(this).attr('href');
 	if (tg !== '#' && tg.charAt(0) === '#') {
-		
 		$(tg + '.tab-content').css('display', 'block');
 	}
 });
@@ -150,7 +155,7 @@ function moveFlicking(obj, tabCurrentIndex, col, colToScroll) {
 	}
 }
 
-$(document).on('click', '.tab-list a', function (e) {
+$('.tab-list a').on('click', function (e) {
 	var tg = $(this).attr('href');
 	$(this).parent('li').addClass('on').siblings('li').removeClass('on');
 
@@ -245,6 +250,7 @@ $(document).on('click', '.btn-tab-prev, .btn-tab-next', function () {
 			tabCurrentIndex = prevIndex + 1;
 		}
 	}
+
 	$tabList.children('li').eq(tabCurrentIndex).children().click();
 });
 
@@ -587,7 +593,6 @@ function _modeDetect() {
 	console.log('device : ' + _mode);
 
 	if (beforeMode !== _mode) {
-		console.log('beforeMode')
 		// 게시판 상단 공지 슬라이더
 		bbsNoticeSlider();
 

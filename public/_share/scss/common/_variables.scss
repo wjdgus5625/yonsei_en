@@ -4,6 +4,7 @@
 
 // 사이트 기본 설정
 
+$lang : ko !default; // 언어셋
 $site : default !default; // 복사 원본 사이트 디렉토리
 $sitetype: hospital !default; // 병원군 hospital (공통 기준) / 대학군 yonsei / 의료원군 yuhs / 교수공간, 커뮤니티 community
 
@@ -88,6 +89,9 @@ $light-bg-colors: map-merge(("bg-secondary": $secondary,
 	$light-bg-colors);
 
 // 글꼴
+$letter-spacing: 0.02em !default;
+$letter-spacing-mobile: 0.01em !default;
+
 $font-family-base: -apple-system,
 BlinkMacSystemFont,
 "NanumGothic",

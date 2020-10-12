@@ -22,26 +22,37 @@ body {
 	min-width: $min-width;
 	font-size: 16px;
 	color: $default;
-	letter-spacing: 0.02em;
+	letter-spacing: $letter-spacing;
 	line-height: 1.625;
 
 	@include media-breakpoint-up(lg) {
-		font-family: $font-family-base;
 		transform-origin: 50% 0%;
 		word-break: keep-all;
 		word-wrap: break-word;
 
 		overflow-y: scroll;
 		min-height: 100vh;
+		font-family: $font-family-base;
+
+		@if ($lang !=ko) {
+			line-height: 1.5;
+		}
 	}
 
 	@include media-breakpoint-down(md) {
-		font-family: $font-family-mobile;
 		font-size: 17px;
-		line-height: 1.470588;
-		letter-spacing: 0.01em;
+		letter-spacing: $letter-spacing-mobile;
 		overflow-y: auto;
 		word-break: break-all;
+		font-family: $font-family-mobile;
+
+		@if ($lang==ko) {
+			line-height: 1.470588;
+		}
+
+		@else {
+			line-height: 1.294117;
+		}
 	}
 }
 

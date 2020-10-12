@@ -55,7 +55,14 @@
 			}
 
 			&:nth-child(n+2) {
-				width: 280px;
+
+				@if ($lang==ko) {
+					width: 280px;
+				}
+
+				@else {
+					width: 373px;
+				}
 
 				>a {
 					display: block;
@@ -263,7 +270,13 @@
 		.breadcrumb-list {
 			>li {
 				&:nth-child(n+2) {
-					width: 260px;
+					@if ($lang==ko) {
+						width: 260px;
+					}
+
+					@else {
+						width: 346px;
+					}
 
 					>a {
 						&:after {

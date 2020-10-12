@@ -184,12 +184,20 @@ $value in $dirs {
 	.content-body p,
 	.list {
 		margin: 4px 0;
+
+		@if ($lang !=ko) {
+			margin: 5px 0;
+		}
 	}
 
 	.list {
 		>li {
 			+li {
 				margin-top: 5px;
+
+				@if ($lang !=ko) {
+					margin-top: 10px;
+				}
 			}
 		}
 	}
@@ -199,13 +207,27 @@ $value in $dirs {
 
 	.content-body p,
 	.list {
-		margin: 8px 0;
+
+		@if ($lang !=ko) {
+			margin: 2px 0;
+		}
+
+		@else {
+			margin: 8px 0;
+		}
 	}
 
 	.list {
 		>li {
 			+li {
-				margin-top: 8px;
+
+				@if ($lang !=ko) {
+					margin-top: 6px;
+				}
+
+				@else {
+					margin-top: 8px;
+				}
 			}
 		}
 	}
@@ -293,6 +315,51 @@ $value in $dirs {
 	>li {
 		+li {
 			margin-top: 19px;
+		}
+	}
+}
+
+
+@if ($lang==en) {
+
+	/* 다국어 - 영문 */
+	.title1 {
+		+.title-square {
+			@include media-breakpoint-up(lg) {
+				margin-top: 22px;
+			}
+
+			@include media-breakpoint-down(md) {
+				margin-top: 28px;
+			}
+		}
+	}
+
+	.title-square {
+		+.indent {
+			margin-left: 16px;
+
+			.list {
+				margin-left: 10px;
+			}
+		}
+
+		&.ml-0 {
+			+.indent {
+				margin-left: 0;
+
+				.list {
+					margin-left: 10px;
+				}
+			}
+		}
+
+		@include media-breakpoint-up(lg) {
+			margin: 53px 0 23px 16px;
+		}
+
+		@include media-breakpoint-down(md) {
+			margin: 40px 0 17px 15px;
 		}
 	}
 }

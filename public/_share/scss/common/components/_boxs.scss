@@ -28,7 +28,14 @@
 
 	@include media-breakpoint-down(md) {
 		margin-bottom: 40px;
-		padding: 8px $mobile-spacing 4px;
+
+		@if ($lang==ko) {
+			padding: 8px $mobile-spacing 4px;
+		}
+
+		@else {
+			padding: 10px $mobile-spacing 6px;
+		}
 
 		&:before {
 			left: $mobile-spacing;
@@ -163,6 +170,15 @@
 				}
 			}
 		}
+
+		@if ($lang !=ko) {
+			padding: 30px 30px 20px !important;
+
+			dt.doc-title {
+				font-size: 14px;
+			}
+		}
+
 	}
 
 	&.box-lightgray {
@@ -306,6 +322,27 @@
 						margin-bottom: 6px;
 					}
 				}
+
+				@if ($lang !=ko) {
+					padding-bottom: 21px;
+
+					.item-image {
+						margin-bottom: 27px;
+					}
+
+					.list-item-title {
+						font-family: $font-family-title;
+
+						.title3 {
+							font-family: inherit;
+							line-height: 30px;
+						}
+					}
+
+					.list-item-content {
+						margin-top: 16px;
+					}
+				}
 			}
 		}
 	}
@@ -441,6 +478,28 @@
 							li {
 								width: 100%;
 							}
+						}
+					}
+
+					@if ($lang !=ko) {
+						padding-bottom: 15px;
+
+						.item-image {
+							margin-bottom: 16px;
+						}
+
+						.list-item-title {
+							strong {
+								&.title3 {
+									font-size: 20px;
+									line-height: 24.3px;
+								}
+							}
+
+						}
+
+						.list-item-content {
+							margin-top: 9px;
 						}
 					}
 				}

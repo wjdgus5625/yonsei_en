@@ -37,6 +37,8 @@
 @include ico2x('sns-gray-np', 30px, 30px, #{$url-img-share}/common);
 @include ico2x('sns-gray-tw', 30px, 30px, #{$url-img-share}/common);
 @include ico2x('sns-gray-yt', 30px, 30px, #{$url-img-share}/common);
+@include ico2x('sns-white-fb', 30px, 30px, #{$url-img-share}/common);
+@include ico2x('sns-white-yt', 30px, 30px, #{$url-img-share}/common);
 @include ico2x('quick-link1', 16px, 16px, #{$url-img-share}/common);
 @include ico2x('quick-link2', 16px, 16px, #{$url-img-share}/common);
 @include ico2x('quick-link3', 16px, 16px, #{$url-img-share}/common);
@@ -60,6 +62,7 @@
 @include ico2x('chevron-down', 17px, 9px, #{$url-img-share}/common);
 @include ico2x('chevron-down-sm', 15px, 9px, #{$url-img-share}/common);
 @include ico2x('chevron-left-sm-gray', 10px, 16px, #{$url-img-share}/common);
+@include ico2x('chevron-right-sm-lightgray', 8px, 15px, #{$url-img-share}/common);
 @include ico2x('datepicker-gray', 23px, 24px, #{$url-img-share}/common);
 @include ico2x('reset-primary', 24px, 26px, #{$url-img-share}/common);
 @include ico2x('external-link', 14px, 14px, #{$url-img-share}/common);
@@ -100,3 +103,6 @@
 @include ico2x('tel-yellow', 52px, 52px, #{$url-img-share}/common);
 @include ico2x('tel-primary', 52px, 52px, #{$url-img-share}/common);
 @include ico2x('close-circle', 26px, 26px, #{$url-img-share}/common);
+
+//영문
+@include ico2x('doc-blue-en', 14px, 16px, #{$url-img-share}/common);

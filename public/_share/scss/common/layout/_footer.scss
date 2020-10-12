@@ -79,6 +79,7 @@
 				position: relative;
 				float: left;
 				text-align: center;
+				line-height: 50px;
 
 				// 의료원
 				@if ($sitetype==yuhs) {
@@ -90,11 +91,11 @@
 
 					&.on,
 					&.active {
-						>a {
-							color: #fff;
-							background-color: $primary;
-							font-weight: bold;
+						color: #fff;
+						background-color: $primary;
+						font-weight: bold;
 
+						>a {
 							&[target=_blank] {
 								&:after {
 									background-image: url(#{$url-img-share}/common/ico-external-link-white@2x.png);
@@ -105,36 +106,38 @@
 				}
 
 				@else {
+					padding: 0 22px;
+
 					+li {
 						margin-left: 65px;
 					}
 
 					>a {
 						padding: 0 22px;
+						margin: 0 -22px;
 					}
 
 					&.on,
 					&.active {
-						>a {
-							color: $primary;
-							font-weight: bold;
-						}
+						color: $primary;
+						font-weight: bold;
 					}
 				}
 
 				>a {
 					justify-content: center;
-					line-height: 50px;
 
-					&:after {
-						content: '';
-						margin-left: 8px;
-						width: 11px;
-						height: 7px;
-						background: url(#{$url-img-share}/common/ico-chevron-up-xs.png) no-repeat;
-						background-size: cover;
+					@if ($sitetype==hospital) {
+						&:after {
+							content: '';
+							margin-left: 8px;
+							width: 11px;
+							height: 7px;
+							background: url(#{$url-img-share}/common/ico-chevron-up-xs.png) no-repeat;
+							background-size: cover;
 
-						transition-duration: .2s;
+							transition-duration: .2s;
+						}
 					}
 				}
 
@@ -165,6 +168,8 @@
 				text-align: left;
 				padding: 15px 10px 60px 20px;
 				color: #666;
+				line-height: 24px;
+				font-weight: normal;
 
 				li {
 					margin: 3px 0;
@@ -483,21 +488,19 @@
 			}
 
 			>li {
+				min-width: 213px;
+
 				+li {
 					margin-left: 0;
 				}
 
 				&.on {
 					background-color: #3f464d;
+					color: #fff;
 
 					>a {
-						color: #fff;
 						font-weight: normal;
 					}
-				}
-
-				>a {
-					min-width: 213px;
 				}
 			}
 		}
