@@ -7,7 +7,7 @@ import { RootContext } from '..';
 
 import qs from 'qs';
 
-import util from '../../util/util'
+import util from '../../../util/util'
 
 const SearchHeader = () => {
 

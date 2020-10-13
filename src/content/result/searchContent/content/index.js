@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import SearchContentTitle from './title/index'
-import SearchViewSetting from '../../../config/searchViewSetting/index'
-import ApiConfig from '../../../config/apiConfig/index';
+import SearchViewSetting from '../../../../config/searchViewSetting/index'
+import ApiConfig from '../../../../config/apiConfig/index';
 import NoticeBoard from './component/noticeboard/index'
 import CenterWrap from './component/centerwrap/index'
 import DoctorWrap from './component/doctorwrap/index'
 
 import { RootContext } from '../..';
 import qs from 'qs';
-import util from '../../../util/util'
+import util from '../../../../util/util'
 import Axios from 'axios';
 import NoData from './component/nodata';
 

@@ -2,15 +2,15 @@ import React, { useState, createContext, useEffect } from 'react';
 
 import SearchHeader from './searchHeader/index'
 import SearchBody from './searchContent/index'
-import Header from './header/index'
-import Footer from './footer/index'
-import SearchViewSetting from '../config/searchViewSetting/index'
-import ApiConfig from '../config/apiConfig/index';
+import Header from '../header/index'
+import Footer from '../footer/index'
+import SearchViewSetting from '../../config/searchViewSetting/index'
+import ApiConfig from '../../config/apiConfig/index';
 
 import Axios from 'axios';
 import qs from 'qs';
 
-import util from '../util/util'
+import util from '../../util/util'
 
 export const RootContext = createContext();
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import searchViewSetting from '../../../config/searchViewSetting';
+import searchViewSetting from '../../../../config/searchViewSetting';
 
 const SearchModal = ({className, modalClose, getSearch, changeKeyword, allClear, request, setSubSiteCd}) => {
     let must = request.must || "";

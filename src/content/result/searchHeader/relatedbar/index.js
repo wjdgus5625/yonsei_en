@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import qs from 'qs';
 
-import util from '../../../util/util';
-import ApiConfig from '../../../config/apiConfig/index'
+import util from '../../../../util/util';
+import ApiConfig from '../../../../config/apiConfig/index'
 
 const ReatedBar = ({checked, onChange, m_site_cd, request}) => {
 

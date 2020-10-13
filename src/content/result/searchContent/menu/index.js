@@ -1,9 +1,9 @@
 import React from 'react';
-import SearchViewSetting from '../../../config/searchViewSetting/index'
+import SearchViewSetting from '../../../../config/searchViewSetting/index'
 
 
 import qs from 'qs';
-import util from '../../../util/util';
+import util from '../../../../util/util';
 
 const SearchMenu = ({request, result}) => {
     const tabList = SearchViewSetting.tablist[request.siteType]

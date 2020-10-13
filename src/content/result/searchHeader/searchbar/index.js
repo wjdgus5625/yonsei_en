@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SearchViewSetting from '../../../config/searchViewSetting/index';
+import SearchViewSetting from '../../../../config/searchViewSetting/index';
 
 const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange, modalClose, checked}) => {
     let m_site_cd = request.m_site_cd
