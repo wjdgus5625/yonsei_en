@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from 'react';
 
-import SearchHeader from './searchHeader/index'
-import SearchBody from './searchContent/index'
+import SearchHeader from './result/searchHeader/index'
+import SearchBody from './result/searchContent/index'
 import Header from './header/index'
 import Footer from './footer/index'
 import SearchViewSetting from '../config/searchViewSetting/index'
