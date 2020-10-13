@@ -6,6 +6,7 @@ import qs from 'qs';
 import Axios from 'axios';
 
 import ApiConfig from '../../config/apiConfig/index'
+import SearchViewSetting from '../../config/searchViewSetting/index'
 
 const Main = ({ location }) => {
     const query = qs.parse(location.search, {
@@ -40,7 +41,11 @@ const Main = ({ location }) => {
             }
             
           });
-          if(result) setRecommend(result)
+          if(result) {
+            const htmlTitle = document.querySelector("title");
+            htmlTitle.innerText = "통합검색 | " + SearchViewSetting.m_site_cd[m_site_cd]
+            setRecommend(result)
+          }
         }
     
         if(m_site_cd !== undefined && m_site_cd.length > 0) {

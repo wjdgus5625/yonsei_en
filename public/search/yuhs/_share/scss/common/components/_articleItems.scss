@@ -1,0 +1,209 @@
+.article-item {
+	display: flex !important;
+	flex-direction: column;
+	justify-content: space-between;
+	color: $default;
+	background-color: #fff;
+	margin-top: 20px;
+	padding: 30px 30px 28px;
+	border: 1px solid #e6e6e6;
+
+	.category {
+		margin-top: -51px;
+		margin-bottom: 13px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #fff;
+		font-size: 14px;
+		line-height: 17px;
+		text-align: center;
+
+		.br {
+			display: block;
+		}
+
+		&.bg-blue {
+			background-color: #0073df;
+		}
+
+		&.bg-violet {
+			background-color: #ac47d1;
+		}
+
+		&.bg-orange {
+			background-color: #e17839;
+		}
+
+		&.bg-green {
+			background-color: #00a651;
+		}
+	}
+
+	.author {
+		display: block;
+		color: $darkgray;
+		margin-bottom: 1px;
+	}
+
+	.date {
+		color: $darkgray;
+	}
+
+	.item-footer {
+		display: flex;
+		justify-content: space-between;
+		line-height: 1;
+	}
+
+	@include media-breakpoint-up(lg) {
+		height: 204px; // 의료원 채용 메인 디자인 기준
+
+		&:hover {
+			border-color: $primary;
+		}
+
+		.category {
+			width: 60px;
+			height: 50px;
+			padding: 0 10px;
+		}
+
+		.author {
+			font-size: 15px;
+		}
+
+		.subject {
+			font-size: 18px;
+			font-family: $font-family-title;
+			@include text-ellipsis(3, 28px);
+			color: $default;
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		min-height: 140px;
+		padding: 20px;
+
+		.category {
+			margin-top: -40px;
+			width: 55px;
+			height: 46px;
+			margin-bottom: 10px;
+			padding: 0 7px;
+		}
+
+		.author {
+			margin-bottom: 5px;
+			font-size: 16px;
+		}
+
+		.subject {
+			@include text-ellipsis(2, 26px);
+		}
+
+		.item-footer {
+			margin-top: 10px;
+			font-size: 15px;
+		}
+	}
+}
+
+.article-item-container {
+	overflow: hidden;
+
+	.slick-dots {
+		display: flex !important;
+		justify-content: center;
+		margin: -3.5px;
+		padding-top: 30px;
+
+		button {
+			font-size: 0;
+			padding: 3px 3.5px;
+			vertical-align: top;
+
+			&:after {
+				content: '';
+				display: block;
+				width: 11px;
+				height: 11px;
+				background-color: #c2c2c2;
+				border-radius: 6px;
+			}
+		}
+
+		.slick-active {
+			button {
+				&:after {
+					width: 30px;
+					background-color: $primary;
+				}
+			}
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		margin: -15px;
+
+		&:not(.slick-slider) {
+			display: flex;
+			flex-wrap: wrap;
+
+			.article-item {
+				margin: 35px 15px 15px;
+			}
+		}
+
+		.slick-slide {
+			margin: 0 15px;
+
+			>div {
+				+div {
+					margin-top: 50px;
+				}
+			}
+		}
+
+		&.col3 {
+			.article-item {
+				flex: 0 0 calc(33.333333% - 30px);
+				width: calc(33.333333% - 30px);
+			}
+		}
+
+		&.col4 {
+			.article-item {
+				flex: 0 0 calc(25% - 30px);
+				width: calc(25% - 30px);
+				padding: 20px;
+			}
+
+			.category {
+				margin-top: -41px;
+			}
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		&:not(.slick-slider) {
+			padding: 15px;
+		}
+
+		.slick-slide {
+			padding: 0 15px;
+
+			>div {
+				+div {
+					margin-top: 35px;
+				}
+			}
+		}
+
+		.article-item {
+			+.article-item {
+				margin-top: 35px;
+			}
+		}
+	}
+}

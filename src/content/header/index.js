@@ -6,7 +6,7 @@ const Header = ({ m_site_cd }) => {
             <div className="gnb-area container">
             <h1 id="logo">
                 <a href={"/search?m_site_cd="+m_site_cd}>
-                    <img src="/yuhs/search/img/common/search-logo@2x.png" alt="통합검색" />
+                    <img src="/search/yuhs/search/img/common/search-logo@2x.png" alt="통합검색" />
                 </a>
             </h1>
         </div>
