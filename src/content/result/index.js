@@ -67,7 +67,7 @@ function Content({ location }) {
 
   return (
       <div className="wrapper">
-        <Header />
+        <Header m_site_cd={query.m_site_cd} />
         <div id="content">
           <RootContext.Provider value={store}>
             <SearchHeader />

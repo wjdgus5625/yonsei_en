@@ -31,7 +31,7 @@ const ReatedBar = ({checked, onChange, m_site_cd, request}) => {
             getPopKeyword();
         }
         
-      }, [m_site_cd]);
+    }, [m_site_cd]);
 
     return (
         <div className="related-keyword-bar mt-lg-10">

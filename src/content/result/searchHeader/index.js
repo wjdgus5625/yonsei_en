@@ -31,7 +31,6 @@ const SearchHeader = () => {
 			alert("검색어를 입력해주세요!!")
 			return;
 		}
-		
 	}
 
 	const changeKeyword = (keyword, type) => {
