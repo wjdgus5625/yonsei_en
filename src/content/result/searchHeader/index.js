@@ -26,7 +26,7 @@ const SearchHeader = () => {
 		if(request.keyword !== undefined && request.keyword.replace(/[\\ ]/gi, '')) {
 			if(cookies.recentkeyword !== undefined) {
                 if(!cookies.recentkeyword.includes(request.keyword)) {
-                    cookies.recentkeyword.push(request.keyword)
+                    cookies.recentkeyword.unshift(request.keyword)
                 }
                 setCookie('recentkeyword', cookies.recentkeyword)
             } else {

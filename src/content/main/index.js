@@ -27,7 +27,7 @@ const Main = ({ location }) => {
 		if(keyword !== undefined && keyword.replace(/[\\ ]/gi, '').length > 0) {
             if(cookies.recentkeyword !== undefined) {
                 if(!cookies.recentkeyword.includes(keyword)) {
-                    cookies.recentkeyword.push(keyword)
+                    cookies.recentkeyword.unshift(keyword)
                 }
                 setCookie('recentkeyword', cookies.recentkeyword)
             } else {
