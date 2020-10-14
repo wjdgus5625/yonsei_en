@@ -70,6 +70,14 @@ const Main = ({ location }) => {
         }
     }
 
+    const deleteRecentKeyword = (keyword) => {
+        if(cookies.recentkeyword.includes(keyword)) {
+            cookies.recentkeyword.splice(cookies.recentkeyword.indexOf(keyword), 1)
+            setCookie('recentkeyword', cookies.recentkeyword)
+            setKeywordMatch({ recentkeyword: cookies.recentkeyword, type: "recentkeyword" })
+        }
+    }
+
     useEffect(() => {
         console.log('recommend useEffect')
         const getPopKeyword = async () => {
@@ -134,7 +142,7 @@ const Main = ({ location }) => {
                                     ) : (
                                         keywordMatch[keywordMatch.type].map((data, index) => {
                                             return (
-                                                <li key={index}>
+                                                <li key={index} onClick={() => deleteRecentKeyword(data)}>
                                                     {keywordMatch.type === "recentkeyword" ?
                                                         data : keywordMatch.type === "dept" ?
                                                          data.dept_nm : keywordMatch.type === "doctor" ? data.nm : "" }
