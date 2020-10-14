@@ -61,7 +61,7 @@ $(document).on('click', '.shortcut-link .btn-toggle', function (e) {
 
 $(window).on('load resize', function () {
 	$('.search-keyword-wrap').css({
-		'max-height': _mode === 'mobile' || _mode === 'tablet' ? '150px' : '210px',
+		'max-height': _mode === 'pc' ? '140px' : '100px',
 		'overflow': 'hidden'
-	});
+	})
 });
