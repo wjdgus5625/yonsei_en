@@ -4,6 +4,7 @@ import Footer from '../footer/index'
 
 import qs from 'qs';
 import Axios from 'axios';
+import parser from 'html-react-parser';
 
 import ApiConfig from '../../config/apiConfig/index'
 import SearchViewSetting from '../../config/searchViewSetting/index'
@@ -14,8 +15,11 @@ const Main = ({ location }) => {
     })
 
     const [recommend, setRecommend] = useState([]) 
-    const m_site_cd = query.m_site_cd !== undefined && query.m_site_cd.length > 0 && query.m_site_cd !== "undefined" ? query.m_site_cd : "sev"
     const [keyword, setKeyword] = useState("");
+    const [autocomplete, setAutocomplete] = useState([]);
+    const [keywordMatch, setKeywordMatch] = useState([]);
+
+    const m_site_cd = query.m_site_cd !== undefined && query.m_site_cd.length > 0 && query.m_site_cd !== "undefined" ? query.m_site_cd : "sev"
 
     const getSearch = () => {
 		if(keyword !== undefined && keyword.replace(/[\\ ]/gi, '').length > 0) {
@@ -24,6 +28,27 @@ const Main = ({ location }) => {
 			alert("검색어를 입력해주세요!!")
 			return;
 		}
+    }
+
+    const getAutoComplete = async (keyword) => {
+		const result = await Axios.get(ApiConfig.autocomplete_path + '?keyword=' + keyword)
+        .then(resp => {
+            return resp.data;
+        })
+
+        if(result) {
+            setAutocomplete(result.autocomplete.list)
+            if(result.doctor.list.length > 0) {
+                setKeywordMatch(result.doctor.list)
+            } else if(result.dept.list.length > 0) {
+                setKeywordMatch(result.dept.list)
+            }
+        }
+    }
+
+    const keywordChange = (keyword) => {
+        setKeyword(keyword)
+        getAutoComplete(keyword)
     }
 
     useEffect(() => {
@@ -66,7 +91,7 @@ const Main = ({ location }) => {
                                    placeholder="검색어를 입력해주세요" 
                                    title="검색어 입력"
                                    style={{width: "100%"}}
-                                   onChange={(e) => setKeyword(e.target.value)} value={keyword} 
+                                   onChange={(e) => keywordChange(e.target.value)} value={keyword} 
                                    onKeyPress={(e) => e.key === "Enter" ? getSearch() : ""}
                             />
                             <span className="btn-icon-box">
@@ -76,13 +101,33 @@ const Main = ({ location }) => {
                                 </button>
                             </span>
                         </div>
+                        <div>
+                            {
+                                <ul>
+                                {
+                                    keywordMatch.length === 0 ? (
+                                        autocomplete.map((data, index) => {
+                                            return (
+                                                <li key={index}>{parser(data[0])}</li>
+                                            )
+                                        })
+                                    ) : (
+                                        keywordMatch.map((data, index) => {
+                                            return (
+                                                <li key={index}>{data.dept_nm} 키워드 매칭</li>
+                                            )
+                                        })
+                                    )
+                                }
+                                </ul>
+                            }
+                        </div>
                         <div className="search-keyword-wrap mt-lg-10 mt-md-7">
-                            
                             {
                                 recommend.map((data, index) => {
                                     return (
                                         <span key={index} className="keyword-item text-lg text-normal">
-                                            <a href="#none">
+                                            <a href={"/search/result?keyword="+data+"&m_site_cd="+m_site_cd}>
                                                 #{data}
                                             </a>
                                         </span>
