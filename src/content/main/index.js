@@ -5,6 +5,8 @@ import Footer from '../footer/index'
 import qs from 'qs';
 import Axios from 'axios';
 import parser from 'html-react-parser';
+import { useCookies } from 'react-cookie'
+
 
 import ApiConfig from '../../config/apiConfig/index'
 import SearchViewSetting from '../../config/searchViewSetting/index'
@@ -14,6 +16,8 @@ const Main = ({ location }) => {
         ignoreQueryPrefix: true
     })
 
+    const [cookies, setCookie] = useCookies(['recentkeyword'])
+    console.log(cookies)
     const [recommend, setRecommend] = useState([]) 
     const [keyword, setKeyword] = useState("");
     const [autocomplete, setAutocomplete] = useState([]);
@@ -23,6 +27,12 @@ const Main = ({ location }) => {
 
     const getSearch = () => {
 		if(keyword !== undefined && keyword.replace(/[\\ ]/gi, '').length > 0) {
+            if(cookies.recentkeyword !== undefined) {
+                setCookie('recentkeyword', cookies.recentkeyword += ',' + keyword)
+            } else {
+                setCookie('recentkeyword', keyword)
+            }
+            
 			window.location.href = '/search/result?m_site_cd=' + m_site_cd + '&keyword=' + keyword;
 		} else {
 			alert("검색어를 입력해주세요!!")

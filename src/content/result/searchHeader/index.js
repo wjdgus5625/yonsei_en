@@ -6,7 +6,7 @@ import RelatedBar from './relatedbar/index'
 import { RootContext } from '..';
 
 import qs from 'qs';
-
+import { useCookies } from 'react-cookie'
 import util from '../../../util/util'
 
 const SearchHeader = () => {
@@ -15,6 +15,8 @@ const SearchHeader = () => {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [request, setRequest] = useState(rootContext.request);
 	const [checked, setChecked] = useState(false);
+	const [cookies, setCookie] = useCookies(['recentkeyword'])
+	console.log(cookies)
 
 	const getSearch = () => {
 		if(request.m_site_cd === undefined || (request.m_site_cd !== undefined && request.m_site_cd.length === 0)) {
@@ -22,6 +24,11 @@ const SearchHeader = () => {
 			return;
 		}
 		if(request.keyword !== undefined && request.keyword.replace(/[\\ ]/gi, '')) {
+			if(cookies.recentkeyword !== undefined) {
+                setCookie('recentkeyword', cookies.recentkeyword += ',' + request.keyword)
+            } else {
+                setCookie('recentkeyword', request.keyword)
+            }
 			if(modalOpen) {
 				window.location.href = '?' + qs.stringify(util.searchKeywordSetting(request))
 			} else {
