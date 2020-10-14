@@ -117,19 +117,19 @@ export default {
 	},
 	m_site_cd: {
 		yuhs: "연세의료원",
-		sev: "세브란스 병원",
-		gs: "강남세브란스 병원", 
+		sev: "세브란스병원",
+		gs: "강남세브란스병원", 
 		dental: "치과대학병원",
-		yi: "용인세브란스 병원",
+		yi: "용인세브란스병원",
 		medicine: "의과대학",
 		dentistry: "치과대학",
 		nursing: "간호대학",
 		gsph: "보건대학원"
 	},
-	m_site_cdList: ["yuhs", "sev", "gs", "dental", "yi", "medicine", "dentistry", "nursing", "gsph"],
-	m_site_cdList_kor: ["연세의료원", "세브란스 병원", "강남세브란스 병원", "치과대학병원", "용인세브란스 병원", "의과대학", "치과대학", "간호대학", "보건대학원"],
+	m_site_cdList: ["sev", "medicine", "gs", "dental", "yi", "dentistry", "nursing", "gsph", "yuhs"],
+	m_site_cdList_kor: ["세브란스병원", "치과대학병원", "강남세브란스병원", "용인세브란스병원", "의과대학", "치과대학", "간호대학", "보건대학원", "연세의료원"],
 	hospitalList: {
-		sev: ["세브란스병원", "재활병원", "심장혈관병원", "안과병원", "어린이병원", "연세암병원"],
+		sev: ["세브란스병원", "연세암병원", "재활병원", "심장혈관병원", "안과병원", "어린이병원"],
 		gs: ["강남세브란스병원", "심뇌혈관병원", "암병원", "척추병원", "치과병원"]
 	}
 }

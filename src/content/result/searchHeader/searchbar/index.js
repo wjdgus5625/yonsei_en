@@ -10,7 +10,6 @@ const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange, 
     const m_site_cdList_kor = SearchViewSetting.m_site_cdList_kor;
 
 	const [select1Open, setSelect1Open] = useState(false);
-	
 
 	const select1Toggle = () => {
         modalClose()
@@ -18,8 +17,9 @@ const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange, 
 	}
         
     const SelectList = ({onClick, addText}) => {
+        const [hover, setHover] = useState(false)
         return (
-          <li onClick={onClick} style={{cursor: "pointer"}}>
+          <li onClick={onClick} style={{cursor: "pointer", color: hover ? "blue": ""}} onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)}>
             {addText}
           </li>
         );
