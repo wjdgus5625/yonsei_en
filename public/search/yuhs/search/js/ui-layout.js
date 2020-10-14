@@ -61,7 +61,7 @@ $(document).on('click', '.shortcut-link .btn-toggle', function (e) {
 
 $(window).on('load resize', function () {
 	$('.search-keyword-wrap').css({
-		'max-height': _mode === 'pc' ? '140px' : '100px',
+		'max-height': _mode === 'tablet' || _mode === 'mobile' ? '100px' : '140px',
 		'overflow': 'hidden'
 	})
 });
