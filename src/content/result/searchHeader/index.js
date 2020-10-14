@@ -25,9 +25,12 @@ const SearchHeader = () => {
 		}
 		if(request.keyword !== undefined && request.keyword.replace(/[\\ ]/gi, '')) {
 			if(cookies.recentkeyword !== undefined) {
-                setCookie('recentkeyword', cookies.recentkeyword += ',' + request.keyword)
+                if(!cookies.recentkeyword.includes(request.keyword)) {
+                    cookies.recentkeyword.push(request.keyword)
+                }
+                setCookie('recentkeyword', cookies.recentkeyword)
             } else {
-                setCookie('recentkeyword', request.keyword)
+                setCookie('recentkeyword', [request.keyword])
             }
 			if(modalOpen) {
 				window.location.href = '?' + qs.stringify(util.searchKeywordSetting(request))
