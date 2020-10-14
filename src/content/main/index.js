@@ -16,21 +16,22 @@ const Main = ({ location }) => {
         ignoreQueryPrefix: true
     })
 
-    const [cookies, setCookie] = useCookies(['recentkeyword'])
-    console.log(cookies)
+    const [cookies, setCookie] = useCookies('recentkeyword', [])
     const [recommend, setRecommend] = useState([]) 
     const [keyword, setKeyword] = useState("");
     const [autocomplete, setAutocomplete] = useState([]);
-    const [keywordMatch, setKeywordMatch] = useState([]);
-
+    const [keywordMatch, setKeywordMatch] = useState({});
     const m_site_cd = query.m_site_cd !== undefined && query.m_site_cd.length > 0 && query.m_site_cd !== "undefined" ? query.m_site_cd : "sev"
 
     const getSearch = () => {
 		if(keyword !== undefined && keyword.replace(/[\\ ]/gi, '').length > 0) {
             if(cookies.recentkeyword !== undefined) {
-                setCookie('recentkeyword', cookies.recentkeyword += ',' + keyword)
+                if(!cookies.recentkeyword.includes(keyword)) {
+                    cookies.recentkeyword.push(keyword)
+                }
+                setCookie('recentkeyword', cookies.recentkeyword)
             } else {
-                setCookie('recentkeyword', keyword)
+                setCookie('recentkeyword', [keyword])
             }
             
 			window.location.href = '/search/result?m_site_cd=' + m_site_cd + '&keyword=' + keyword;
@@ -47,11 +48,13 @@ const Main = ({ location }) => {
         })
 
         if(result) {
-            setAutocomplete(result.autocomplete.list)
             if(result.doctor.list.length > 0) {
-                setKeywordMatch(result.doctor.list)
+                setKeywordMatch({ doctor: result.doctor.list, type: "doctor" })
             } else if(result.dept.list.length > 0) {
-                setKeywordMatch(result.dept.list)
+                setKeywordMatch({ dept: result.dept.list, type: "dept" })
+            } else {
+                setAutocomplete(result.autocomplete.list)
+                setKeywordMatch({})
             }
         }
     }
@@ -59,6 +62,12 @@ const Main = ({ location }) => {
     const keywordChange = (keyword) => {
         setKeyword(keyword)
         getAutoComplete(keyword)
+    }
+
+    const keywordFocus = () => {
+        if(keyword.length === 0 && cookies.recentkeyword !== undefined && cookies.recentkeyword.length > 0) {
+            setKeywordMatch({ recentkeyword: cookies.recentkeyword, type: "recentkeyword" })
+        }
     }
 
     useEffect(() => {
@@ -103,6 +112,7 @@ const Main = ({ location }) => {
                                    style={{width: "100%"}}
                                    onChange={(e) => keywordChange(e.target.value)} value={keyword} 
                                    onKeyPress={(e) => e.key === "Enter" ? getSearch() : ""}
+                                   onFocus={() => keywordFocus()}
                             />
                             <span className="btn-icon-box">
                                 <button type="button" className="btn" onClick={() => getSearch()}>
@@ -115,16 +125,21 @@ const Main = ({ location }) => {
                             {
                                 <ul>
                                 {
-                                    keywordMatch.length === 0 ? (
+                                    keywordMatch.type === undefined ? (
                                         autocomplete.map((data, index) => {
                                             return (
-                                                <li key={index}>{parser(data[0])}</li>
+                                                <li key={index}>{parser(data)}</li>
                                             )
                                         })
                                     ) : (
-                                        keywordMatch.map((data, index) => {
+                                        keywordMatch[keywordMatch.type].map((data, index) => {
                                             return (
-                                                <li key={index}>{data.dept_nm} 키워드 매칭</li>
+                                                <li key={index}>
+                                                    {keywordMatch.type === "recentkeyword" ?
+                                                        data : keywordMatch.type === "dept" ?
+                                                         data.dept_nm : keywordMatch.type === "doctor" ? data.nm : "" }
+                                                     =={keywordMatch.type}
+                                                </li>
                                             )
                                         })
                                     )
