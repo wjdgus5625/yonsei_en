@@ -41,9 +41,9 @@ const ReatedBar = ({checked, onChange, m_site_cd, request}) => {
                     <div className="text-title">
                         <ul className="ticker">
                             {
-                                [...Array(9)].map((n, index) => {
+                                popKeyword.map((data) => {
                                     return (
-                                        <li key={index}>{index+1}소아백혈병{index+1}</li>
+                                        <li key={data.rank}>{data.query}</li>
                                     )
                                 })
                             }
@@ -55,11 +55,11 @@ const ReatedBar = ({checked, onChange, m_site_cd, request}) => {
                     <p className="text-title-md">연관검색어</p>
                     <ol className="list mb-md-0">
                         {
-                            [...Array(9)].map((n, index) => {
+                            popKeyword.map((data) => {
                                 return (
-                                    <li key={index}>
-                                        <a href="#none"><span className="bg-secondary mr-lg-4 mr-md-2">{index+1}</span>
-                                            <p>소아백혈병{index+1}</p>
+                                    <li key={data.rank}>
+                                        <a href={'?' + qs.stringify(util.onlyKeywordSetting(request, data.query))}><span className="bg-secondary mr-lg-4 mr-md-2">{data.rank}</span>
+                                            <p>{data.query}</p>
                                         </a>
                                     </li>
                                 )

@@ -27,7 +27,7 @@ const DoctorWrap = ({result, type, getSearchChosung, chosung, chosungResult, cat
                             }
                         </ul>
                         {
-                            type === 'single' ? 
+                            type === 'single' && rootContext.request.menu_cd === 'doctor' ? 
                                 <SingleTab 
                                     cate_cd={cate_cd}
                                     getSearchDepartment={getSearchDepartment}
