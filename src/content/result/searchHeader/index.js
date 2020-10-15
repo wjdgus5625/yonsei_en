@@ -16,7 +16,6 @@ const SearchHeader = () => {
 	const [request, setRequest] = useState(rootContext.request);
 	const [checked, setChecked] = useState(false);
 	const [cookies, setCookie] = useCookies(['recentkeyword'])
-	console.log(cookies)
 
 	const getSearch = () => {
 		if(request.m_site_cd === undefined || (request.m_site_cd !== undefined && request.m_site_cd.length === 0)) {
