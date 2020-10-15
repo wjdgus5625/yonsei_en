@@ -551,6 +551,7 @@
   width: 1000px;
   margin: 0 auto;
   padding: 235px 0;
+  position: relative;
 }
 
 @media (max-width: 1024.98px) {
@@ -1732,4 +1733,54 @@
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+}
+
+
+.search-header.related-search-wrap {
+  position: relative;
+}
+
+.search-header.related-search-wrap .search-list {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  color: #666;
+  border: 2px solid #0094fb;
+  margin-top: -2px;
+  padding: 11px 20px;
+}
+
+.search-header.related-search-wrap .all-del {
+  margin: 10px -20px 0;
+  height: 50px;
+  line-height: 50px;
+}
+
+@media (max-width: 1024.98px) {
+  .search-header.related-search-wrap .search-list {
+    border: none;
+    background-color: #0094fb !important;
+    color: #fff;
+    font-size: 16px;
+  }
+  .search-header.related-search-wrap .search-list.pb-0 .custom-scroll {
+    max-height: 140px !important;
+  }
+  .search-header.related-search-wrap .search-list .list > li .text-primary {
+    color: #fff5bf !important;
+  }
+  .search-header.related-search-wrap .search-list .list > li .ico-times-sm {
+    background-image: url(../../_share/img/common/ico-times-white@2x.png);
+    width: 12px;
+    height: 12px;
+  }
+  .search-header.related-search-wrap .search-list .list > li + li {
+    margin-top: 5px;
+  }
+  .search-header.related-search-wrap .all-del {
+    margin: 16px -20px 0;
+    height: 40px;
+    line-height: 40px;
+    color: #333;
+  }
 }

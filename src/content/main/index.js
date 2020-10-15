@@ -4,7 +4,6 @@ import Footer from '../footer/index'
 
 import qs from 'qs';
 import Axios from 'axios';
-import parser from 'html-react-parser';
 import { useCookies } from 'react-cookie'
 import AutoKeyword from '../component/autoKeyword/index'
 
@@ -92,7 +91,6 @@ const Main = ({ location }) => {
             } else {
               alert(err.response.data.message)
             }
-            
           });
           if(result) {
             const htmlTitle = document.querySelector("title");
@@ -122,6 +120,7 @@ const Main = ({ location }) => {
                                    onChange={(e) => keywordChange(e.target.value)} value={keyword} 
                                    onKeyPress={(e) => e.key === "Enter" ? getSearch() : ""}
                                    onFocus={() => keywordFocus()}
+                                   onBlur={() => setKeywordMatch({})}
                             />
                             <span className="btn-icon-box">
                                 <button type="button" className="btn" onClick={() => getSearch()}>
@@ -130,21 +129,19 @@ const Main = ({ location }) => {
                                 </button>
                             </span>
                         </div>
-                        <div className="search-header">
-                            {
-                                <ul>
-                                {
-                                    keywordMatch.type === undefined ? (
-                                        autocomplete.map((data, index) => {
-                                            return (
-                                                <li key={index}>{parser(data)}</li>
-                                            )
-                                        })
-                                    ) : <AutoKeyword />
-                                }
-                                </ul>
-                            }
-                        </div>
+                        {
+                            keywordMatch.type === undefined ? 
+                                <AutoKeyword 
+                                    type="autocomplete" 
+                                    list={autocomplete}
+                                    deleteRecentKeyword={deleteRecentKeyword}
+                                />
+                                : <AutoKeyword 
+                                    type="recentkeyword" 
+                                    list={keywordMatch.recentkeyword !== undefined ? keywordMatch.recentkeyword : []}
+                                    deleteRecentKeyword={deleteRecentKeyword}
+                                />
+                        }
                         <div className="search-keyword-wrap mt-lg-10 mt-md-7">
                             {
                                 recommend.map((data, index) => {

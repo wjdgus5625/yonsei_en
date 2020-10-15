@@ -19,7 +19,7 @@ const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange, 
     const SelectList = ({onClick, addText}) => {
         const [hover, setHover] = useState(false)
         return (
-          <li onClick={onClick} style={{cursor: "pointer", color: hover ? "blue": ""}} onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)}>
+          <li onClick={onClick} style={{cursor: "pointer", color: hover ? "#0094FB": ""}} onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)}>
             {addText}
           </li>
         );
