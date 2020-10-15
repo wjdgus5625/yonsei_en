@@ -6,6 +6,7 @@ import qs from 'qs';
 import Axios from 'axios';
 import parser from 'html-react-parser';
 import { useCookies } from 'react-cookie'
+import AutoKeyword from '../component/autoKeyword/index'
 
 
 import ApiConfig from '../../config/apiConfig/index'
@@ -24,7 +25,7 @@ const Main = ({ location }) => {
     const m_site_cd = query.m_site_cd !== undefined && query.m_site_cd.length > 0 && query.m_site_cd !== "undefined" ? query.m_site_cd : "sev"
 
     const getSearch = () => {
-		if(keyword !== undefined && keyword.replace(/[\\ ]/gi, '').length > 0) {
+		if(keyword !== undefined) {
             if(cookies.recentkeyword !== undefined) {
                 if(!cookies.recentkeyword.includes(keyword)) {
                     cookies.recentkeyword.unshift(keyword)
@@ -129,7 +130,7 @@ const Main = ({ location }) => {
                                 </button>
                             </span>
                         </div>
-                        <div>
+                        <div className="search-header">
                             {
                                 <ul>
                                 {
@@ -139,18 +140,7 @@ const Main = ({ location }) => {
                                                 <li key={index}>{parser(data)}</li>
                                             )
                                         })
-                                    ) : (
-                                        keywordMatch[keywordMatch.type].map((data, index) => {
-                                            return (
-                                                <li key={index} onClick={() => deleteRecentKeyword(data)}>
-                                                    {keywordMatch.type === "recentkeyword" ?
-                                                        data : keywordMatch.type === "dept" ?
-                                                         data.dept_nm : keywordMatch.type === "doctor" ? data.nm : "" }
-                                                     =={keywordMatch.type}
-                                                </li>
-                                            )
-                                        })
-                                    )
+                                    ) : <AutoKeyword />
                                 }
                                 </ul>
                             }

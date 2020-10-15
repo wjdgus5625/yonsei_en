@@ -1,7 +1,7 @@
 import React from 'react';
 import Content from './content/result/index';
-import NotFound from './content/NotFound/index'
-import Test from './content/test/index'
+import NotFound from './content/component/NotFound/index'
+import Test from './content/component/test/index'
 import Main from './content/main/index'
 
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';

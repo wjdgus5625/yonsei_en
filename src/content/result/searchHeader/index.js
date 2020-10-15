@@ -22,7 +22,7 @@ const SearchHeader = () => {
 			alert('기관을 선택해주세요!!')
 			return;
 		}
-		if(request.keyword !== undefined && request.keyword.replace(/[\\ ]/gi, '')) {
+		if(request.keyword !== undefined) {
 			if(cookies.recentkeyword !== undefined) {
                 if(!cookies.recentkeyword.includes(request.keyword)) {
                     cookies.recentkeyword.unshift(request.keyword)
