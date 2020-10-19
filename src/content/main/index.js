@@ -167,7 +167,7 @@ const Main = ({ location }) => {
                                     list={keywordMatch.list !== undefined ? keywordMatch.list : []}
                                 /> : "" 
                         }
-                        <div className="search-keyword-wrap mt-lg-10 mt-md-7">
+                        <div className="search-keyword-wrap mt-lg-10 mt-md-7" style={{display: keywordMatch.list !== undefined && keywordMatch.list.length > 0 ? "none": ""}}>
                             {
                                 recommend.map((data, index) => {
                                     return (
