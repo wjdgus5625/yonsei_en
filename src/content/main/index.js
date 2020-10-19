@@ -42,7 +42,6 @@ const Main = ({ location }) => {
     }
 
     const getAutoComplete = async (keyword) => {
-        console.log('autoComplete')
         if(keyword.length === 0 && cookies.recentkeyword !== undefined) {
             setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
         } else {
@@ -69,15 +68,13 @@ const Main = ({ location }) => {
     }
 
     const keywordFocus = () => {
-        if(keyword.length === 0 && cookies.recentkeyword !== undefined && cookies.recentkeyword.length > 0) {
+        if(keyword.length === 0 && cookies.recentkeyword !== undefined) {
             setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
         }
     }
 
     const deleteRecentKeyword = (keyword) => {
-        console.log('delete')
         searchInput.current.focus()
-        console.log(searchInput)
         if(cookies.recentkeyword.includes(keyword)) {
             cookies.recentkeyword.splice(cookies.recentkeyword.indexOf(keyword), 1)
             setCookie('recentkeyword', cookies.recentkeyword)
