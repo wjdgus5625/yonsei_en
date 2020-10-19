@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useCookies } from 'react-cookie'
 
 import SearchModal from './modal/index';
 import SearchBar from './searchbar/index';
@@ -6,7 +7,9 @@ import RelatedBar from './relatedbar/index'
 import { RootContext } from '..';
 
 import qs from 'qs';
-import { useCookies } from 'react-cookie'
+import Axios from 'axios';
+
+import ApiConfig from '../../../config/apiConfig/index';
 import util from '../../../util/util'
 
 const SearchHeader = () => {
@@ -15,7 +18,8 @@ const SearchHeader = () => {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [request, setRequest] = useState(rootContext.request);
 	const [checked, setChecked] = useState(false);
-	const [cookies, setCookie] = useCookies(['recentkeyword'])
+	const [cookies, setCookie] = useCookies('recentkeyword', [])
+	const [keywordMatch, setKeywordMatch] = useState({})
 
 	const getSearch = () => {
 		if(request.m_site_cd === undefined || (request.m_site_cd !== undefined && request.m_site_cd.length === 0)) {
@@ -42,12 +46,31 @@ const SearchHeader = () => {
 		}
 	}
 
+	const getAutoComplete = async (keyword) => {
+        if(keyword.length === 0 && cookies.recentkeyword !== undefined) {
+            setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
+        } else {
+            const result = await Axios.get(ApiConfig.autocomplete_path + '?keyword=' + keyword + "&m_site_cd=" + request.m_site_cd)
+            .then(resp => {
+                return resp.data;
+			})
+			.catch(err => {
+				console.log(err)
+			})
+    
+            if(result) {
+				setKeywordMatch({ list: result.autocomplete.list, type: "autocomplete", removeTagList: result.autocomplete.removeTagList })
+            }
+        }
+	}
+
 	const changeKeyword = (keyword, type) => {
 		if(type === "keyword") {
 			setRequest({
 				...request,
 				keyword: keyword
 			})
+			getAutoComplete(keyword)
 		} else if(type === "must") {
 			setRequest({
 				...request,
@@ -109,6 +132,9 @@ const SearchHeader = () => {
 						selectChange={selectChange}
 						modalClose={() => setModalOpen(false)}
 						checked={checked}
+						getAutoComplete={getAutoComplete}
+						keywordMatch={keywordMatch}
+						setKeywordMatch={setKeywordMatch}
 					/>
 					<RelatedBar 
 						checked={checked}

@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { useCookies } from 'react-cookie'
+
+import AutoKeyword from '../../../component/autoKeyword/index'
+
 import SearchViewSetting from '../../../../config/searchViewSetting/index';
 
-const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange, modalClose, checked}) => {
+const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange, modalClose, checked, getAutoComplete, keywordMatch, setKeywordMatch}) => {
     let m_site_cd = request.m_site_cd
     let keyword = request.keyword || "";
     let reSearchKeyword = request.reSearchKeyword || "";
-    
+
     const m_site_cdList = SearchViewSetting.m_site_cdList;
     const m_site_cdList_kor = SearchViewSetting.m_site_cdList_kor;
 
 	const [select1Open, setSelect1Open] = useState(false);
-
 	const select1Toggle = () => {
         modalClose()
 		select1Open ? setSelect1Open(false) : setSelect1Open(true);
 	}
-        
     const SelectList = ({onClick, addText}) => {
         const [hover, setHover] = useState(false)
         return (
@@ -23,6 +25,32 @@ const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange, 
             {addText}
           </li>
         );
+    }
+    const [cookies, setCookie] = useCookies('recentkeyword', [])
+    const searchInput = useRef();
+
+    const keywordFocus = () => {
+        if(request.keyword.length === 0 && cookies.recentkeyword !== undefined) {
+            setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
+        } else if(request.keyword.length > 0) {
+            getAutoComplete(request.keyword)
+        }
+	}
+	
+	const deleteRecentKeyword = (keyword) => {
+        searchInput.current.focus()
+        if(cookies.recentkeyword.includes(keyword)) {
+            cookies.recentkeyword.splice(cookies.recentkeyword.indexOf(keyword), 1)
+            setCookie('recentkeyword', cookies.recentkeyword)
+            setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
+        }
+    }
+
+    const allDeleteRecentKeyword = () => {
+        searchInput.current.focus()
+        cookies.recentkeyword = []
+        setCookie('recentkeyword', [])
+        setKeywordMatch({ list: [], type: "recentkeyword" })
     }
 
     return (
@@ -43,9 +71,15 @@ const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange, 
             </div>
             
             <div className="input-group mt-md-2" style={{maxWidth: "930px"}}>
-                <input type="text" className="form-control" placeholder="검색어를 입력해주세요" title="검색어를 입력해주세요"
-                    onChange={(e) => changeKeyword(e.target.value, checked ? "reSearchKeyword" : "keyword")} value={checked ? reSearchKeyword : keyword} 
+                <input type="text" 
+                    className="form-control searching" 
+                    placeholder="검색어를 입력해주세요" 
+                    title="검색어를 입력해주세요"
+                    onChange={(e) => changeKeyword(e.target.value, checked ? "reSearchKeyword" : "keyword")} 
+                    value={checked ? reSearchKeyword : keyword} 
                     onKeyPress={(e) => e.key === "Enter" ? getSearch() : ""}
+                    onFocus={() => keywordFocus()}
+                    // onBlur={() => setKeywordMatch({})}
                 />
                 <span className="input-addon">
                     <button type="button" className="btn btn-input btn-icon" onClick={getSearch}>
@@ -55,6 +89,17 @@ const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange, 
                     <button type="button" className="btn btn-input btn-icon" onClick={modalOpen}>
                         <i className="ico ico-totalsearch-plus-white"></i><span className="sr-only">상세검색</span></button>
                 </span>
+                {
+                    keywordMatch.type !== undefined && (keywordMatch.type === "recentkeyword" || keywordMatch.type === "autocomplete") ? 
+                    <AutoKeyword 
+                        type={keywordMatch.type}
+                        list={keywordMatch.list !== undefined ? keywordMatch.list : []}
+                        removeTagList={keywordMatch.removeTagList !== undefined ? keywordMatch.removeTagList : []}
+                        deleteRecentKeyword={deleteRecentKeyword}
+                        allDeleteRecentKeyword={allDeleteRecentKeyword}
+                        m_site_cd={m_site_cd}
+                    /> : "" 
+                }
             </div>
         </div>
     )

@@ -7,7 +7,7 @@ import Axios from 'axios';
 import { useCookies } from 'react-cookie'
 import AutoKeyword from '../component/autoKeyword/index'
 import AutoImg from '../component/autoImg/index'
-
+import RecommendKeyword from '../component/recommendKeyword/index'
 
 import ApiConfig from '../../config/apiConfig/index'
 import SearchViewSetting from '../../config/searchViewSetting/index'
@@ -23,7 +23,6 @@ const Main = ({ location }) => {
     const [keywordMatch, setKeywordMatch] = useState({})
     const searchInput = useRef();
     const m_site_cd = query.m_site_cd !== undefined && query.m_site_cd.length > 0 && query.m_site_cd !== "undefined" ? query.m_site_cd : "sev"
-
     const getSearch = () => {
 		if(keyword !== undefined) {
             if(cookies.recentkeyword !== undefined) {
@@ -50,6 +49,9 @@ const Main = ({ location }) => {
             .then(resp => {
                 return resp.data;
             })
+            .catch(err => {
+				console.log(err)
+			})
     
             if(result) {
                 if(result.doctor.list.length > 0) {
@@ -87,6 +89,7 @@ const Main = ({ location }) => {
 
     const allDeleteRecentKeyword = () => {
         searchInput.current.focus()
+        cookies.recentkeyword = []
         setCookie('recentkeyword', [])
         setKeywordMatch({ list: [], type: "recentkeyword" })
     }
@@ -133,17 +136,11 @@ const Main = ({ location }) => {
                                 ref={searchInput}
                                 onChange={(e) => keywordChange(e.target.value)} value={keyword} 
                                 onKeyPress={(e) => e.key === "Enter" ? getSearch() : ""}
-                                onFocus={() => {
-                                    keywordFocus()
-                                }}
-                                onBlur={() => {
-                                    setKeywordMatch({})
-                                }}
+                                onFocus={() => keywordFocus()}
+                                onBlur={() => setKeywordMatch({})}
                             />
                             <span className="btn-icon-box">
-                                <button type="button" className="btn" 
-                                onClick={() => getSearch()} 
-                                >
+                                <button type="button" className="btn" onClick={() => getSearch()} >
                                     <i className="ico ico-totalsearch-index"></i>
                                     <span className="sr-only">검색</span>
                                 </button>
@@ -167,19 +164,11 @@ const Main = ({ location }) => {
                                     list={keywordMatch.list !== undefined ? keywordMatch.list : []}
                                 /> : "" 
                         }
-                        <div className="search-keyword-wrap mt-lg-10 mt-md-7" style={{display: keywordMatch.list !== undefined && keywordMatch.list.length > 0 ? "none": ""}}>
-                            {
-                                recommend.map((data, index) => {
-                                    return (
-                                        <span key={index} className="keyword-item text-lg text-normal">
-                                            <a href={"/search/result?keyword="+data+"&m_site_cd="+m_site_cd}>
-                                                #{data}
-                                            </a>
-                                        </span>
-                                    )
-                                })
-                            }
-                        </div>
+                        <RecommendKeyword
+                            recommend={recommend}
+                            style={{display: keywordMatch.list !== undefined && keywordMatch.list.length > 0 ? "none": ""}}
+                            m_site_cd={m_site_cd}
+                        />
                     </div>
                 </div>
             </div>
