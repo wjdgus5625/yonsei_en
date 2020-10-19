@@ -6,6 +6,7 @@ import qs from 'qs';
 import Axios from 'axios';
 import { useCookies } from 'react-cookie'
 import AutoKeyword from '../component/autoKeyword/index'
+import AutoImg from '../component/autoImg/index'
 
 
 import ApiConfig from '../../config/apiConfig/index'
@@ -45,7 +46,7 @@ const Main = ({ location }) => {
         if(keyword.length === 0 && cookies.recentkeyword !== undefined) {
             setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
         } else {
-            const result = await Axios.get(ApiConfig.autocomplete_path + '?keyword=' + keyword)
+            const result = await Axios.get(ApiConfig.autocomplete_path + '?keyword=' + keyword + "&m_site_cd=" + m_site_cd)
             .then(resp => {
                 return resp.data;
             })
@@ -56,7 +57,7 @@ const Main = ({ location }) => {
                 } else if(result.dept.list.length > 0) {
                     setKeywordMatch({ list: result.dept.list, type: "dept" })
                 } else {
-                    setKeywordMatch({ list: result.autocomplete.list, type: "autocomplete"})
+                    setKeywordMatch({ list: result.autocomplete.list, type: "autocomplete", removeTagList: result.autocomplete.removeTagList })
                 }
             }
         }
@@ -70,6 +71,8 @@ const Main = ({ location }) => {
     const keywordFocus = () => {
         if(keyword.length === 0 && cookies.recentkeyword !== undefined) {
             setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
+        } else if(keyword.length > 0) {
+            getAutoComplete(keyword)
         }
     }
 
@@ -138,20 +141,30 @@ const Main = ({ location }) => {
                                 }}
                             />
                             <span className="btn-icon-box">
-                                <button type="button" className="btn" onClick={() => getSearch()}>
+                                <button type="button" className="btn" 
+                                onClick={() => getSearch()} 
+                                >
                                     <i className="ico ico-totalsearch-index"></i>
                                     <span className="sr-only">검색</span>
                                 </button>
                             </span>
                         </div>
                         {
-                            keywordMatch.type !== undefined ? 
+                            keywordMatch.type !== undefined && (keywordMatch.type === "recentkeyword" || keywordMatch.type === "autocomplete") ? 
                                 <AutoKeyword 
                                     type={keywordMatch.type}
                                     list={keywordMatch.list !== undefined ? keywordMatch.list : []}
+                                    removeTagList={keywordMatch.removeTagList !== undefined ? keywordMatch.removeTagList : []}
                                     deleteRecentKeyword={deleteRecentKeyword}
                                     allDeleteRecentKeyword={allDeleteRecentKeyword}
                                     m_site_cd={m_site_cd}
+                                /> : "" 
+                        }
+                        {
+                            keywordMatch.type !== undefined && (keywordMatch.type === "dept" || keywordMatch.type === "doctor") ? 
+                                <AutoImg 
+                                    type={keywordMatch.type}
+                                    list={keywordMatch.list !== undefined ? keywordMatch.list : []}
                                 /> : "" 
                         }
                         <div className="search-keyword-wrap mt-lg-10 mt-md-7">

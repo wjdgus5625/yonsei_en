@@ -1,9 +1,9 @@
 import React from 'react';
 import parser from 'html-react-parser';
 
-const AutoKeyword = ({type, list, deleteRecentKeyword, allDeleteRecentKeyword, m_site_cd}) => {
+const AutoKeyword = ({type, list, removeTagList, deleteRecentKeyword, allDeleteRecentKeyword, m_site_cd}) => {
     return (
-        <div className="search-header related-search-wrap" style={{display: type !== "recentkeyword" && list.length === 0 ? "none" : ""}}>
+        <div className="related-search-wrap" style={{display: type !== "recentkeyword" && list.length === 0 ? "none" : ""}}>
             <div className={type === "recentkeyword" ? "search-list bg-white pb-0" : "search-list bg-white"}>
                 <div className="custom-scroll" style={{maxHeight: type === "recentkeyword" ? "130px" : "150px"}}>
                     <ul className={type === "recentkeyword" ? "list mb-md-0" : "list"}>
@@ -33,7 +33,13 @@ const AutoKeyword = ({type, list, deleteRecentKeyword, allDeleteRecentKeyword, m
                             ) : (
                                 list.map((data, index) => {
                                     return (
-                                        <li key={index}><a href="#;">{parser(data)}</a></li>
+                                        <li key={index}>
+                                            <a href="#;" style={{display: "block"}} onMouseDown={(e) => {
+                                                e.preventDefault()
+                                                window.location.href = "/search/result?keyword="+removeTagList[index]+"&m_site_cd="+m_site_cd
+                                                }}>{parser(data)}
+                                            </a>
+                                        </li>
                                     )
                                 })
                             )

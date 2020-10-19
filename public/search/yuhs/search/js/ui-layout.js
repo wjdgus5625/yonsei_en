@@ -65,3 +65,19 @@ $(window).on('load resize', function () {
 		'overflow': 'hidden'
 	})
 });
+
+$(document).on('keydown focus click', '.searching', function (e) {
+	$('.doctor-one-wrap').not('.slick-initialized').slick({
+		dots: true,
+		infinite: true,
+		speed: 300,
+		arrows: false,
+		slidesToShow: 1,
+		adaptiveHeight: true
+	});
+
+	scrollbar();
+	$('.popup .popup-cont').mCustomScrollbar({
+		scrollInertia: 300
+	});
+});
