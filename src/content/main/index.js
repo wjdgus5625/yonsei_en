@@ -151,6 +151,7 @@ const Main = ({ location }) => {
                                     list={keywordMatch.list !== undefined ? keywordMatch.list : []}
                                     deleteRecentKeyword={deleteRecentKeyword}
                                     allDeleteRecentKeyword={allDeleteRecentKeyword}
+                                    m_site_cd={m_site_cd}
                                 /> : "" 
                         }
                         <div className="search-keyword-wrap mt-lg-10 mt-md-7">

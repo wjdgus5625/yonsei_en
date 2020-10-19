@@ -1,7 +1,7 @@
 import React from 'react';
 import parser from 'html-react-parser';
 
-const AutoKeyword = ({type, list, deleteRecentKeyword, allDeleteRecentKeyword}) => {
+const AutoKeyword = ({type, list, deleteRecentKeyword, allDeleteRecentKeyword, m_site_cd}) => {
     return (
         <div className="search-header related-search-wrap" style={{display: type !== "recentkeyword" && list.length === 0 ? "none" : ""}}>
             <div className={type === "recentkeyword" ? "search-list bg-white pb-0" : "search-list bg-white"}>
@@ -13,7 +13,10 @@ const AutoKeyword = ({type, list, deleteRecentKeyword, allDeleteRecentKeyword}) 
                                     list.map((data, index) => {
                                         return (
                                             <li key={index}>
-                                                <a href="#;">{data}</a>
+                                                <a href="#;" style={{width: "98%"}} onMouseDown={(e) => {
+                                                    e.preventDefault()
+                                                    window.location.href = "/search/result?keyword="+data+"&m_site_cd="+m_site_cd
+                                                }}>{data}</a>
                                                 <a href="#;" className="float-right" onMouseDown={(e) => {
                                                     e.preventDefault()
                                                     deleteRecentKeyword(data)
