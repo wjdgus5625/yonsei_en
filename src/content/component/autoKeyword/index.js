@@ -1,7 +1,7 @@
 import React from 'react';
 import parser from 'html-react-parser';
 
-const AutoKeyword = ({type, list, deleteRecentKeyword}) => {
+const AutoKeyword = ({type, list, deleteRecentKeyword, allDeleteRecentKeyword}) => {
     return (
         <div className="search-header related-search-wrap" style={{display: type !== "recentkeyword" && list.length === 0 ? "none" : ""}}>
             <div className={type === "recentkeyword" ? "search-list bg-white pb-0" : "search-list bg-white"}>
@@ -40,7 +40,10 @@ const AutoKeyword = ({type, list, deleteRecentKeyword}) => {
                 {
                     type === "recentkeyword" ? (
                         <div className="bg-whiteblue all-del text-center">
-                            <a href="#none;">일괄 삭제</a>
+                            <a href="#;" style={{display: "block"}} onMouseDown={(e) => {
+                                e.preventDefault()
+                                allDeleteRecentKeyword()
+                            }}>일괄 삭제</a>
                         </div>
                     ) : ""
                 }
