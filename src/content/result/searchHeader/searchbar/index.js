@@ -75,11 +75,12 @@ const SearchBar = ({modalOpen, getSearch, changeKeyword, request, selectChange, 
                     className="form-control searching" 
                     placeholder="검색어를 입력해주세요" 
                     title="검색어를 입력해주세요"
+                    ref={searchInput}
                     onChange={(e) => changeKeyword(e.target.value, checked ? "reSearchKeyword" : "keyword")} 
                     value={checked ? reSearchKeyword : keyword} 
                     onKeyPress={(e) => e.key === "Enter" ? getSearch() : ""}
                     onFocus={() => keywordFocus()}
-                    // onBlur={() => setKeywordMatch({})}
+                    onBlur={() => setKeywordMatch({})}
                 />
                 <span className="input-addon">
                     <button type="button" className="btn btn-input btn-icon" onClick={getSearch}>
