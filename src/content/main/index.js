@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from '../header/index'
 import Footer from '../footer/index'
 
@@ -18,9 +18,9 @@ const Main = ({ location }) => {
 
     const [cookies, setCookie] = useCookies('recentkeyword', [])
     const [recommend, setRecommend] = useState([]) 
-    const [keyword, setKeyword] = useState("");
-    const [autocomplete, setAutocomplete] = useState([]);
-    const [keywordMatch, setKeywordMatch] = useState({});
+    const [keyword, setKeyword] = useState("")
+    const [keywordMatch, setKeywordMatch] = useState({})
+    const searchInput = useRef();
     const m_site_cd = query.m_site_cd !== undefined && query.m_site_cd.length > 0 && query.m_site_cd !== "undefined" ? query.m_site_cd : "sev"
 
     const getSearch = () => {
@@ -42,19 +42,23 @@ const Main = ({ location }) => {
     }
 
     const getAutoComplete = async (keyword) => {
-		const result = await Axios.get(ApiConfig.autocomplete_path + '?keyword=' + keyword)
-        .then(resp => {
-            return resp.data;
-        })
-
-        if(result) {
-            if(result.doctor.list.length > 0) {
-                setKeywordMatch({ doctor: result.doctor.list, type: "doctor" })
-            } else if(result.dept.list.length > 0) {
-                setKeywordMatch({ dept: result.dept.list, type: "dept" })
-            } else {
-                setAutocomplete(result.autocomplete.list)
-                setKeywordMatch({})
+        console.log('autoComplete')
+        if(keyword.length === 0 && cookies.recentkeyword !== undefined) {
+            setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
+        } else {
+            const result = await Axios.get(ApiConfig.autocomplete_path + '?keyword=' + keyword)
+            .then(resp => {
+                return resp.data;
+            })
+    
+            if(result) {
+                if(result.doctor.list.length > 0) {
+                    setKeywordMatch({ list: result.doctor.list, type: "doctor" })
+                } else if(result.dept.list.length > 0) {
+                    setKeywordMatch({ list: result.dept.list, type: "dept" })
+                } else {
+                    setKeywordMatch({ list: result.autocomplete.list, type: "autocomplete"})
+                }
             }
         }
     }
@@ -66,15 +70,18 @@ const Main = ({ location }) => {
 
     const keywordFocus = () => {
         if(keyword.length === 0 && cookies.recentkeyword !== undefined && cookies.recentkeyword.length > 0) {
-            setKeywordMatch({ recentkeyword: cookies.recentkeyword, type: "recentkeyword" })
+            setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
         }
     }
 
     const deleteRecentKeyword = (keyword) => {
+        console.log('delete')
+        searchInput.current.focus()
+        console.log(searchInput)
         if(cookies.recentkeyword.includes(keyword)) {
             cookies.recentkeyword.splice(cookies.recentkeyword.indexOf(keyword), 1)
             setCookie('recentkeyword', cookies.recentkeyword)
-            setKeywordMatch({ recentkeyword: cookies.recentkeyword, type: "recentkeyword" })
+            setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
         }
     }
 
@@ -113,14 +120,19 @@ const Main = ({ location }) => {
                     <div className="index-cont-wrap">
                         <div className="search-input-wrap">
                             <input type="text" 
-                                   className="form-control searching text-title" 
-                                   placeholder="검색어를 입력해주세요" 
-                                   title="검색어 입력"
-                                   style={{width: "100%"}}
-                                   onChange={(e) => keywordChange(e.target.value)} value={keyword} 
-                                   onKeyPress={(e) => e.key === "Enter" ? getSearch() : ""}
-                                   onFocus={() => keywordFocus()}
-                                   onBlur={() => setKeywordMatch({})}
+                                className="form-control searching text-title" 
+                                placeholder="검색어를 입력해주세요" 
+                                title="검색어 입력"
+                                style={{width: "100%"}}
+                                ref={searchInput}
+                                onChange={(e) => keywordChange(e.target.value)} value={keyword} 
+                                onKeyPress={(e) => e.key === "Enter" ? getSearch() : ""}
+                                onFocus={() => {
+                                    keywordFocus()
+                                }}
+                                onBlur={() => {
+                                    setKeywordMatch({})
+                                }}
                             />
                             <span className="btn-icon-box">
                                 <button type="button" className="btn" onClick={() => getSearch()}>
@@ -130,17 +142,12 @@ const Main = ({ location }) => {
                             </span>
                         </div>
                         {
-                            keywordMatch.type === undefined ? 
+                            keywordMatch.type !== undefined ? 
                                 <AutoKeyword 
-                                    type="autocomplete" 
-                                    list={autocomplete}
+                                    type={keywordMatch.type}
+                                    list={keywordMatch.list !== undefined ? keywordMatch.list : []}
                                     deleteRecentKeyword={deleteRecentKeyword}
-                                />
-                                : <AutoKeyword 
-                                    type="recentkeyword" 
-                                    list={keywordMatch.recentkeyword !== undefined ? keywordMatch.recentkeyword : []}
-                                    deleteRecentKeyword={deleteRecentKeyword}
-                                />
+                                /> : "" 
                         }
                         <div className="search-keyword-wrap mt-lg-10 mt-md-7">
                             {

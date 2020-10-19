@@ -47,7 +47,11 @@ const DoctorWrap = ({result, type, getSearchChosung, chosung, chosungResult, cat
                                         <div className="doctor-card-box">
                                             <div className="card-view">
                                                 <div className="photo">
-                                                    <img src="/search/yuhs/_share/img/common/_profile-thumb1.png" alt="프로필 사진" />
+                                                    {
+                                                        data.atch_flpth !== undefined ? 
+                                                            <img src={"http://10.9.32.14" + data.atch_flpth + data.atchmnfl_physicl_nm} alt="프로필 사진" /> 
+                                                            : <span className="no-thumb"></span>
+                                                    }
                                                 </div>
                                                 <dl>
                                                     <dt className="text-title text-lg">{data.nm}</dt>

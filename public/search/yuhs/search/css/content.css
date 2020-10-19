@@ -1736,11 +1736,12 @@
 }
 
 
-.search-header.related-search-wrap {
+
+.related-search-wrap {
   position: relative;
 }
 
-.search-header.related-search-wrap .search-list {
+.related-search-wrap .search-list {
   position: absolute;
   z-index: 999;
   width: 100%;
@@ -1750,34 +1751,42 @@
   padding: 11px 20px;
 }
 
-.search-header.related-search-wrap .all-del {
+.related-search-wrap .search-list .custom-scroll .list li:hover {
+  background-color: #f9f9f9;
+}
+
+.related-search-wrap .search-list .custom-scroll .list li a {
+  display: inline-block;
+}
+
+.related-search-wrap .all-del {
   margin: 10px -20px 0;
   height: 50px;
   line-height: 50px;
 }
 
 @media (max-width: 1024.98px) {
-  .search-header.related-search-wrap .search-list {
+  .related-search-wrap .search-list {
     border: none;
     background-color: #0094fb !important;
     color: #fff;
     font-size: 16px;
   }
-  .search-header.related-search-wrap .search-list.pb-0 .custom-scroll {
+  .related-search-wrap .search-list.pb-0 .custom-scroll {
     max-height: 140px !important;
   }
-  .search-header.related-search-wrap .search-list .list > li .text-primary {
+  .related-search-wrap .search-list .list > li .text-primary {
     color: #fff5bf !important;
   }
-  .search-header.related-search-wrap .search-list .list > li .ico-times-sm {
+  .related-search-wrap .search-list .list > li .ico-times-sm {
     background-image: url(../../_share/img/common/ico-times-white@2x.png);
     width: 12px;
     height: 12px;
   }
-  .search-header.related-search-wrap .search-list .list > li + li {
+  .related-search-wrap .search-list .list > li + li {
     margin-top: 5px;
   }
-  .search-header.related-search-wrap .all-del {
+  .related-search-wrap .all-del {
     margin: 16px -20px 0;
     height: 40px;
     line-height: 40px;
