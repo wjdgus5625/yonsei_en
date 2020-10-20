@@ -54,9 +54,9 @@ const Main = ({ location }) => {
 			})
     
             if(result) {
-                if(result.doctor.list.length > 0) {
+                if(result.doctor !== undefined && result.doctor.list !== undefined && result.doctor.list.length > 0) {
                     setKeywordMatch({ list: result.doctor.list, type: "doctor" })
-                } else if(result.dept.list.length > 0) {
+                } else if(result.dept !== undefined && result.dept.list !== undefined && result.dept.list.length > 0) {
                     setKeywordMatch({ list: result.dept.list, type: "dept" })
                 } else {
                     setKeywordMatch({ list: result.autocomplete.list, type: "autocomplete", removeTagList: result.autocomplete.removeTagList })
