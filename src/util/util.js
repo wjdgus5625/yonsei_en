@@ -93,13 +93,26 @@ let util = {
         if(reSearchKeyword.length > 0) {
             searchKeyword = keyword + " +" + reSearchKeyword
         }
-        return {
-            keyword: searchKeyword,
-            m_site_cd: request.m_site_cd,
-            s_site_cd: request.s_site_cd,
-            menu_cd: request.menu_cd,
-            siteType: request.siteType,
-            size: request.size
+
+        if(request.menu_cd === "doctor" || request.menu_cd === "department" || request.menu_cd === "professor") {
+            return {
+                keyword: searchKeyword,
+                m_site_cd: request.m_site_cd,
+                s_site_cd: request.s_site_cd,
+                menu_cd: request.menu_cd,
+                siteType: request.siteType,
+                size: request.size,
+                cate_cd: request.cate_cd
+            }
+        } else {
+            return {
+                keyword: searchKeyword,
+                m_site_cd: request.m_site_cd,
+                s_site_cd: request.s_site_cd,
+                menu_cd: request.menu_cd,
+                siteType: request.siteType,
+                size: request.size
+            }
         }
     },
     m_site_cdType: (m_site_cd) => {

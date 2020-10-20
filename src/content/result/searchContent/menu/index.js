@@ -21,6 +21,7 @@ const SearchMenu = ({request, result}) => {
             request.menu_cd = menu_cd
             if(request.menu_cd === "doctor" || request.menu_cd === "department" || request.menu_cd === "professor") {
                 request.size = 12
+                request.cate_cd = "진료과"
             } else {
                 request.size = 3
             }
