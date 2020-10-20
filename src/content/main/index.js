@@ -26,7 +26,10 @@ const Main = ({ location }) => {
     const getSearch = () => {
 		if(keyword !== undefined) {
             if(cookies.recentkeyword !== undefined) {
-                if(!cookies.recentkeyword.includes(keyword)) {
+                if(cookies.recentkeyword.includes(keyword)) {
+                    cookies.recentkeyword.splice(cookies.recentkeyword.indexOf(keyword), 1)
+                    cookies.recentkeyword.unshift(keyword)
+                } else {
                     cookies.recentkeyword.unshift(keyword)
                 }
                 setCookie('recentkeyword', cookies.recentkeyword)
