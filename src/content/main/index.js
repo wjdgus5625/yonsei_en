@@ -24,7 +24,7 @@ const Main = ({ location }) => {
     const searchInput = useRef();
     const m_site_cd = query.m_site_cd !== undefined && query.m_site_cd.length > 0 && query.m_site_cd !== "undefined" ? query.m_site_cd : "sev"
     const getSearch = () => {
-		if(keyword !== undefined) {
+		if(keyword !== undefined && keyword.length > 0) {
             if(cookies.recentkeyword !== undefined) {
                 if(cookies.recentkeyword.includes(keyword)) {
                     cookies.recentkeyword.splice(cookies.recentkeyword.indexOf(keyword), 1)
@@ -97,6 +97,15 @@ const Main = ({ location }) => {
         setKeywordMatch({ list: [], type: "recentkeyword" })
     }
 
+    const keyPress = (e) => {
+        if(e.key === "Enter") {
+            getSearch()
+        } else if(e.key === "ArrowDown") {
+
+        }
+        
+    }
+
     useEffect(() => {
         console.log('recommend useEffect')
         const getPopKeyword = async () => {
@@ -138,7 +147,7 @@ const Main = ({ location }) => {
                                 style={{width: "100%"}}
                                 ref={searchInput}
                                 onChange={(e) => keywordChange(e.target.value)} value={keyword} 
-                                onKeyPress={(e) => e.key === "Enter" ? getSearch() : ""}
+                                onKeyDown={(e) => keyPress(e)}
                                 onFocus={() => keywordFocus()}
                                 onBlur={() => setKeywordMatch({})}
                             />
