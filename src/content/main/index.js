@@ -29,8 +29,13 @@ const Main = ({ location }) => {
                 if(cookies.recentkeyword.includes(keyword)) {
                     cookies.recentkeyword.splice(cookies.recentkeyword.indexOf(keyword), 1)
                     cookies.recentkeyword.unshift(keyword)
+                    
                 } else {
                     cookies.recentkeyword.unshift(keyword)
+                }
+
+                if(cookies.recentkeyword.length > 8) {
+                    cookies.recentkeyword = cookies.recentkeyword.slice(0, 8)
                 }
                 setCookie('recentkeyword', cookies.recentkeyword)
             } else {
@@ -97,11 +102,14 @@ const Main = ({ location }) => {
         setKeywordMatch({ list: [], type: "recentkeyword" })
     }
 
-    const keyPress = (e) => {
+    const [listFocus, setListFocus] = useState(-1)
+    const keyDown = (e) => {
         if(e.key === "Enter") {
             getSearch()
         } else if(e.key === "ArrowDown") {
-
+            setListFocus(0)
+        } else {
+            keywordChange(e.target.value)
         }
         
     }
@@ -147,9 +155,9 @@ const Main = ({ location }) => {
                                 style={{width: "100%"}}
                                 ref={searchInput}
                                 onChange={(e) => keywordChange(e.target.value)} value={keyword} 
-                                onKeyDown={(e) => keyPress(e)}
+                                onKeyDown={(e) => keyDown(e)}
                                 onFocus={() => keywordFocus()}
-                                onBlur={() => setKeywordMatch({})}
+                                // onBlur={() => setKeywordMatch({})}
                             />
                             <span className="btn-icon-box">
                                 <button type="button" className="btn" onClick={() => getSearch()} >
@@ -167,6 +175,8 @@ const Main = ({ location }) => {
                                     deleteRecentKeyword={deleteRecentKeyword}
                                     allDeleteRecentKeyword={allDeleteRecentKeyword}
                                     m_site_cd={m_site_cd}
+                                    listFocus={listFocus}
+                                    setListFocus={setListFocus}
                                 /> : "" 
                         }
                         {

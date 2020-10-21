@@ -33,11 +33,16 @@ const SearchHeader = () => {
                     cookies.recentkeyword.unshift(request.keyword)
                 } else {
                     cookies.recentkeyword.unshift(request.keyword)
-                }
+				}
+				
+				if(cookies.recentkeyword.length > 8) {
+					cookies.recentkeyword = cookies.recentkeyword.slice(0, 8)
+				}
                 setCookie('recentkeyword', cookies.recentkeyword)
             } else {
                 setCookie('recentkeyword', [request.keyword])
-            }
+			}
+			
 			if(modalOpen) {
 				window.location.href = '?' + qs.stringify(util.searchKeywordSetting(request))
 			} else {
