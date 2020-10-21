@@ -3,16 +3,16 @@ import Nodata from '../nodata/index'
 import SingleTab from './singletab/index';
 import MoreBtn from '../morebtn/index';
 
-const centerWrap = ({addClass, result, type, request, cate_cd, getSearchDepartment}) => {
+const centerWrap = (props) => {
     return (
-        <div className={"center-wrap " + addClass}>
+        <div className={"center-wrap " + props.addClass}>
             {
-                type === "single" ? <SingleTab cate_cd={cate_cd} getSearchDepartment={getSearchDepartment}/> : ""
+                props.type === "single" ? <SingleTab cate_cd={props.cate_cd} getSearchDepartment={props.getSearchDepartment}/> : ""
             }
             <ul className="depart-list">
                 {
-                    result !== undefined && result.list.length > 0 ? result.list.map((data, index) => {
-                        if(type === 'all' && index >= 8) return ""; 
+                    props.result !== undefined && props.result.list.length > 0 ? props.result.list.map((data, index) => {
+                        if(props.type === 'all' && index >= 8) return ""; 
                         return (
                             <li key={index}>
                                 <div className="line-gray">
@@ -26,7 +26,7 @@ const centerWrap = ({addClass, result, type, request, cate_cd, getSearchDepartme
                 }
             </ul>
             {
-                type === 'single' && result !== undefined && result.list !== undefined && result.list.length > 0 && result.totalSize > request.size ? (
+                props.type === 'single' && props.result !== undefined && props.result.list !== undefined && props.result.list.length > 0 && props.result.totalSize > props.request.size ? (
                     <MoreBtn />
                 ) : ''
             }

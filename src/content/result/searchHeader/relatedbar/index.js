@@ -5,14 +5,14 @@ import qs from 'qs';
 import util from '../../../../util/util';
 import ApiConfig from '../../../../config/apiConfig/index'
 
-const ReatedBar = ({checked, onChange, m_site_cd, request}) => {
+const ReatedBar = (props) => {
 
     const [popKeyword, setPopKeyword] = useState([]);
 
     useEffect(() => {
         console.log('popKeyword useEffect')
         const getPopKeyword = async () => {
-          const result = await Axios.get(ApiConfig.pop_path + '?m_site_cd=' + m_site_cd)
+          const result = await Axios.get(ApiConfig.pop_path + '?m_site_cd=' + props.m_site_cd)
           .then(resp => {
             return resp.data;
           })
@@ -27,11 +27,11 @@ const ReatedBar = ({checked, onChange, m_site_cd, request}) => {
           if(result) setPopKeyword(result)
         }
     
-        if(m_site_cd !== undefined && m_site_cd.length > 0) {
+        if(props.m_site_cd !== undefined && props.m_site_cd.length > 0) {
             getPopKeyword();
         }
         
-    }, [m_site_cd]);
+    }, [props.m_site_cd]);
 
     return (
         <div className="related-keyword-bar mt-lg-10">
@@ -58,7 +58,7 @@ const ReatedBar = ({checked, onChange, m_site_cd, request}) => {
                             popKeyword.map((data) => {
                                 return (
                                     <li key={data.rank}>
-                                        <a href={'?' + qs.stringify(util.onlyKeywordSetting(request, data.query))}><span className="bg-secondary mr-lg-4 mr-md-2">{data.rank}</span>
+                                        <a href={'?' + qs.stringify(util.onlyKeywordSetting(props.request, data.query))}><span className="bg-secondary mr-lg-4 mr-md-2">{data.rank}</span>
                                             <p>{data.query}</p>
                                         </a>
                                     </li>
@@ -95,7 +95,7 @@ const ReatedBar = ({checked, onChange, m_site_cd, request}) => {
                             popKeyword.map((data) => {
                                 return (
                                     <li key={data.rank}>
-                                        <a href={'?' + qs.stringify(util.onlyKeywordSetting(request, data.query))}><span className="bg-secondary mr-lg-4 mr-md-2">{data.rank}</span>
+                                        <a href={'?' + qs.stringify(util.onlyKeywordSetting(props.request, data.query))}><span className="bg-secondary mr-lg-4 mr-md-2">{data.rank}</span>
                                             <p>{data.query}</p>
                                         </a>
                                     </li>
@@ -110,7 +110,7 @@ const ReatedBar = ({checked, onChange, m_site_cd, request}) => {
                 </div>
             </div>
             <div className="float-right sorting-check">
-                <input type="checkbox" id="re-search" className="custom-control search-check" checked={checked} onChange={onChange} />
+                <input type="checkbox" id="re-search" className="custom-control search-check" checked={props.checked} onChange={props.onChange} />
                 <label htmlFor="re-search" className="text-lg text-normal">결과내재검색</label>
             </div>
         </div>

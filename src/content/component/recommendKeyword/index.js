@@ -1,13 +1,13 @@
 import React from 'react';
 
-const RecommendKeyword = ({recommend, style, m_site_cd}) => {
+const RecommendKeyword = (props) => {
     return (
-        <div className="search-keyword-wrap mt-lg-10 mt-md-7" style={style}>
+        <div className="search-keyword-wrap mt-lg-10 mt-md-7">
             {
-                recommend.map((data, index) => {
+                props.recommend.map((data, index) => {
                     return (
                         <span key={index} className="keyword-item text-lg text-normal">
-                            <a href={"/search/result?keyword="+data+"&m_site_cd="+m_site_cd}>
+                            <a href={"/search/result?keyword="+data+"&m_site_cd="+props.m_site_cd}>
                                 #{data}
                             </a>
                         </span>

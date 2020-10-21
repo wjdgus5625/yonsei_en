@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
 
-const AutoImg = ({type, list}) => {
+const AutoImg = (props) => {
     const [selectDots, setSelectDots] = useState(0)
     const settings = {
         dots: true,
@@ -30,10 +30,10 @@ const AutoImg = ({type, list}) => {
         }
     }
     return (
-        type === "dept" ? (
+        props.type === "dept" ? (
             <Slider className="doctor-one-wrap department mt-lg-12 mt-md-8" {...settings}>
                 {   
-                    list.map((data, index) => {
+                    props.list.map((data, index) => {
                         return (
                             <div key={index} className="slider-item bg-whiteblue">
                                 <div className="item-cont">

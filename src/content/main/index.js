@@ -44,7 +44,8 @@ const Main = ({ location }) => {
             
 			window.location.href = '/search/result?m_site_cd=' + m_site_cd + '&keyword=' + keyword;
 		} else {
-			alert("검색어를 입력해주세요!!")
+            alert("검색어를 입력해주세요!!")
+            setKeywordMatch({})
 			return;
 		}
     }
@@ -79,6 +80,7 @@ const Main = ({ location }) => {
     }
 
     const keywordFocus = () => {
+        console.log('focus')
         if(keyword.length === 0 && cookies.recentkeyword !== undefined) {
             setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
         } else if(keyword.length > 0) {
@@ -100,18 +102,6 @@ const Main = ({ location }) => {
         cookies.recentkeyword = []
         setCookie('recentkeyword', [])
         setKeywordMatch({ list: [], type: "recentkeyword" })
-    }
-
-    const [listFocus, setListFocus] = useState(-1)
-    const keyDown = (e) => {
-        if(e.key === "Enter") {
-            getSearch()
-        } else if(e.key === "ArrowDown") {
-            setListFocus(0)
-        } else {
-            keywordChange(e.target.value)
-        }
-        
     }
 
     useEffect(() => {
@@ -155,9 +145,9 @@ const Main = ({ location }) => {
                                 style={{width: "100%"}}
                                 ref={searchInput}
                                 onChange={(e) => keywordChange(e.target.value)} value={keyword} 
-                                onKeyDown={(e) => keyDown(e)}
+                                onKeyPress={(e) => e.key === "Enter" ? getSearch() : ""}
                                 onFocus={() => keywordFocus()}
-                                // onBlur={() => setKeywordMatch({})}
+                                onBlur={() => setKeywordMatch({})}
                             />
                             <span className="btn-icon-box">
                                 <button type="button" className="btn" onClick={() => getSearch()} >
@@ -175,8 +165,6 @@ const Main = ({ location }) => {
                                     deleteRecentKeyword={deleteRecentKeyword}
                                     allDeleteRecentKeyword={allDeleteRecentKeyword}
                                     m_site_cd={m_site_cd}
-                                    listFocus={listFocus}
-                                    setListFocus={setListFocus}
                                 /> : "" 
                         }
                         {
@@ -188,7 +176,6 @@ const Main = ({ location }) => {
                         }
                         <RecommendKeyword
                             recommend={recommend}
-                            style={{display: keywordMatch.list !== undefined && keywordMatch.list.length > 0 ? "none": ""}}
                             m_site_cd={m_site_cd}
                         />
                     </div>

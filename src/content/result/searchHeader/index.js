@@ -26,7 +26,7 @@ const SearchHeader = () => {
 			alert('기관을 선택해주세요!!')
 			return;
 		}
-		if(request.keyword !== undefined) {
+		if(request.keyword !== undefined && request.keyword.length > 0) {
 			if(cookies.recentkeyword !== undefined) {
                 if(cookies.recentkeyword.includes(request.keyword)) {
                     cookies.recentkeyword.splice(cookies.recentkeyword.indexOf(request.keyword), 1)
@@ -42,7 +42,7 @@ const SearchHeader = () => {
             } else {
                 setCookie('recentkeyword', [request.keyword])
 			}
-			
+
 			if(modalOpen) {
 				window.location.href = '?' + qs.stringify(util.searchKeywordSetting(request))
 			} else {
@@ -109,7 +109,8 @@ const SearchHeader = () => {
 			must: "",
 			mustNot: "",
 			should: "",
-			board_nm: "전체"
+			board_nm: "전체",
+			s_site_cd: "전체"
 		})
 	}
 
@@ -155,10 +156,10 @@ const SearchHeader = () => {
 			<SearchModal 
 				className={modalOpen ? "sub-search-form modal-popup show" : "sub-search-form modal-popup hide"} 
 				modalClose={() => setModalOpen(false)} 
-				getSearch={() => getSearch()}
+				getSearch={getSearch}
 				changeKeyword={changeKeyword}
 				request={request}
-				allClear={() => allClear()}
+				allClear={allClear}
 				setSubSiteCd={setSubSiteCd}
 			/>
 		</div>

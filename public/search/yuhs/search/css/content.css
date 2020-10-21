@@ -1751,11 +1751,11 @@
   padding: 11px 20px;
 }
 
-.related-search-wrap .search-list .custom-scroll .list li:hover {
+.related-search-wrap .search-list .list li:hover {
   background-color: #f9f9f9;
 }
 
-.related-search-wrap .search-list .custom-scroll .list li a {
+.related-search-wrap .search-list .list li a {
   display: inline-block;
 }
 

@@ -5,26 +5,26 @@ import SearchViewSetting from '../../../../config/searchViewSetting/index'
 import qs from 'qs';
 import util from '../../../../util/util';
 
-const SearchMenu = ({request, result}) => {
-    const tabList = SearchViewSetting.tablist[request.siteType]
-    const tabList_kor = SearchViewSetting.tablist[request.siteType+"_kor"]
+const SearchMenu = (props) => {
+    const tabList = SearchViewSetting.tablist[props.request.siteType]
+    const tabList_kor = SearchViewSetting.tablist[props.request.siteType+"_kor"]
 
-    const menu_cd = request.menu_cd || "all";
+    const menu_cd = props.request.menu_cd || "all";
 
     const getCategorySearch = (menu_cd) => {
-		if(request.m_site_cd === undefined) {
+		if(props.request.m_site_cd === undefined) {
 			alert('기관을 선택해주세요!!')
 			return;
 		}
 
-		if(request.keyword !== undefined && request.keyword.replace(/[\\ ]/gi, '')) {
-            request.menu_cd = menu_cd
-            if(request.menu_cd === "doctor" || request.menu_cd === "department" || request.menu_cd === "professor") {
-                request.size = 12
+		if(props.request.keyword !== undefined && props.request.keyword.replace(/[\\ ]/gi, '')) {
+            props.request.menu_cd = menu_cd
+            if(props.request.menu_cd === "doctor" || props.request.menu_cd === "department" || props.request.menu_cd === "professor") {
+                props.request.size = 12
             } else {
-                request.size = 3
+                props.request.size = 3
             }
-			window.location.href = '?' + qs.stringify(util.onlyKeywordSetting(request, request.keyword))
+			window.location.href = '?' + qs.stringify(util.onlyKeywordSetting(props.request, props.request.keyword))
 		} else {
 			alert("검색어를 입력해주세요!!")
 			return;
@@ -40,9 +40,9 @@ const SearchMenu = ({request, result}) => {
                             <li key={index} className={menu_cd === data ? "on" : ""}>
                                 <a href={"#;"} onClick={() => getCategorySearch(data)}>
                                     <span>{tabList_kor[index] + "(" + 
-                                    ( data === "all" && result.totalSize !== undefined ? result.totalSize : // 통합검색
-                                        result[data] !== undefined && result[data].totalSize !== undefined ? (
-                                            menu_cd === "doctor" ? result["doctor_menu"].totalSize : result[data].totalSize
+                                    ( data === "all" && props.result.totalSize !== undefined ? props.result.totalSize : // 통합검색
+                                        props.result[data] !== undefined && props.result[data].totalSize !== undefined ? (
+                                            data === "doctor" ? props.result["doctor_menu"].totalSize : props.result[data].totalSize
                                         ) : 0 ) // 일반메뉴
                                         + ")"}</span>
                                 </a>

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { RootContext } from '../../..';
 
-const SearchContentTitle = ({title, addClass, result, href, type, chosung, menu_cd}) => {
+const SearchContentTitle = (props) => {
     const rootContext = useContext(RootContext);
     const size = rootContext.request.size;
     const order = rootContext.request.order;
@@ -17,10 +17,10 @@ const SearchContentTitle = ({title, addClass, result, href, type, chosung, menu_
 
     let floatRight;
 
-    if(type === 'default') {
+    if(props.type === 'default') {
         floatRight = 
-        <span className="float-right"><a href={href + (menu_cd === "doctor" || menu_cd === "professor" ? "&chosung="+chosung : "")} className="btn btn-sm btn-outline-default">더보기</a></span>
-    } else if(type === 'select2') {
+        <span className="float-right"><a href={props.href + (props.menu_cd === "doctor" || props.menu_cd === "professor" ? "&chosung="+ props.chosung : "")} className="btn btn-sm btn-outline-default">더보기</a></span>
+    } else if(props.type === 'select2') {
         floatRight = 
         <div className="float-right select-box-right mt-md-2">
             <select className="form-control" title="정확도순" 
@@ -29,7 +29,7 @@ const SearchContentTitle = ({title, addClass, result, href, type, chosung, menu_
                 <option value="date">최신날짜순</option>
             </select>
         </div>
-    } else if(type === 'select3') {
+    } else if(props.type === 'select3') {
         floatRight = 
         <div className="float-right select-box-right mt-md-2">
             <select className="form-control" title="전체" 
@@ -54,8 +54,8 @@ const SearchContentTitle = ({title, addClass, result, href, type, chosung, menu_
     }
     
     return (
-        <div className={"search-cont-title border-bottom "+addClass}>
-            <span className="text-lg">{title} <span className="text-primary">{result !== undefined && result.totalSize !== undefined ? result.totalSize : 0}</span> 건</span>
+        <div className={"search-cont-title border-bottom "+props.addClass}>
+            <span className="text-lg">{props.title} <span className="text-primary">{props.result !== undefined && props.result.totalSize !== undefined ? props.result.totalSize : 0}</span> 건</span>
             {floatRight}
         </div>
     )

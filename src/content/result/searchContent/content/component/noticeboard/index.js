@@ -4,13 +4,13 @@ import parser from 'html-react-parser';
 
 import MoreBtn from '../morebtn/index';
 
-const noticeBoard = ({result, type, request}) => {
+const noticeBoard = (props) => {
     return (
         <div className="notice-board">
             <ul className="notice-list">
                 {
-                    result !== undefined && result.list.length > 0 ? result.list.map((data, index) => {
-                        if(type === 'all' && index >= 3) return ""
+                    props.result !== undefined && props.result.list.length > 0 ? props.result.list.map((data, index) => {
+                        if(props.type === 'all' && index >= 3) return ""
                         return (
                             <li key={index}>
                                 <div className="notice-wrap">
@@ -33,7 +33,7 @@ const noticeBoard = ({result, type, request}) => {
                 }
             </ul>
             {
-                result !== undefined && result.list !== undefined && result.list.length > 0 && type === 'single' && result.totalSize > request.size ? (
+                props.result !== undefined && props.result.list !== undefined && props.result.list.length > 0 && props.type === 'single' && props.result.totalSize > props.request.size ? (
                     <MoreBtn />
                 ) : ""
             }
