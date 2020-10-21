@@ -21,7 +21,6 @@ const SearchMenu = ({request, result}) => {
             request.menu_cd = menu_cd
             if(request.menu_cd === "doctor" || request.menu_cd === "department" || request.menu_cd === "professor") {
                 request.size = 12
-                request.cate_cd = "진료과"
             } else {
                 request.size = 3
             }
@@ -42,7 +41,9 @@ const SearchMenu = ({request, result}) => {
                                 <a href={"#;"} onClick={() => getCategorySearch(data)}>
                                     <span>{tabList_kor[index] + "(" + 
                                     ( data === "all" && result.totalSize !== undefined ? result.totalSize : // 통합검색
-                                        result[data] !== undefined && result[data].totalSize !== undefined ? result[data].totalSize : 0 ) // 일반메뉴
+                                        result[data] !== undefined && result[data].totalSize !== undefined ? (
+                                            menu_cd === "doctor" ? result["doctor_menu"].totalSize : result[data].totalSize
+                                        ) : 0 ) // 일반메뉴
                                         + ")"}</span>
                                 </a>
                             </li>
