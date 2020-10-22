@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { RootContext } from '../../../..';
 
-const MoreBtn = () => {
+const MoreBtn = (props) => {
     const rootContext = useContext(RootContext);
 
     const moreBtnClick = () => {
@@ -13,6 +13,8 @@ const MoreBtn = () => {
 
         rootContext.setRequest({
             ...rootContext.request,
+            chosung: props.chosung,
+            cate_cd: props.cate_cd,
             size: Number(rootContext.request.size) + plusSize
         })
     }

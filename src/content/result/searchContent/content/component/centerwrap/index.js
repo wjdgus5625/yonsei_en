@@ -27,7 +27,7 @@ const centerWrap = (props) => {
             </ul>
             {
                 props.type === 'single' && props.result !== undefined && props.result.list !== undefined && props.result.list.length > 0 && props.result.totalSize > props.request.size ? (
-                    <MoreBtn />
+                    <MoreBtn cate_cd={props.cate_cd}/>
                 ) : ''
             }
         </div>

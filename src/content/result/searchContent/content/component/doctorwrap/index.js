@@ -70,7 +70,7 @@ const DoctorWrap = (props) => {
             </div>
             {
                 props.result !== undefined && props.result.list !== undefined && props.result.list.length > 0 && props.type === 'single' && props.result.totalSize > rootContext.request.size ? (
-                    <MoreBtn />
+                    <MoreBtn cate_cd={props.cate_cd} chosung={props.chosung}/>
                 ) : ""
             }
         </div>

@@ -1,17 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import SearchContentTitle from './title/index'
 import SearchViewSetting from '../../../../config/searchViewSetting/index'
-import ApiConfig from '../../../../config/apiConfig/index';
-import NoticeBoard from './component/noticeboard/index'
-import CenterWrap from './component/centerwrap/index'
-import DoctorWrap from './component/doctorwrap/index'
 
 import { RootContext } from '../..';
 import qs from 'qs';
 import util from '../../../../util/util'
-import Axios from 'axios';
 import NoData from './component/nodata';
+import TabContent from './tabcontent/index';
 
 const SearchContent = ({request}) => {
     const rootContext = useContext(RootContext);
@@ -22,56 +17,7 @@ const SearchContent = ({request}) => {
 
     useEffect(() => {
         setSearchResult(result)
-    }, [result, request])
-    
-    const [chosung, setChosung] = useState(rootContext.request.chosung !== undefined ? rootContext.request.chosung : "ALL")
-    const getSearchChosung = async (chosung) => {
-        console.log({
-            ...rootContext.request,
-            chosung: chosung,
-            cate_cd: cate_cd
-        })
-        const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
-            ...rootContext.request,
-            chosung: chosung,
-            cate_cd: cate_cd
-        }})
-        .then(resp => {
-            console.log(resp.data)
-            return resp.data;
-        })
-        .catch(err => {
-            alert(err.response.data)
-        });
-        if(getSearchResult) {
-            setChosung(chosung)
-            setSearchResult(getSearchResult)
-        }
-    }
-
-    const [cate_cd, setCate_cd] = useState("")
-    const getSearchDepartment = async (cate_cd) => {
-        console.log({
-            ...rootContext.request,
-            chosung: chosung,
-            cate_cd: cate_cd
-        })
-        const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
-            ...rootContext.request,
-            chosung: chosung,
-            cate_cd: cate_cd
-        }})
-        .then(resp => {
-            return resp.data;
-        })
-        .catch(err => {
-            alert(err.response.data)
-        });
-        if(getSearchResult) {
-            setCate_cd(cate_cd)
-            setSearchResult(getSearchResult)
-        }
-    }
+    }, [result])
 
     const Content = () => {
         if(menu_cd === 'all') {
@@ -82,44 +28,24 @@ const SearchContent = ({request}) => {
                             return (
                                 result[data] !== undefined && result[data].list !== undefined && result[data].list.length > 0 ? 
                                 <div key={index}>
-                                    <SearchContentTitle 
+                                    <TabContent 
                                         title={SearchViewSetting.tab[rootContext.request.siteType][data].title} 
-                                        addClass={SearchViewSetting.tab[rootContext.request.siteType][data].class} 
+                                        addClass={SearchViewSetting.tab[rootContext.request.siteType][data].class}
                                         result={data === "doctor" || data === "professor" ? searchResult[data] : result[data]}
                                         href={'?' + qs.stringify(util.onlyKeywordSetting({
                                             ...request,
                                             menu_cd: data,
                                             size: data === "doctor" || data === "professor" || data === "department" ? 12 : 3
                                         }, request.keyword))}
-                                        chosung={chosung}
+                                        tabType="default"
+                                        type="all" 
+                                        request={request}
+                                        contentType={data === "department" ? "center" : (data === "doctor" || data === "professor" ? "doctor" : "board")}
                                         menu_cd={data}
-                                        type="default" />
-                                    { 
-                                        data === "department" ? 
-                                            <CenterWrap 
-                                                addClass="mt-lg-6 mt-md-4" 
-                                                result={result.department} 
-                                                type="all" 
-                                                request={request}
-                                                cate_cd={cate_cd}
-                                                getSearchDepartment={getSearchDepartment}
-                                            /> : 
-                                        data === "doctor" || data === "professor" ? 
-                                            <DoctorWrap 
-                                                result={searchResult[data]} 
-                                                type="all" 
-                                                getSearchChosung={getSearchChosung} 
-                                                chosung={chosung} 
-                                                chosungResult={result.chosung} 
-                                                cate_cd={cate_cd}
-                                                getSearchDepartment={getSearchDepartment}
-                                            /> : 
-                                            <NoticeBoard 
-                                                result={result[data]} 
-                                                type="all" 
-                                                request={request} 
-                                            />
-                                    }
+                                        chosung={rootContext.request.chosung} 
+                                        cate_cd={rootContext.request.cate_cd}
+                                        chosungResult={result.chosung}
+                                    />
                                 </div>
                                 : ""
                             )
@@ -132,42 +58,33 @@ const SearchContent = ({request}) => {
             )
         } else if (menu_cd === 'department') {
             return (
-                <div className="tab-content" id={"tab-content"} style={{display: "block"}}>
-                    <SearchContentTitle 
-                        title={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].title} 
-                        addClass=""
-                        result={searchResult[menu_cd]}
-                        href={"#tab-content"}
-                        type={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].singletab} />
-                    <CenterWrap 
-                        addClass="mt-lg-6 mt-md-4" 
-                        result={searchResult[menu_cd]} 
-                        type="single" 
-                        request={request} 
-                        cate_cd={cate_cd}
-                        getSearchDepartment={getSearchDepartment}
-                    />
-                </div>
+                <TabContent 
+                    title={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].title} 
+                    addClass=""
+                    result={searchResult[menu_cd]}
+                    href={"#tab-content"}
+                    tabType={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].singletab}
+                    type="single" 
+                    request={request}
+                    contentType="center"
+                    cate_cd={rootContext.request.cate_cd}
+                />
             )
         } else if (menu_cd === 'doctor' || menu_cd === "professor") {
             return (
-                <div className="tab-content" id={"tab-content"} style={{display: "block"}}>
-                    <SearchContentTitle 
-                        title={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].title} 
-                        addClass=""
-                        result={searchResult[menu_cd]}
-                        href={"#tab-content"}
-                        type={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].singletab} />
-                    <DoctorWrap 
-                        result={searchResult[menu_cd]} 
-                        type="single" 
-                        getSearchChosung={getSearchChosung} 
-                        chosung={chosung} 
-                        chosungResult={result.chosung}
-                        cate_cd={cate_cd}
-                        getSearchDepartment={getSearchDepartment}
-                    />
-                </div>
+                <TabContent 
+                    title={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].title} 
+                    addClass=""
+                    result={searchResult[menu_cd]}
+                    href={"#tab-content"}
+                    tabType={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].singletab}
+                    type="single" 
+                    request={request}
+                    contentType="doctor"
+                    chosung={rootContext.request.chosung} 
+                    chosungResult={result.chosung}
+                    cate_cd={rootContext.request.cate_cd}
+                />
             )
         } else {
             let contentTitle = SearchViewSetting.tab[rootContext.request.siteType] !== undefined ? (
@@ -175,15 +92,16 @@ const SearchContent = ({request}) => {
                                   SearchViewSetting.tab[rootContext.request.siteType][menu_cd] : ""
                                ) : ""
             return (
-                <div className="tab-content" id={"tab-content"} style={{display: "block"}}>
-                    <SearchContentTitle 
-                        title={contentTitle.title} 
-                        addClass=""
-                        result={result[menu_cd]}
-                        href={"#tab-content"}
-                        type={contentTitle.singletab} />
-                    <NoticeBoard result={result[menu_cd]} type="single" request={request} />
-                </div>
+                <TabContent 
+                    title={contentTitle.title} 
+                    addClass=""
+                    result={searchResult[menu_cd]}
+                    href={"#tab-content"}
+                    tabType={contentTitle.singletab}
+                    type="single" 
+                    request={request}
+                    contentType="board"
+                />
             )
         }
     }
