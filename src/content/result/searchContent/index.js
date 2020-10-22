@@ -7,7 +7,6 @@ import { RootContext } from '..';
 
 const SearchBody = () => {
     const rootContext = useContext(RootContext);
-    
     return (
         <div className="content-body mt-lg-8 mt-md-8 ">
             <div className="container">

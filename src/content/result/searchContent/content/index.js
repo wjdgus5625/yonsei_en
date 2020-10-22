@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 
 import SearchViewSetting from '../../../../config/searchViewSetting/index'
 
@@ -11,13 +11,8 @@ import TabContent from './tabcontent/index';
 const SearchContent = ({request}) => {
     const rootContext = useContext(RootContext);
     const result = rootContext.result;
-    const [searchResult, setSearchResult] = useState({})
     const menu_cd = request.menu_cd || "all";
     const tabList = SearchViewSetting.tablist[request.siteType].slice(1)
-
-    useEffect(() => {
-        setSearchResult(result)
-    }, [result])
 
     const Content = () => {
         if(menu_cd === 'all') {
@@ -31,7 +26,7 @@ const SearchContent = ({request}) => {
                                     <TabContent 
                                         title={SearchViewSetting.tab[rootContext.request.siteType][data].title} 
                                         addClass={SearchViewSetting.tab[rootContext.request.siteType][data].class}
-                                        result={data === "doctor" || data === "professor" ? searchResult[data] : result[data]}
+                                        result={result[data]}
                                         href={'?' + qs.stringify(util.onlyKeywordSetting({
                                             ...request,
                                             menu_cd: data,
@@ -61,12 +56,13 @@ const SearchContent = ({request}) => {
                 <TabContent 
                     title={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].title} 
                     addClass=""
-                    result={searchResult[menu_cd]}
+                    result={result[menu_cd]}
                     href={"#tab-content"}
                     tabType={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].singletab}
                     type="single" 
                     request={request}
                     contentType="center"
+                    menu_cd={menu_cd}
                     cate_cd={rootContext.request.cate_cd}
                 />
             )
@@ -75,12 +71,13 @@ const SearchContent = ({request}) => {
                 <TabContent 
                     title={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].title} 
                     addClass=""
-                    result={searchResult[menu_cd]}
+                    result={result[menu_cd]}
                     href={"#tab-content"}
                     tabType={SearchViewSetting.tab[rootContext.request.siteType][menu_cd].singletab}
                     type="single" 
                     request={request}
                     contentType="doctor"
+                    menu_cd={menu_cd}
                     chosung={rootContext.request.chosung} 
                     chosungResult={result.chosung}
                     cate_cd={rootContext.request.cate_cd}
@@ -95,12 +92,13 @@ const SearchContent = ({request}) => {
                 <TabContent 
                     title={contentTitle.title} 
                     addClass=""
-                    result={searchResult[menu_cd]}
+                    result={result[menu_cd]}
                     href={"#tab-content"}
                     tabType={contentTitle.singletab}
                     type="single" 
                     request={request}
                     contentType="board"
+                    menu_cd={menu_cd}
                 />
             )
         }

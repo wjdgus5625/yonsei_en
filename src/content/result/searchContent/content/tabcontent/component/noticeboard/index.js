@@ -1,21 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Nodata from '../nodata/index'
 import parser from 'html-react-parser';
 
 import MoreBtn from '../morebtn/index';
 
 const NoticeBoard = (props) => {
-    const [result, setResult] = useState(props.result)
-
-    useEffect(() => {
-        setResult(props.result)
-    }, [props.result])
-
     return (
         <div className="notice-board">
             <ul className="notice-list">
                 {
-                    result !== undefined && result.list.length > 0 ? 
+                    props.result !== undefined && props.result.list !== undefined && props.result.list.length > 0 ? 
                         props.result.list.map((data, index) => {
                             if(props.type === 'all' && index >= 3) return ""
                             return (
@@ -40,8 +34,12 @@ const NoticeBoard = (props) => {
                 }
             </ul>
             {
-                result !== undefined && result.list !== undefined && result.list.length > 0 && props.type === 'single' && result.totalSize > props.request.size ? (
-                    <MoreBtn />
+                props.result !== undefined && props.result.list !== undefined && props.result.list.length > 0 && props.type === 'single' && props.result.totalSize > props.size ? (
+                    <MoreBtn 
+                        getSearchMore={props.getSearchMore} 
+                        menu_cd={props.menu_cd} 
+                        size={props.size}
+                        setSize={props.setSize} />
                 ) : ""
             }
         </div>

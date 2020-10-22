@@ -10,17 +10,20 @@ const TabContent = (props) => {
     const [result, setResult] = useState(props.result)
     const [chosung, setChosung] = useState(props.chosung !== undefined ? props.chosung : "ALL")
     const [cate_cd, setCate_cd] = useState(props.cate_cd !== undefined ? props.cate_cd : "")
+    const [size, setSize] = useState(props.request.size)
 
     const getSearchBoardNm = async (board_nm, order) => {
         console.log({
             ...props.request,
             board_nm: board_nm,
-            order: order
+            order: order,
+            size: size
         })
         const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
             ...props.request,
             board_nm: board_nm,
-            order: order
+            order: order,
+            size: size
         }})
         .then(resp => {
             return resp.data;
@@ -37,12 +40,14 @@ const TabContent = (props) => {
         console.log({
             ...props.request,
             chosung: chosung,
-            cate_cd: cate_cd
+            cate_cd: cate_cd,
+            size: size
         })
         const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
             ...props.request,
             chosung: chosung,
-            cate_cd: cate_cd
+            cate_cd: cate_cd,
+            size: size
         }})
         .then(resp => {
             console.log(resp.data)
@@ -57,7 +62,7 @@ const TabContent = (props) => {
         }
     }
 
-    const getSearchDepartment = async (cate_cd, size) => {
+    const getSearchDepartment = async (cate_cd) => {
         console.log({
             ...props.request,
             chosung: chosung,
@@ -67,7 +72,33 @@ const TabContent = (props) => {
         const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
             ...props.request,
             chosung: chosung,
-            cate_cd: cate_cd
+            cate_cd: cate_cd,
+            size: size
+        }})
+        .then(resp => {
+            return resp.data;
+        })
+        .catch(err => {
+            alert(err.response.data)
+        });
+        if(getSearchResult) {
+            setCate_cd(cate_cd)
+            setResult(getSearchResult[props.request.menu_cd])
+        }
+    }
+
+    const getSearchMore = async (size) => {
+        console.log({
+            ...props.request,
+            chosung: chosung,
+            cate_cd: cate_cd,
+            size: size
+        })
+        const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
+            ...props.request,
+            chosung: chosung,
+            cate_cd: cate_cd,
+            size: size
         }})
         .then(resp => {
             return resp.data;
@@ -101,7 +132,11 @@ const TabContent = (props) => {
                         chosung={chosung} 
                         chosungResult={props.chosungResult}
                         cate_cd={cate_cd}
-                        getSearchDepartment={getSearchDepartment} /> : 
+                        menu_cd={props.menu_cd}
+                        size={size}
+                        setSize={setSize}
+                        getSearchDepartment={getSearchDepartment}
+                        getSearchMore={getSearchMore} /> : 
                     (
                     props.contentType === "center" ? 
                         <CenterWrap 
@@ -110,12 +145,20 @@ const TabContent = (props) => {
                             type={props.type} 
                             request={props.request} 
                             cate_cd={cate_cd}
+                            menu_cd={props.menu_cd}
+                            size={size}
+                            setSize={setSize}
                             getSearchDepartment={getSearchDepartment}
+                            getSearchMore={getSearchMore}
                         /> : 
                         <NoticeBoard 
                             result={result}
                             type={props.type}
-                            request={props.request} />
+                            menu_cd={props.menu_cd}
+                            size={size}
+                            setSize={setSize}
+                            request={props.request}
+                            getSearchMore={getSearchMore} />
                     )
             }
         </div>

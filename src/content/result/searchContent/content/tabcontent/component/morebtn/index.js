@@ -1,22 +1,17 @@
-import React, { useContext } from 'react';
-import { RootContext } from '../../../../..';
-
+import React from 'react';
 const MoreBtn = (props) => {
-    const rootContext = useContext(RootContext);
+    let size = Number(props.size)
 
     const moreBtnClick = () => {
-        let plusSize = 9;
-
-        if(rootContext.request.menu_cd === "doctor" || rootContext.request.menu_cd === "professor" || rootContext.request.menu_cd === "department") {
-            plusSize = 8;
+        if(props.menu_cd === "doctor" || props.menu_cd === "professor" || props.menu_cd === "department") {
+            props.setSize(size + 8)
+            props.getSearchMore(size + 8)
+        } else {
+            props.setSize(size + 9)
+            props.getSearchMore(size + 9)
         }
 
-        rootContext.setRequest({
-            ...rootContext.request,
-            chosung: props.chosung,
-            cate_cd: props.cate_cd,
-            size: Number(rootContext.request.size) + plusSize
-        })
+        
     }
     return (
         <div className="text-center mt-lg-11 mt-md-6">
