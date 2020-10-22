@@ -13,7 +13,6 @@ const TabContent = (props) => {
     const [order, setOrder] = useState("score")
     const [board_nm, setBoard_nm] = useState("all")
     const [size, setSize] = useState(props.request.size)
-
     const getSearchBoardNm = async (board_nm, order) => {
         console.log({
             ...props.request,
@@ -36,7 +35,7 @@ const TabContent = (props) => {
         if(getSearchResult) {
             setBoard_nm(board_nm)
             setOrder(order)
-            setResult(getSearchResult[props.request.menu_cd])
+            setResult(getSearchResult[props.menu_cd])
         }
     }
 
@@ -62,7 +61,7 @@ const TabContent = (props) => {
         });
         if(getSearchResult) {
             setChosung(chosung)
-            setResult(getSearchResult[props.request.menu_cd === "all" ? "doctor" : props.request.menu_cd])
+            setResult(getSearchResult[props.menu_cd === "all" ? "doctor" : props.menu_cd])
         }
     }
 
@@ -87,7 +86,7 @@ const TabContent = (props) => {
         });
         if(getSearchResult) {
             setCate_cd(cate_cd)
-            setResult(getSearchResult[props.request.menu_cd])
+            setResult(getSearchResult[props.menu_cd])
         }
     }
 
@@ -116,9 +115,7 @@ const TabContent = (props) => {
         });
         if(getSearchResult) {
             setSize(size)
-            setBoard_nm(board_nm)
-            setOrder(order)
-            setResult(getSearchResult[props.request.menu_cd])
+            setResult(getSearchResult[props.menu_cd])
         }
     }
 

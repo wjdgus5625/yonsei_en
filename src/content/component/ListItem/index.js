@@ -2,8 +2,8 @@ import React from 'react';
 
 const ListItem = (props) => {
     return (
-        <li style={{display: "block", textOverflow: "ellipsis"}}>
-            <a href="#;" 
+        <li>
+            <a href="#;" style={{width: "98%"}}
                 onMouseDown={(e) => {
                     e.preventDefault()
                     window.location.href = "/search/result?keyword="+props.data+"&m_site_cd="+props.m_site_cd

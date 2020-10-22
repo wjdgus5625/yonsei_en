@@ -13,7 +13,6 @@ const SearchContent = ({request}) => {
     const result = rootContext.result;
     const menu_cd = request.menu_cd || "all";
     const tabList = SearchViewSetting.tablist[request.siteType].slice(1)
-
     const Content = () => {
         if(menu_cd === 'all') {
             return (
