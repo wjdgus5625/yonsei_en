@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SearchContentTitle from '../title/index'
+import SearchContentTitle from './title/index'
 import NoticeBoard from './component/noticeboard'
 import CenterWrap from './component/centerwrap'
 import DoctorWrap from './component/doctorwrap'
