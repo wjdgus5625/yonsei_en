@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const SearchContentTitle = (props) => {
-    const [order, setOrder] = useState("score")
-    const [board_nm, setBoard_nm] = useState("all")
     const selectOnChange = (order, board_nm) => {
-        setBoard_nm(board_nm)
-        setOrder(order)
+        props.setBoard_nm(board_nm)
+        props.setOrder(order)
         props.getSearchBoardNm(board_nm, order)
     }
 
@@ -18,7 +16,7 @@ const SearchContentTitle = (props) => {
         floatRight = 
         <div className="float-right select-box-right mt-md-2">
             <select className="form-control" title="정확도순" 
-                    value={order === undefined ? "score" : order} onChange={(e) => selectOnChange(e.target.value, board_nm)}>
+                    value={props.order === undefined ? "score" : props.order} onChange={(e) => selectOnChange(e.target.value, props.board_nm)}>
                 <option value="score">정확도순</option>
                 <option value="date">최신날짜순</option>
             </select>
@@ -27,7 +25,7 @@ const SearchContentTitle = (props) => {
         floatRight = 
         <div className="float-right select-box-right mt-md-2">
             <select className="form-control" title="전체" 
-                    value={board_nm === undefined ? "all" : board_nm} onChange={(e) => selectOnChange(order, e.target.value)}>
+                    value={props.board_nm === undefined ? "all" : props.board_nm} onChange={(e) => selectOnChange(props.order, e.target.value)}>
                 <option value="all">전체</option>
                 <option value="질병정보">질병정보</option>
                 <option value="검사/치료정보">검사/치료정보</option>
@@ -40,7 +38,7 @@ const SearchContentTitle = (props) => {
                 <option value="건강도서추천">건강도서추천</option>
             </select>
             <select className="form-control ml-lg-1" title="정확도순"
-                    value={order === undefined ? "score" : order} onChange={(e) => selectOnChange(e.target.value, board_nm)}>
+                    value={props.order === undefined ? "score" : props.order} onChange={(e) => selectOnChange(e.target.value, props.board_nm)}>
                 <option value="score">정확도순</option>
                 <option value="date">최신날짜순</option>
             </select>
