@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { RootContext } from '../../../..';
+import { RootContext } from '../../../../..';
 
 const MoreBtn = (props) => {
     const rootContext = useContext(RootContext);

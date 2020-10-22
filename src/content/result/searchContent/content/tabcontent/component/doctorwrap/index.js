@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import Nodata from '../nodata/index'
 import SingleTab from './singletab/index'
 import MoreBtn from '../morebtn/index';
-import ApiConfig from '../../../../../../config/apiConfig/index'
+import ApiConfig from '../../../../../../../config/apiConfig/index'
 
-import { RootContext } from '../../../..';
+import { RootContext } from '../../../../..';
 
 const DoctorWrap = (props) => {
     const rootContext = useContext(RootContext);

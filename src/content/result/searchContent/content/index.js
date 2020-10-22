@@ -5,7 +5,7 @@ import SearchViewSetting from '../../../../config/searchViewSetting/index'
 import { RootContext } from '../..';
 import qs from 'qs';
 import util from '../../../../util/util'
-import NoData from './component/nodata';
+import NoData from './tabcontent/component/nodata';
 import TabContent from './tabcontent/index';
 
 const SearchContent = ({request}) => {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import SearchContentTitle from '../title/index'
-import NoticeBoard from '../component/noticeboard'
-import CenterWrap from '../component/centerwrap'
-import DoctorWrap from '../component/doctorwrap'
+import NoticeBoard from './component/noticeboard'
+import CenterWrap from './component/centerwrap'
+import DoctorWrap from './component/doctorwrap'
 import Axios from 'axios';
 import ApiConfig from '../../../../../config/apiConfig/index'
 
