@@ -42,7 +42,7 @@ const SearchMenu = (props) => {
                                     <span>{tabList_kor[index] + "(" + 
                                     ( data === "all" && props.result.totalSize !== undefined ? props.result.totalSize : // 통합검색
                                         props.result[data] !== undefined && props.result[data].totalSize !== undefined ? (
-                                            data === "doctor" ? props.result["doctor_menu"].totalSize : props.result[data].totalSize
+                                            data === "doctor" ? props.result["chosung"].totalSize : props.result[data].totalSize
                                         ) : 0 ) // 일반메뉴
                                         + ")"}</span>
                                 </a>
