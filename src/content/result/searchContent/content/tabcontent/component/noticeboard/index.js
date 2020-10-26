@@ -3,6 +3,7 @@ import Nodata from '../nodata/index'
 import parser from 'html-react-parser';
 
 import MoreBtn from '../morebtn/index';
+import ApiConfig from '../../../../../../../config/apiConfig/index'
 
 const NoticeBoard = (props) => {
     return (
@@ -19,12 +20,12 @@ const NoticeBoard = (props) => {
                                             <img src="/search/yuhs/_share/img/common/_sample.jpg" alt="이미지" />
                                         </div>
                                         <div className="notice-cont ml-lg-6 ml-md-3">
-                                            <a href="#none" target="_blank" title="새창" className="text-title">
-                                                {data.title}
+                                            <a href={ApiConfig.server_img_host + data.page} target="_blank" title="새창" className="text-title" rel="noopener noreferrer">
+                                                {data.title} 
                                             </a>
                                             <p className="text-area">{data.contents !== undefined ? parser(data.contents) : ""}</p>
                                             <p className="route">
-                                                <a href="#none" target="_blank" title="새창">{data.boardPath}</a>
+                                                <a href={ApiConfig.server_img_host + data.page} target="_blank" title="새창" rel="noopener noreferrer">{data.boardPath}</a>
                                             </p>
                                         </div>
                                     </div>
