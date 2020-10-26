@@ -1,18 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import SearchMenu from './menu/index'
 import SearchContent from './content'
 
-import { RootContext } from '..';
-
-const SearchBody = () => {
-    const rootContext = useContext(RootContext);
+const SearchBody = (props) => {
     return (
         <div className="content-body mt-lg-8 mt-md-8 ">
             <div className="container">
-                <SearchMenu request={rootContext.request} result={rootContext.result} /> 
-                <SearchContent 
-                    request={rootContext.request} result={rootContext.result} />
+                <SearchMenu request={props.request} result={props.result} /> 
+                <SearchContent request={props.request} result={props.result} />
             </div>
         </div>
     )

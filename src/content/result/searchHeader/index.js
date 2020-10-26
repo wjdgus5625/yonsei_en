@@ -1,10 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useCookies } from 'react-cookie'
 
 import SearchModal from './modal/index';
 import SearchBar from './searchbar/index';
 import RelatedBar from './relatedbar/index'
-import { RootContext } from '..';
 
 import qs from 'qs';
 import Axios from 'axios';
@@ -12,11 +11,10 @@ import Axios from 'axios';
 import ApiConfig from '../../../config/apiConfig/index';
 import util from '../../../util/util'
 
-const SearchHeader = () => {
+const SearchHeader = (props) => {
 
-	const rootContext = useContext(RootContext);
 	const [modalOpen, setModalOpen] = useState(false);
-	const [request, setRequest] = useState(rootContext.request);
+	const [request, setRequest] = useState(props.request);
 	const [checked, setChecked] = useState(false);
 	const [cookies, setCookie] = useCookies('recentkeyword', [])
 	const [keywordMatch, setKeywordMatch] = useState({})

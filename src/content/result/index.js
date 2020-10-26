@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import SearchHeader from './searchHeader/index'
 import SearchBody from './searchContent/index'
@@ -12,8 +12,6 @@ import qs from 'qs';
 
 import util from '../../util/util'
 
-export const RootContext = createContext();
-
 function Content({ location }) {
   const query = qs.parse(location.search, {
     ignoreQueryPrefix: true
@@ -26,14 +24,6 @@ function Content({ location }) {
     m_site_cd: query.m_site_cd === undefined || (query.m_site_cd !== undefined && query.m_site_cd.length === 0) ? "sev": query.m_site_cd,
     m_site_cd_default: query.m_site_cd === undefined || (query.m_site_cd !== undefined && query.m_site_cd.length === 0) ? "sev": query.m_site_cd // 인기검색어, 연관검색어의 경우 기관선택 select 박스가 변경되더라도 고정시키기 위해 default값 추가 
   });
-
-  const store = {
-    request: util.viewKeywordSetting(request),
-    setRequest: setRequest,
-    result: result,
-    setResult: setResult,
-    type: "all"
-  }
 
   useEffect(() => {
     console.log('useEffect!')
@@ -69,10 +59,8 @@ function Content({ location }) {
       <div className="wrapper">
         <Header m_site_cd={query.m_site_cd} />
         <div id="content">
-          <RootContext.Provider value={store}>
-            <SearchHeader />
-            <SearchBody />
-          </RootContext.Provider>
+            <SearchHeader request={request} setRequest={setRequest}/>
+            <SearchBody request={request} result={result}/>
         </div>
         <Footer />
       </div>
