@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
+import ApiConfig from '../../../config/apiConfig/index'
 
 const AutoImg = (props) => {
     const [selectDots, setSelectDots] = useState(0)
@@ -41,10 +42,16 @@ const AutoImg = (props) => {
                                         <span className="text-lg">{data.dept_nm}</span>
                                         <div className="float-right">
                                             <span className="mr-1">
-                                                <a href="#;" className="btn btn-sm btn-outline-primary">소개</a>
+                                                <a href={ApiConfig.main_host + data.page} className="btn btn-sm btn-outline-primary" target="_blank" rel="noopener noreferrer"
+                                                    onMouseDown={(e) => {
+                                                        e.preventDefault()
+                                                    }}>소개</a>
                                             </span>
                                             <span>
-                                                <a href="#;" className="btn btn-sm btn-primary" target="_blank" title="새창">진료예약</a>
+                                                <a href={ApiConfig.main_host + "/online/online.do"} className="btn btn-sm btn-primary" target="_blank" rel="noopener noreferrer"
+                                                    onMouseDown={(e) => {
+                                                        e.preventDefault()
+                                                    }}>진료예약</a>
                                             </span>
                                         </div>
                                     </div>

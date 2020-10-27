@@ -12,7 +12,6 @@ const ListItem = (props) => {
                         m_site_cd: props.m_site_cd,
                         keyword: props.data
                     }))
-                    
                 }}
             >{props.data}</a>
             <a href="#;" className="float-right" onMouseDown={(e) => {
