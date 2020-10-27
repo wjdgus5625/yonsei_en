@@ -89,15 +89,15 @@ let util = {
                 mustNot += " " + d.substring(1, d.length)
             } else if(d.indexOf('|') === 0) {
                 should += " " + d.substring(1, d.length)
-        }
+            }
         })
 
         if(request.menu_cd === "doctor" || request.menu_cd === "department" || request.menu_cd === "professor") {
             return {
                 keyword: request.keyword.trim(),
-                must: must,
-                should: should,
-                mustNot: mustNot,
+                must: must.trim(),
+                should: should.trim(),
+                mustNot: mustNot.trim(),
                 m_site_cd: request.m_site_cd,
                 s_site_cd: request.s_site_cd,
                 menu_cd: request.menu_cd,
@@ -108,9 +108,9 @@ let util = {
         } else {
             return {
                 keyword: request.keyword.trim(),
-                must: must,
-                should: should,
-                mustNot: mustNot,
+                must: must.trim(),
+                should: should.trim(),
+                mustNot: mustNot.trim(),
                 m_site_cd: request.m_site_cd,
                 s_site_cd: request.s_site_cd,
                 menu_cd: request.menu_cd,

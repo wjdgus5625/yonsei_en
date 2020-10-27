@@ -41,7 +41,6 @@ function Content({ location }) {
         } else {
           alert(err.response.data.message)
         }
-        
       });
       console.log(result)
       if(result) {
