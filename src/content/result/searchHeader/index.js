@@ -19,7 +19,7 @@ const SearchHeader = (props) => {
 	const [cookies, setCookie] = useCookies('recentkeyword', [])
 	const [keywordMatch, setKeywordMatch] = useState({})
 
-	const getSearch = () => {
+	const getSearch = (type) => {
 		if(request.m_site_cd === undefined || (request.m_site_cd !== undefined && request.m_site_cd.length === 0)) {
 			alert('기관을 선택해주세요!!')
 			return;
@@ -40,11 +40,10 @@ const SearchHeader = (props) => {
             } else {
                 setCookie('recentkeyword', [request.keyword.trim()])
 			}
-
-			if(modalOpen) {
+			if(type === "modal") {
 				window.location.href = '?' + qs.stringify(util.searchKeywordSetting(request))
 			} else {
-				window.location.href = '?' + qs.stringify(util.onlyKeywordSetting(request, request.keyword))
+				window.location.href = '?' + qs.stringify(util.searchKeywordSetting2(request))
 			}
 		} else {
 			alert("검색어를 입력해주세요!!")

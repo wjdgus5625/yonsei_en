@@ -11,6 +11,7 @@ import RecommendKeyword from '../component/recommendKeyword/index'
 
 import ApiConfig from '../../config/apiConfig/index'
 import SearchViewSetting from '../../config/searchViewSetting/index'
+import Util from '../../util/util'
 
 const Main = ({ location }) => {
     const query = qs.parse(location.search, {
@@ -41,8 +42,10 @@ const Main = ({ location }) => {
             } else {
                 setCookie('recentkeyword', [keyword.trim()])
             }
-            
-			window.location.href = '/search/result?m_site_cd=' + m_site_cd + '&keyword=' + keyword;
+			window.location.href = '/search/result?' + qs.stringify(Util.searchKeywordSetting2({
+                m_site_cd: m_site_cd,
+                keyword: keyword
+            }))
 		} else {
             alert("검색어를 입력해주세요!!")
             setKeywordMatch({})

@@ -76,6 +76,30 @@ let util = {
 
         return result
     },
+    searchKeywordSetting2: (request) => {
+        const keyword = request.keyword || "";
+        let must = ""
+        let should = ""
+        let mustNot = ""
+
+        keyword.split(' ').forEach(d => {
+            if(d.indexOf('+') === 0) {
+                must += " " + d.substring(1, d.length)
+            } else if(d.indexOf('-') === 0) {
+                mustNot += " " + d.substring(1, d.length)
+            } else if(d.indexOf('|') === 0) {
+                should += " " + d.substring(1, d.length)
+        }
+        })
+
+        return {
+            ...request,
+            must: must.trim(),
+            should: should.trim(),
+            mustNot: mustNot.trim()
+        }
+
+    },
     clearKeywordSetting: (keyword) => {
         let clearKeyword = "";
 

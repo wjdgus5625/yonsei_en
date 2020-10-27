@@ -56,11 +56,11 @@ const SearchModal = (props) => {
 							<dd>
                                 <input type="text" className="form-control" id="search-word" placeholder="반드시 포함할 단어를 입력해주세요"
 									   onChange={(e) => props.changeKeyword(e.target.value, "must")} value={must}
-									   onKeyPress={(e) => e.key === "Enter" ? props.getSearch() : ""}
+									   onKeyPress={(e) => e.key === "Enter" ? props.getSearch("modal") : ""}
 									   style={{width: "100%", maxWidth: "400px"}} />
                                 <input type="text" className="form-control ml-lg-3 mt-md-2" id="search-word1"
 									   onChange={(e) => props.changeKeyword(e.target.value, "should")} value={should}
-									   onKeyPress={(e) => e.key === "Enter" ? props.getSearch() : ""}
+									   onKeyPress={(e) => e.key === "Enter" ? props.getSearch("modal") : ""}
 									   placeholder="적어도 하나이상 포함할 단어를 입력해주세요" style={{width: "100%", maxWidth: "400px"}} title="포함할 단어 입력" />
 							</dd>
 						</dl>
@@ -70,7 +70,7 @@ const SearchModal = (props) => {
 							<dd>
                                 <input type="text" className="form-control" id="del-word" placeholder="검색에서 제외할 단어를 입력해주세요"
 									onChange={(e) => props.changeKeyword(e.target.value, "mustNot")} value={mustNot}
-									onKeyPress={(e) => e.key === "Enter" ? props.getSearch() : ""}
+									onKeyPress={(e) => e.key === "Enter" ? props.getSearch("modal") : ""}
 									style={{width: "100%", maxWidth: "400px"}} />
 							</dd>
 						</dl>
@@ -78,7 +78,7 @@ const SearchModal = (props) => {
 				</div>
 				<div className="popup-footer pt-lg-16 pb-md-8 pb-lg-12">
 					<div className="text-center">
-						<button type="button" className="btn btn-lg bg-secondary text-default" onClick={() => props.getSearch()}>검색</button>
+						<button type="button" className="btn btn-lg bg-secondary text-default" onClick={() => props.getSearch("modal")}>검색</button>
 						<button type="button" className="btn btn-lg btn-outline-white" onClick={() => props.allClear()}>초기화</button>
 					</div>
 				</div>
