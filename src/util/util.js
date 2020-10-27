@@ -68,10 +68,10 @@ let util = {
         
         const result = {
             ...request,
-            keyword: afterKeyword,
-            must: afterMust,
-            mustNot: afterMustNot,
-            should: afterShould
+            keyword: afterKeyword.trim(),
+            must: afterMust.trim(),
+            mustNot: afterMustNot.trim(),
+            should: afterShould.trim()
         }
 
         return result
@@ -96,7 +96,7 @@ let util = {
 
         if(request.menu_cd === "doctor" || request.menu_cd === "department" || request.menu_cd === "professor") {
             return {
-                keyword: searchKeyword,
+                keyword: searchKeyword.trim(),
                 m_site_cd: request.m_site_cd,
                 s_site_cd: request.s_site_cd,
                 menu_cd: request.menu_cd,
@@ -106,7 +106,7 @@ let util = {
             }
         } else {
             return {
-                keyword: searchKeyword,
+                keyword: searchKeyword.trim(),
                 m_site_cd: request.m_site_cd,
                 s_site_cd: request.s_site_cd,
                 menu_cd: request.menu_cd,

@@ -24,13 +24,13 @@ const SearchHeader = (props) => {
 			alert('기관을 선택해주세요!!')
 			return;
 		}
-		if(request.keyword !== undefined && request.keyword.length > 0) {
+		if(request.keyword !== undefined && request.keyword.trim().length > 0) {
 			if(cookies.recentkeyword !== undefined) {
-                if(cookies.recentkeyword.includes(request.keyword)) {
-                    cookies.recentkeyword.splice(cookies.recentkeyword.indexOf(request.keyword), 1)
-                    cookies.recentkeyword.unshift(request.keyword)
+                if(cookies.recentkeyword.includes(request.keyword.trim())) {
+                    cookies.recentkeyword.splice(cookies.recentkeyword.indexOf(request.keyword.trim()), 1)
+                    cookies.recentkeyword.unshift(request.keyword.trim())
                 } else {
-                    cookies.recentkeyword.unshift(request.keyword)
+                    cookies.recentkeyword.unshift(request.keyword.trim())
 				}
 				
 				if(cookies.recentkeyword.length > 8) {
@@ -38,7 +38,7 @@ const SearchHeader = (props) => {
 				}
                 setCookie('recentkeyword', cookies.recentkeyword)
             } else {
-                setCookie('recentkeyword', [request.keyword])
+                setCookie('recentkeyword', [request.keyword.trim()])
 			}
 
 			if(modalOpen) {

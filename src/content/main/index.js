@@ -24,14 +24,14 @@ const Main = ({ location }) => {
     const searchInput = useRef();
     const m_site_cd = query.m_site_cd !== undefined && query.m_site_cd.length > 0 && query.m_site_cd !== "undefined" ? query.m_site_cd : "sev"
     const getSearch = () => {
-		if(keyword !== undefined && keyword.length > 0) {
+		if(keyword !== undefined && keyword.trim().length > 0) {
             if(cookies.recentkeyword !== undefined) {
-                if(cookies.recentkeyword.includes(keyword)) {
-                    cookies.recentkeyword.splice(cookies.recentkeyword.indexOf(keyword), 1)
-                    cookies.recentkeyword.unshift(keyword)
+                if(cookies.recentkeyword.includes(keyword.trim())) {
+                    cookies.recentkeyword.splice(cookies.recentkeyword.indexOf(keyword.trim()), 1)
+                    cookies.recentkeyword.unshift(keyword.trim())
                     
                 } else {
-                    cookies.recentkeyword.unshift(keyword)
+                    cookies.recentkeyword.unshift(keyword.trim())
                 }
 
                 if(cookies.recentkeyword.length > 8) {
@@ -39,7 +39,7 @@ const Main = ({ location }) => {
                 }
                 setCookie('recentkeyword', cookies.recentkeyword)
             } else {
-                setCookie('recentkeyword', [keyword])
+                setCookie('recentkeyword', [keyword.trim()])
             }
             
 			window.location.href = '/search/result?m_site_cd=' + m_site_cd + '&keyword=' + keyword;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 
 import SearchHeader from './searchHeader/index'
 import SearchBody from './searchContent/index'
@@ -11,6 +11,8 @@ import Axios from 'axios';
 import qs from 'qs';
 
 import util from '../../util/util'
+
+export const RootContext = createContext();
 
 function Content({ location }) {
   const query = qs.parse(location.search, {
@@ -60,7 +62,9 @@ function Content({ location }) {
         <Header m_site_cd={query.m_site_cd} />
         <div id="content">
             <SearchHeader request={request} setRequest={setRequest}/>
-            <SearchBody request={request} result={result}/>
+            <RootContext.Provider value={{request: request, setRequest: setRequest}}>
+              <SearchBody request={request} result={result}/>
+            </RootContext.Provider>
         </div>
         <Footer />
       </div>
