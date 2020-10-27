@@ -1,13 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import SearchViewSetting from '../../../../config/searchViewSetting/index'
 
 import ApiConfig from '../../../../config/apiConfig';
-import { Link } from 'react-router-dom';
-
-import { RootContext } from '../../index'
 
 const SearchMenu = (props) => {
-    const rootContext = useContext(RootContext);
     const tabList = SearchViewSetting.tablist[props.request.siteType]
     const tabList_kor = SearchViewSetting.tablist[props.request.siteType+"_kor"]
 
@@ -29,21 +25,14 @@ const SearchMenu = (props) => {
                         } else {
                             return (
                                 <li key={index} className={menu_cd === data ? "on" : ""}>
-                                    <Link to={"/search/result?keyword=" + props.request.keyword + "&m_site_cd=" + props.request.m_site_cd + "&menu_cd=" + data}
-                                            onClick={() => {
-                                                rootContext.setRequest({
-                                                    ...props.request,
-                                                    menu_cd: data,
-                                                    chosung: "ALL"
-                                                })
-                                            }}>
+                                    <a href={"/search/result?keyword=" + props.request.keyword + "&m_site_cd=" + props.request.m_site_cd + "&menu_cd=" + data}>
                                         <span>{tabList_kor[index] + "(" + 
                                         ( data === "all" && props.result.totalSize !== undefined ? props.result.totalSize : // 통합검색
                                             props.result[data] !== undefined && props.result[data].totalSize !== undefined ? (
                                                 data === "doctor" ? props.result["chosung"].totalSize : props.result[data].totalSize
                                             ) : 0 ) // 일반메뉴
                                             + ")"}</span>
-                                    </Link>
+                                    </a>
                                 </li>
                             )
                         }
