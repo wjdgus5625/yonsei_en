@@ -75,8 +75,6 @@ const Footer = () => {
                     <ul className="policy-list">
                         <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/member/policy/agreement.do"}>이용약관</a></li>
                         <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/member/policy/privacy.do"}><strong>개인정보처리방침</strong></a></li>
-                        <li><a href={ApiConfig.main_host + "/sev/story/customer/suggest.do"}>고객의 소리</a></li>
-                        <li><span className="text-darkprimary"><a href={ApiConfig.main_host + "/sev/about/about.do"}>병원소개</a></span></li>
                     </ul>
                     <address className="address">
                         <p className="address-text">03722 서울특별시 서대문구 연세로 50-1</p>
