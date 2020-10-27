@@ -36,18 +36,28 @@ const SearchMenu = (props) => {
             <ul className="tab-list">
                 {
                     tabList.map((data, index) => {
-                        return (
-                            <li key={index} className={menu_cd === data ? "on" : ""}>
-                                <a href={"#;"} onClick={() => getCategorySearch(data)}>
-                                    <span>{tabList_kor[index] + "(" + 
-                                    ( data === "all" && props.result.totalSize !== undefined ? props.result.totalSize : // 통합검색
-                                        props.result[data] !== undefined && props.result[data].totalSize !== undefined ? (
-                                            data === "doctor" ? props.result["chosung"].totalSize : props.result[data].totalSize
-                                        ) : 0 ) // 일반메뉴
-                                        + ")"}</span>
-                                </a>
-                            </li>
-                        )
+                        if(data === "link1" || data === "link2") {
+                            return (
+                                <li key={index}>
+                                    <a href="#none" title="새창" target="_blank">
+                                        <span>{tabList_kor[index]}<i className="ico ico-external-link ml-1"></i></span>
+                                    </a>
+                                </li>
+                            )
+                        } else {
+                            return (
+                                <li key={index} className={menu_cd === data ? "on" : ""}>
+                                    <a href={"#;"} onClick={() => getCategorySearch(data)}>
+                                        <span>{tabList_kor[index] + "(" + 
+                                        ( data === "all" && props.result.totalSize !== undefined ? props.result.totalSize : // 통합검색
+                                            props.result[data] !== undefined && props.result[data].totalSize !== undefined ? (
+                                                data === "doctor" ? props.result["chosung"].totalSize : props.result[data].totalSize
+                                            ) : 0 ) // 일반메뉴
+                                            + ")"}</span>
+                                    </a>
+                                </li>
+                            )
+                        }
                     })
                 }
             </ul>

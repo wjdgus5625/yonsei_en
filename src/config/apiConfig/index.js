@@ -9,5 +9,5 @@ export default {
     pop_path: "http://localhost:19700/popkeyword",
     recommend_path: "http://localhost:19700/recommend",
     autocomplete_path: "http://localhost:19700/autocomplete",
-    server_img_host: "http://10.9.32.14"
+    main_host: "http://10.9.32.14"
 }

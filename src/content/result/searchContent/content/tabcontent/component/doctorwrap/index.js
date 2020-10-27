@@ -44,14 +44,14 @@ const DoctorWrap = (props) => {
                             if(props.type === 'all' && index >= 4) return ""
                             return (
                                 <li key={index}>
-                                    <a href={ApiConfig.server_img_host+"/"+data.site_id+"/doctor/doctor-view.do?empNo="+data.emp_no+"&deptSeq="+data.dept_seq}
+                                    <a href={ApiConfig.main_host+"/"+data.site_id+"/doctor/doctor-view.do?empNo="+data.emp_no+"&deptSeq="+data.dept_seq}
                                         target="_blank" title="새창" rel="noopener noreferrer">
                                         <div className="doctor-card-box">
                                             <div className="card-view">
                                                 <div className="photo">
                                                     {
                                                         data.atch_flpth !== undefined ? 
-                                                            <img src={ApiConfig.server_img_host + data.atch_flpth + data.atchmnfl_physicl_nm} alt="프로필 사진" /> 
+                                                            <img src={ApiConfig.main_host + data.atch_flpth + data.atchmnfl_physicl_nm} alt="프로필 사진" /> 
                                                             : <span className="no-thumb"></span>
                                                     }
                                                 </div>

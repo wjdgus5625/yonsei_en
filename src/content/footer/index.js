@@ -1,4 +1,5 @@
 import React from 'react';
+import ApiConfig from '../../config/apiConfig/index'
 
 const Footer = () => {
     return (
@@ -11,56 +12,54 @@ const Footer = () => {
                         <div className="shortcut-content-inner">
                             <div className="container">
                                 <dl>
-                                    <dt><a href="#;">연세의료원</a></dt>
+                                    <dt><a href={ApiConfig.main_host + "/yuhs/"}>연세의료원</a></dt>
                                     <dd>
                                         <ul>
-                                            <li><a href="#;">뉴스</a></li>
-                                            <li><a href="#;">채용</a></li>
-                                            <li><a href="#;">입찰</a></li>
-                                            <li><a href="#;">기금</a></li>
-                                            <li><a href="#;">연구</a></li>
-                                        </ul>
-                                    </dd>
-                                    <dt><a href="#;">세브란스병원</a></dt>
-                                    <dd>
-                                        <ul>
-                                            <li><a href="#;">재활병원</a></li>
-                                            <li><a href="#;">심장혈관병원</a></li>
-                                            <li><a href="#;">안과병원</a></li>
-                                            <li><a href="#;">어린이병원</a></li>
-                                            <li><a href="#;">장례식장</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/news/"}>뉴스</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/fund/"}>후원</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/recruit/"}>채용</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href="https://sevit.yuhs.ac/">입찰</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/research/"}>의과학연구처</a></li>
                                         </ul>
                                     </dd>
                                 </dl>
                                 <dl>
-                                    <dt><a href="#;">연세암병원</a></dt>
-                                    <dt><a href="#;">치과대학병원</a></dt>
-                                    <dt><a href="#;">강남세브란스병원</a></dt>
+                                    <dt><a href={ApiConfig.main_host + "/sev/"}>세브란스병원</a></dt>
                                     <dd>
                                         <ul>
-                                            <li><a href="#;">심뇌혈관병원</a></li>
-                                            <li><a href="#;">암병원</a></li>
-                                            <li><a href="#;">척추병원</a></li>
-                                            <li><a href="#;">치과병원</a></li>
-                                            <li><a href="#;">장례식장</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/cancer/"}>연세암병원</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/sev-heart/"}>심장혈관병원</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/sev-children/"}>어린이병원</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/sev-eye/"}>안과병원</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/sev-rehabil/"}>재활병원</a></li>
                                         </ul>
                                     </dd>
+                                    <dt><a href={ApiConfig.main_host + "/dental/"}>치과대학병원</a></dt>
+                                    
                                 </dl>
                                 <dl>
-                                    <dt><a href="#;">용인세브란스병원</a></dt>
+                                    <dt><a href={ApiConfig.main_host + "/sev-gs/"}>강남세브란스병원</a></dt>
+                                    <dd>
+                                        <ul>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/gs-hbv/"}>심뇌혈관병원</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/gs-cancer/"}>암병원</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/gs-spine/"}>척추병원</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/gs-dent/"}>치과병원</a></li>
+                                        </ul>
+                                    </dd>
+                                    <dt><a href={ApiConfig.main_host + "/yi/"}>용인세브란스병원</a></dt>
                                     <dd></dd>
                                 </dl>
                                 <dl>
-                                    <dt><a href="#;">연세대학교</a></dt>
+                                    <dt><a href="https://www.yonsei.ac.kr/">연세대학교</a></dt>
                                     <dd>
                                         <ul>
-                                            <li><a href="#;">의과대학</a></li>
-                                            <li><a href="#;">치과대학</a></li>
-                                            <li><a href="#;">간호대학</a></li>
-                                            <li><a href="#;">보건대학원</a></li>
-                                            <li><a href="#;">약학대학</a></li>
-                                            <li><a href="#;">학술정보원</a></li>
-                                            <li><a href="#;">의학도서관</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/medicine/"}>의과대학</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/dentistry/"}>치과대학</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/nursing/"}>간호대학</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/gsph/"}>보건대학원</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href="https://library.yonsei.ac.kr/">학술정보원</a></li>
+                                            <li><a target="_blank" rel="noopener noreferrer" href="https://ymlib.yonsei.ac.kr/">의학도서관</a></li>
                                         </ul>
                                     </dd>
                                 </dl>
@@ -74,8 +73,10 @@ const Footer = () => {
                 </div>
                 <div className="site-info">
                     <ul className="policy-list">
-                        <li><a href="#;">이용약관</a></li>
-                        <li><a href="#;"><strong>개인정보처리방침</strong></a></li>
+                        <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/member/policy/agreement.do"}>이용약관</a></li>
+                        <li><a target="_blank" rel="noopener noreferrer" href={ApiConfig.main_host + "/member/policy/privacy.do"}><strong>개인정보처리방침</strong></a></li>
+                        <li><a href={ApiConfig.main_host + "/sev/story/customer/suggest.do"}>고객의 소리</a></li>
+                        <li><span className="text-darkprimary"><a href={ApiConfig.main_host + "/sev/about/about.do"}>병원소개</a></span></li>
                     </ul>
                     <address className="address">
                         <p className="address-text">03722 서울특별시 서대문구 연세로 50-1</p>
