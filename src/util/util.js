@@ -92,11 +92,31 @@ let util = {
         }
         })
 
-        return {
-            ...request,
-            must: must.trim(),
-            should: should.trim(),
-            mustNot: mustNot.trim()
+        if(request.menu_cd === "doctor" || request.menu_cd === "department" || request.menu_cd === "professor") {
+            return {
+                keyword: request.keyword.trim(),
+                must: must,
+                should: should,
+                mustNot: mustNot,
+                m_site_cd: request.m_site_cd,
+                s_site_cd: request.s_site_cd,
+                menu_cd: request.menu_cd,
+                siteType: request.siteType,
+                size: request.size,
+                cate_cd: request.cate_cd
+            }
+        } else {
+            return {
+                keyword: request.keyword.trim(),
+                must: must,
+                should: should,
+                mustNot: mustNot,
+                m_site_cd: request.m_site_cd,
+                s_site_cd: request.s_site_cd,
+                menu_cd: request.menu_cd,
+                siteType: request.siteType,
+                size: request.size
+            }
         }
 
     },

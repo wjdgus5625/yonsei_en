@@ -33,7 +33,8 @@ const SearchMenu = (props) => {
                                             onClick={() => {
                                                 rootContext.setRequest({
                                                     ...props.request,
-                                                    menu_cd: data
+                                                    menu_cd: data,
+                                                    chosung: "ALL"
                                                 })
                                             }}>
                                         <span>{tabList_kor[index] + "(" + 
