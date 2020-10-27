@@ -39,7 +39,7 @@ const SearchMenu = (props) => {
                         if(data === "link1" || data === "link2") {
                             return (
                                 <li key={index}>
-                                    <a href="#none" title="새창" target="_blank">
+                                    <a href="#none" target="_blank">
                                         <span>{tabList_kor[index]}<i className="ico ico-external-link ml-1"></i></span>
                                     </a>
                                 </li>

@@ -16,7 +16,7 @@ const centerWrap = (props) => {
                         return (
                             <li key={index}>
                                 <div className="line-gray">
-                                    <a href="#none" title="새창" target="_blank">
+                                    <a href="#none" target="_blank">
                                         <span>{data.dept_nm}</span>
                                     </a>
                                 </div>

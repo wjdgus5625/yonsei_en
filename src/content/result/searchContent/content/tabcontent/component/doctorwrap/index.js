@@ -45,7 +45,7 @@ const DoctorWrap = (props) => {
                             return (
                                 <li key={index}>
                                     <a href={ApiConfig.main_host+"/"+data.site_id+"/doctor/doctor-view.do?empNo="+data.emp_no+"&deptSeq="+data.dept_seq}
-                                        target="_blank" title="새창" rel="noopener noreferrer">
+                                        target="_blank" rel="noopener noreferrer">
                                         <div className="doctor-card-box">
                                             <div className="card-view">
                                                 <div className="photo">

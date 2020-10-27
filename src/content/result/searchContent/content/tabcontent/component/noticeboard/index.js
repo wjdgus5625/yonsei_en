@@ -20,12 +20,12 @@ const NoticeBoard = (props) => {
                                             <img src="/search/yuhs/_share/img/common/_sample.jpg" alt="이미지" />
                                         </div>
                                         <div className="notice-cont ml-lg-6 ml-md-3">
-                                            <a href={ApiConfig.main_host + data.page} target="_blank" title="새창" className="text-title" rel="noopener noreferrer">
+                                            <a href={ApiConfig.main_host + data.page} target="_blank" className="text-title" rel="noopener noreferrer">
                                                 {data.title} 
                                             </a>
                                             <p className="text-area">{data.contents !== undefined ? parser(data.contents) : ""}</p>
                                             <p className="route">
-                                                <a href={ApiConfig.main_host + data.page} target="_blank" title="새창" rel="noopener noreferrer">{data.navigation}</a>
+                                                <a href={ApiConfig.main_host + data.page} target="_blank" rel="noopener noreferrer">{data.navigation}</a>
                                             </p>
                                         </div>
                                     </div>
