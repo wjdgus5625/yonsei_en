@@ -4,6 +4,7 @@ import SearchViewSetting from '../../../../config/searchViewSetting/index'
 
 import qs from 'qs';
 import util from '../../../../util/util';
+import ApiConfig from '../../../../config/apiConfig';
 
 const SearchMenu = (props) => {
     const tabList = SearchViewSetting.tablist[props.request.siteType]
@@ -39,7 +40,7 @@ const SearchMenu = (props) => {
                         if(data === "link1" || data === "link2") {
                             return (
                                 <li key={index}>
-                                    <a href="#none" target="_blank">
+                                    <a href={ApiConfig[data] + props.request.keyword} target="_blank" rel="noopener noreferrer">
                                         <span>{tabList_kor[index]}<i className="ico ico-external-link ml-1"></i></span>
                                     </a>
                                 </li>

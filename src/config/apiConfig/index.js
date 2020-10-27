@@ -9,5 +9,7 @@ export default {
     pop_path: "http://localhost:19700/popkeyword",
     recommend_path: "http://localhost:19700/recommend",
     autocomplete_path: "http://localhost:19700/autocomplete",
-    main_host: "http://10.9.32.14"
+    main_host: "http://10.9.32.14",
+    link1: "https://ir.ymlib.yonsei.ac.kr/simple-search?query=",
+    link2: "https://yhrn.yonsei.ac.kr/Search/Result.aspx?search_field=ALL&targetFd=ALL&search_word="
 }
