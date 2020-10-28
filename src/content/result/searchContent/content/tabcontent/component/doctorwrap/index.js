@@ -44,7 +44,7 @@ const DoctorWrap = (props) => {
                             if(props.type === 'all' && index >= 4) return ""
                             return (
                                 <li key={index}>
-                                    <a href={ApiConfig.main_host+data.page}
+                                    <a href={ApiConfig.main_host+data.url}
                                         target="_blank" rel="noopener noreferrer">
                                         <div className="doctor-card-box">
                                             <div className="card-view">

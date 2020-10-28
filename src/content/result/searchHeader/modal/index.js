@@ -40,7 +40,7 @@ const SearchModal = (props) => {
 																	className="custom-control" 
 																	checked={props.request.s_site_cd !== undefined && props.request.s_site_cd === data ? true : false}
 																	onChange={() => props.setSubSiteCd(data)} />
-															<label htmlFor={"sev-selet"+index} className="text-title-md text-normal">{data}</label>
+															<label htmlFor={"sev-selet"+index} className="text-title-md text-normal">{searchViewSetting.hospitalList.sev_kor[index]}</label>
 														</span>
 													)
 												})
