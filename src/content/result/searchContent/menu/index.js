@@ -4,6 +4,7 @@ import SearchViewSetting from '../../../../config/searchViewSetting/index'
 import util from '../../../../util/util';
 import ApiConfig from '../../../../config/apiConfig';
 import { Link } from 'react-router-dom';
+import qs from 'qs'
 
 const SearchMenu = (props) => {
     const tabList = SearchViewSetting.tablist[props.request.siteType]
@@ -53,7 +54,7 @@ const SearchMenu = (props) => {
                         } else {
                             return (
                                 <li key={index} className={menu_cd === data ? "on" : ""}>
-                                    <Link to={"/search/result?keyword="+props.request.keyword+"&m_site_cd="+props.request.m_site_cd+"&menu_cd="+data+"&should="+props.request.should+"&must="+props.request.must+"&mustNot="+props.request.mustNot+"&cate_cd="+(data === "doctor" ? "department" : "")} 
+                                    <Link to={"/search/result?"+qs.stringify(util.linkWrite(props.request, data))} 
                                         onClick={() => getCategorySearch(data)}>
                                         <span>{tabList_kor[index] + "(" + 
                                         ( props.result[data] !== undefined && props.result[data].totalSize !== undefined ? (

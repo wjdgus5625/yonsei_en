@@ -227,6 +227,25 @@ let util = {
             default: 
                 return "hospital"
         }
+    },
+    linkWrite: (request, menu_cd) => {
+        let cate_cd = "";
+        let size = 3;
+
+        if(menu_cd === "doctor" || menu_cd === "professor" || menu_cd === "department") {
+            size = 12;
+        }
+
+        if(menu_cd === "doctor") {
+            cate_cd = "department"
+        }
+
+        return {
+            ...request,
+            menu_cd: menu_cd,
+            cate_cd: cate_cd,
+            size: size
+        }
     }
 }
 
