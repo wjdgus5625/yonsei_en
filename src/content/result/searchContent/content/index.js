@@ -33,7 +33,7 @@ const SearchContent = (props) => {
                                         title={SearchViewSetting.tab[request.siteType][data].title} 
                                         addClass={SearchViewSetting.tab[request.siteType][data].class}
                                         result={result[data]}
-                                        href={'?' + qs.stringify(util.searchKeywordSetting2({
+                                        href={'/search/result?' + qs.stringify(util.searchKeywordSetting2({
                                             ...request,
                                             menu_cd: data,
                                             size: data === "doctor" || data === "professor" || data === "department" ? 12 : 3

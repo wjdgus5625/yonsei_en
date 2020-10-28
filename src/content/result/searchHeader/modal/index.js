@@ -26,8 +26,8 @@ const SearchModal = (props) => {
 														name="sev-selet-all" 
 														id="sev-selet-all"
 														className="custom-control" 
-														checked={props.request.s_site_cd === undefined || props.request.s_site_cd === "전체" ? true : false}
-														onChange={() => props.setSubSiteCd("전체")} />
+														checked={props.request.s_site_cd === undefined || props.request.s_site_cd.length === 0 || props.request.s_site_cd === "all" ? true : false}
+														onChange={() => props.setSubSiteCd("all")} />
 												<label htmlFor="sev-selet-all" className="text-title-md text-normal">전체</label>
 											</span>
 											{

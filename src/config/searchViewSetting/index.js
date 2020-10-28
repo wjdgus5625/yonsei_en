@@ -148,5 +148,11 @@ export default {
 			spine: "강남세브란스 척추병원",
 			dent: "강남세브란스 치과병원"
 		}
+	},
+	cate_cd_name: {
+		department: "진료과",
+		center: "센터",
+		clinic: "클리닉",
+		all: "전체"
 	}
 }

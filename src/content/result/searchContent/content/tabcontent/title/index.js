@@ -11,7 +11,7 @@ const SearchContentTitle = (props) => {
 
     if(props.type === 'default') {
         floatRight = 
-        <span className="float-right"><a href={props.href + (props.menu_cd === "doctor" || props.menu_cd === "professor" ? "&chosung="+ props.chosung : "")} className="btn btn-sm btn-outline-default">더보기</a></span>
+        <span className="float-right"><a href={props.href + (props.menu_cd === "doctor" || props.menu_cd === "professor" ? "&chosung="+ props.chosung + "&cate_cd=department": "")} className="btn btn-sm btn-outline-default">더보기</a></span>
     } else if(props.type === 'select2') {
         floatRight = 
         <div className="float-right select-box-right mt-md-2">

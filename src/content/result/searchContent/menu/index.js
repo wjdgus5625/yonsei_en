@@ -1,7 +1,6 @@
 import React from 'react';
 import SearchViewSetting from '../../../../config/searchViewSetting/index'
 
-
 import qs from 'qs';
 import util from '../../../../util/util';
 import ApiConfig from '../../../../config/apiConfig';
@@ -25,7 +24,13 @@ const SearchMenu = (props) => {
             } else {
                 props.request.size = 3
             }
-			window.location.href = '?' + qs.stringify(util.onlyKeywordSetting(props.request, props.request.keyword))
+
+            if(props.request.menu_cd === "doctor") {
+                props.request.cate_cd = "department"
+            } else {
+                props.request.cate_cd = ""
+            }
+			window.location.href = '/search/result?' + qs.stringify(util.searchKeywordSetting2(props.request))
 		} else {
 			alert("검색어를 입력해주세요!!")
 			return;
