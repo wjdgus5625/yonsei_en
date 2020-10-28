@@ -53,12 +53,12 @@ const SearchMenu = (props) => {
                         } else {
                             return (
                                 <li key={index} className={menu_cd === data ? "on" : ""}>
-                                    <Link to="/search/result" onClick={() => getCategorySearch(data)}>
+                                    <Link to={"/search/result?keyword="+props.request.keyword+"&m_site_cd="+props.request.m_site_cd+"&menu_cd="+data+"&should="+props.request.should+"&must="+props.request.must+"&mustNot="+props.request.mustNot+"&cate_cd="+(data === "doctor" ? "department" : "")} 
+                                        onClick={() => getCategorySearch(data)}>
                                         <span>{tabList_kor[index] + "(" + 
-                                        ( data === "all" && props.result.totalSize !== undefined ? props.result.totalSize : // 통합검색
-                                            props.result[data] !== undefined && props.result[data].totalSize !== undefined ? (
+                                        ( props.result[data] !== undefined && props.result[data].totalSize !== undefined ? (
                                                 data === "doctor" ? props.result["chosung"].totalSize : props.result[data].totalSize
-                                            ) : 0 ) // 일반메뉴
+                                            ) : 0 ) // 의료진의 경우 메뉴탭에서 chosung, cate_cd 값이 필터링 되지 않은 결과수가 들어가야하므로 chosung 검색 결과수를 넣음
                                             + ")"}</span>
                                     </Link>
                                 </li>

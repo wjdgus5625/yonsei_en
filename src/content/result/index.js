@@ -61,7 +61,7 @@ function Content({ location }) {
       <div className="wrapper">
         <Header m_site_cd={m_site_cd} />
         <div id="content">
-            <SearchHeader request={request} setRequest={setRequest}/>
+            <SearchHeader request={request} />
             <SearchBody request={request} result={result} setRequest={setRequest}/>
         </div>
         <Footer />
