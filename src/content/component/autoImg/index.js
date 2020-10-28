@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
 import ApiConfig from '../../../config/apiConfig/index'
+import SearchViewSetting from '../../../config/searchViewSetting/index';
 
 const AutoImg = (props) => {
     const [selectDots, setSelectDots] = useState(0)
@@ -55,7 +56,7 @@ const AutoImg = (props) => {
                                             </span>
                                         </div>
                                     </div>
-                                    <div className="sumery">강남세브란스 심뇌혈관병원</div>
+                                        <div className="sumery">{SearchViewSetting.hospital_name[data.m_site_cd][data.s_site_id]}</div>
                                 </div>
                             </div>
                         )
