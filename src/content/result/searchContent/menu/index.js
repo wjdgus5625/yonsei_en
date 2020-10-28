@@ -1,9 +1,9 @@
 import React from 'react';
 import SearchViewSetting from '../../../../config/searchViewSetting/index'
 
-import qs from 'qs';
 import util from '../../../../util/util';
 import ApiConfig from '../../../../config/apiConfig';
+import { Link } from 'react-router-dom';
 
 const SearchMenu = (props) => {
     const tabList = SearchViewSetting.tablist[props.request.siteType]
@@ -12,25 +12,25 @@ const SearchMenu = (props) => {
     const menu_cd = props.request.menu_cd || "all";
 
     const getCategorySearch = (menu_cd) => {
+        let cate_cd = "";
 		if(props.request.m_site_cd === undefined) {
 			alert('기관을 선택해주세요!!')
 			return;
 		}
 
 		if(props.request.keyword !== undefined && props.request.keyword.replace(/[\\ ]/gi, '')) {
-            props.request.menu_cd = menu_cd
-            if(props.request.menu_cd === "doctor" || props.request.menu_cd === "department" || props.request.menu_cd === "professor") {
+            if(menu_cd === "doctor" || menu_cd === "department" || menu_cd === "professor") {
                 props.request.size = 12
             } else {
                 props.request.size = 3
             }
 
-            if(props.request.menu_cd === "doctor") {
-                props.request.cate_cd = "department"
+            if(menu_cd === "doctor") {
+                cate_cd = "department"
             } else {
-                props.request.cate_cd = ""
+                cate_cd = ""
             }
-			window.location.href = '/search/result?' + qs.stringify(util.searchKeywordSetting2(props.request))
+            props.setRequest(util.searchKeywordSetting2_menu(props.request, menu_cd, cate_cd))
 		} else {
 			alert("검색어를 입력해주세요!!")
 			return;
@@ -53,14 +53,14 @@ const SearchMenu = (props) => {
                         } else {
                             return (
                                 <li key={index} className={menu_cd === data ? "on" : ""}>
-                                    <a href="#;" onClick={() => getCategorySearch(data)}>
+                                    <Link to="/search/result" onClick={() => getCategorySearch(data)}>
                                         <span>{tabList_kor[index] + "(" + 
                                         ( data === "all" && props.result.totalSize !== undefined ? props.result.totalSize : // 통합검색
                                             props.result[data] !== undefined && props.result[data].totalSize !== undefined ? (
                                                 data === "doctor" ? props.result["chosung"].totalSize : props.result[data].totalSize
                                             ) : 0 ) // 일반메뉴
                                             + ")"}</span>
-                                    </a>
+                                    </Link>
                                 </li>
                             )
                         }

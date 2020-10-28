@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie'
 
 import SearchModal from './modal/index';
@@ -12,12 +12,15 @@ import ApiConfig from '../../../config/apiConfig/index';
 import util from '../../../util/util'
 
 const SearchHeader = (props) => {
-
 	const [modalOpen, setModalOpen] = useState(false);
 	const [request, setRequest] = useState(props.request);
 	const [checked, setChecked] = useState(false);
 	const [cookies, setCookie] = useCookies('recentkeyword', [])
 	const [keywordMatch, setKeywordMatch] = useState({})
+
+	useEffect(() => {
+		setRequest(props.request)
+	}, [props.request])
 
 	const getSearch = (type) => {
 		if(request.m_site_cd === undefined || (request.m_site_cd !== undefined && request.m_site_cd.length === 0)) {
@@ -106,8 +109,8 @@ const SearchHeader = (props) => {
 			must: "",
 			mustNot: "",
 			should: "",
-			board_nm: "전체",
-			s_site_cd: "전체"
+			board_nm: "all",
+			s_site_cd: "all"
 		})
 	}
 

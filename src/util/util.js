@@ -120,6 +120,49 @@ let util = {
         }
 
     },
+    searchKeywordSetting2_menu: (request, menu_cd, cate_cd) => {
+        const keyword = request.keyword || "";
+        let must = ""
+        let should = ""
+        let mustNot = ""
+
+        keyword.split(' ').forEach(d => {
+            if(d.indexOf('+') === 0) {
+                must += " " + d.substring(1, d.length)
+            } else if(d.indexOf('-') === 0) {
+                mustNot += " " + d.substring(1, d.length)
+            } else if(d.indexOf('|') === 0) {
+                should += " " + d.substring(1, d.length)
+            }
+        })
+
+        if(menu_cd === "doctor" || menu_cd === "department" || menu_cd === "professor") {
+            return {
+                keyword: request.keyword.trim(),
+                must: must.trim(),
+                should: should.trim(),
+                mustNot: mustNot.trim(),
+                m_site_cd: request.m_site_cd,
+                s_site_cd: request.s_site_cd,
+                menu_cd: menu_cd,
+                siteType: request.siteType,
+                size: request.size,
+                cate_cd: cate_cd
+            }
+        } else {
+            return {
+                keyword: request.keyword.trim(),
+                must: must.trim(),
+                should: should.trim(),
+                mustNot: mustNot.trim(),
+                m_site_cd: request.m_site_cd,
+                s_site_cd: request.s_site_cd,
+                menu_cd: menu_cd,
+                siteType: request.siteType,
+                size: request.size
+            }
+        }
+    },
     clearKeywordSetting: (keyword) => {
         let clearKeyword = "";
 

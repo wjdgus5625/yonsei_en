@@ -30,10 +30,10 @@ const SearchBar = (props) => {
     const searchInput = useRef();
 
     const keywordFocus = () => {
-        if(props.request.keyword.length === 0 && cookies.recentkeyword !== undefined) {
+        if(keyword !== undefined && keyword.length === 0 && cookies.recentkeyword !== undefined) {
             props.setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
-        } else if(props.request.keyword.length > 0) {
-            props.getAutoComplete(props.request.keyword)
+        } else if(keyword.length > 0) {
+            props.getAutoComplete(keyword)
         }
 	}
 	

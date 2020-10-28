@@ -25,6 +25,8 @@ function Content({ location }) {
     m_site_cd_default: query.m_site_cd === undefined || (query.m_site_cd !== undefined && query.m_site_cd.length === 0) ? "sev": query.m_site_cd // 인기검색어, 연관검색어의 경우 기관선택 select 박스가 변경되더라도 고정시키기 위해 default값 추가 
   });
 
+  const m_site_cd = query.m_site_cd !== undefined ? query.m_site_cd : "sev"
+
   useEffect(() => {
     console.log('useEffect!')
     console.log(request)
@@ -57,10 +59,10 @@ function Content({ location }) {
 
   return (
       <div className="wrapper">
-        <Header m_site_cd={query.m_site_cd} />
+        <Header m_site_cd={m_site_cd} />
         <div id="content">
             <SearchHeader request={request} setRequest={setRequest}/>
-            <SearchBody request={request} result={result}/>
+            <SearchBody request={request} result={result} setRequest={setRequest}/>
         </div>
         <Footer />
       </div>
