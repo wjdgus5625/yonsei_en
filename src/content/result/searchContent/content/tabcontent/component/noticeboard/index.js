@@ -4,6 +4,7 @@ import parser from 'html-react-parser';
 
 import MoreBtn from '../morebtn/index';
 import ApiConfig from '../../../../../../../config/apiConfig/index'
+import searchViewSetting from '../../../../../../../config/searchViewSetting';
 
 const NoticeBoard = (props) => {
     return (
@@ -25,7 +26,7 @@ const NoticeBoard = (props) => {
                                             </a>
                                             <p className="text-area">{data.contents !== undefined ? parser(data.contents) : ""}</p>
                                             <p className="route">
-                                                <a href={ApiConfig.main_host + data.page} target="_blank" rel="noopener noreferrer">{data.navigation}</a>
+                                                <a href={ApiConfig.main_host + data.page} target="_blank" rel="noopener noreferrer">{(props.request.siteType === "hospital" ? searchViewSetting.hospital_name[data.m_site_cd][data.s_site_cd]+" > " : "")+data.navigation}</a>
                                             </p>
                                         </div>
                                     </div>

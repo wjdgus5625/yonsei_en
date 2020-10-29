@@ -139,7 +139,7 @@ export default {
 			heart: "세브란스 심장혈관병원",
 			children: "세브란스 어린이병원",
 			eye: "세브란스 안과병원",
-			rehail: "세브란스 재활병원"
+			rehabil: "세브란스 재활병원"
 		},
 		gs: {
 			main: "강남세브란스병원",
@@ -147,6 +147,9 @@ export default {
 			cancer: "강남세브란스 암병원",
 			spine: "강남세브란스 척추병원",
 			dent: "강남세브란스 치과병원"
+		},
+		share: {
+			health: "건강정보"
 		}
 	},
 	cate_cd_name: {

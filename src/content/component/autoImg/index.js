@@ -56,7 +56,7 @@ const AutoImg = (props) => {
                                             </span>
                                         </div>
                                     </div>
-                                        <div className="sumery">{SearchViewSetting.hospital_name[data.m_site_cd][data.s_site_id]}</div>
+                                        <div className="sumery">{SearchViewSetting.hospital_name[data.m_site_cd][data.s_site_cd]}</div>
                                 </div>
                             </div>
                         )
