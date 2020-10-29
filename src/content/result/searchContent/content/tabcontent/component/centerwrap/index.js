@@ -3,6 +3,8 @@ import Nodata from '../nodata/index'
 import SingleTab from './singletab/index';
 import MoreBtn from '../morebtn/index';
 
+import ApiConfig from '../../../../../../../config/apiConfig/index'
+
 const centerWrap = (props) => {
     return (
         <div className={"center-wrap " + props.addClass}>
@@ -15,11 +17,9 @@ const centerWrap = (props) => {
                         if(props.type === 'all' && index >= 8) return ""; 
                         return (
                             <li key={index}>
-                                <div className="line-gray">
-                                    <a href="#none" target="_blank">
-                                        <span>{data.dept_nm}</span>
-                                    </a>
-                                </div>
+                                <a className="line-gray" href={ApiConfig.main_host+data.url} target="_blank" rel="noopener noreferrer">
+                                    <span>{data.dept_nm}</span>
+                                </a>
                             </li>
                         )
                     }) : <Nodata />
