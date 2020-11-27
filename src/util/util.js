@@ -6,177 +6,58 @@ let util = {
           return false;
         }
     },
-    viewKeywordSetting: (request) => {
-        let must = "";
-        let mustNot = "";
-        let should = "";
-        let keyword = request.keyword || "";
-
-        keyword.split(' ').forEach(d => {
-            if(d.indexOf('+') === 0) {
-                must += " " + d.replace('+','');
-            } else if(d.indexOf('-') === 0) {
-                mustNot += " " + d.replace('-','');
-            } else if(d.indexOf('|') === 0) {
-                should += " " + d.replace('|','');
-            }
-        });
-
-        const result = {
-            ...request,
-            keyword: keyword.trim(),
-            must: must.trim(),
-            mustNot: mustNot.trim(),
-            should: should.trim()
-        }
-
-        return result;
-    },
-    searchKeywordSetting: (request) => {
-        const keyword = request.keyword || "";
-        const afterMust = request.must || "";
-        const afterMustNot = request.mustNot || "";
-        const afterShould = request.should || "";
-
-        let afterKeyword = "";
-
-        let onlyKeyword = "";
-
-        keyword.split(' ').forEach(d => {
-            if(d.indexOf('+') !== 0 && d.indexOf('-') !== 0 && d.indexOf('|') !== 0) {
-                onlyKeyword += " " + d.trim();
-            }
-        })
-
-        afterKeyword += onlyKeyword;
-
-        afterMust.split(' ').forEach(d => {
-            if(d !== undefined && d.length > 0) {
-                afterKeyword += " +" + d
-            }
-        })
-        afterMustNot.split(' ').forEach(d => {
-            if(d !== undefined && d.length > 0) {
-                afterKeyword += " -" + d
-            }
-        })
-        afterShould.split(' ').forEach(d => {
-            if(d !== undefined && d.length > 0) {
-                afterKeyword += " |" + d
-            }
-        })
-        
-        const result = {
-            ...request,
-            keyword: afterKeyword.trim(),
-            must: afterMust.trim(),
-            mustNot: afterMustNot.trim(),
-            should: afterShould.trim()
-        }
-
-        return result
-    },
     searchKeywordSetting2: (request) => {
-        const keyword = request.keyword || "";
-        let must = ""
-        let should = ""
-        let mustNot = ""
-
-        keyword.split(' ').forEach(d => {
-            if(d.indexOf('+') === 0) {
-                must += " " + d.substring(1, d.length)
-            } else if(d.indexOf('-') === 0) {
-                mustNot += " " + d.substring(1, d.length)
-            } else if(d.indexOf('|') === 0) {
-                should += " " + d.substring(1, d.length)
-            }
-        })
-
         if(request.menu_cd === "doctor" || request.menu_cd === "department" || request.menu_cd === "professor") {
             return {
                 keyword: request.keyword.trim(),
-                must: must.trim(),
-                should: should.trim(),
-                mustNot: mustNot.trim(),
                 m_site_cd: request.m_site_cd,
                 s_site_cd: request.s_site_cd,
                 menu_cd: request.menu_cd,
                 siteType: request.siteType,
                 size: request.size,
-                cate_cd: request.cate_cd
+                cate_cd: request.cate_cd,
+                language: "en"
             }
         } else {
             return {
                 keyword: request.keyword.trim(),
-                must: must.trim(),
-                should: should.trim(),
-                mustNot: mustNot.trim(),
                 m_site_cd: request.m_site_cd,
                 s_site_cd: request.s_site_cd,
                 menu_cd: request.menu_cd,
                 siteType: request.siteType,
-                size: request.size
+                size: request.size,
+                language: "en"
             }
         }
 
     },
     searchKeywordSetting2_menu: (request, menu_cd, cate_cd) => {
-        const keyword = request.keyword || "";
-        let must = ""
-        let should = ""
-        let mustNot = ""
-
-        keyword.split(' ').forEach(d => {
-            if(d.indexOf('+') === 0) {
-                must += " " + d.substring(1, d.length)
-            } else if(d.indexOf('-') === 0) {
-                mustNot += " " + d.substring(1, d.length)
-            } else if(d.indexOf('|') === 0) {
-                should += " " + d.substring(1, d.length)
-            }
-        })
-
         if(menu_cd === "doctor" || menu_cd === "department" || menu_cd === "professor") {
             return {
                 keyword: request.keyword.trim(),
-                must: must.trim(),
-                should: should.trim(),
-                mustNot: mustNot.trim(),
                 m_site_cd: request.m_site_cd,
                 s_site_cd: request.s_site_cd,
                 menu_cd: menu_cd,
                 siteType: request.siteType,
                 size: request.size,
-                cate_cd: cate_cd
+                cate_cd: cate_cd,
+                language: "en"
             }
         } else {
             return {
                 keyword: request.keyword.trim(),
-                must: must.trim(),
-                should: should.trim(),
-                mustNot: mustNot.trim(),
                 m_site_cd: request.m_site_cd,
                 s_site_cd: request.s_site_cd,
                 menu_cd: menu_cd,
                 siteType: request.siteType,
-                size: request.size
+                size: request.size,
+                language: "en"
             }
         }
     },
-    clearKeywordSetting: (keyword) => {
-        let clearKeyword = "";
-
-        keyword.split(' ').forEach(data => {
-            if(data.indexOf('+') !== 0 && data.indexOf('-') !== 0 && data.indexOf('|') !== 0) {
-                clearKeyword += data.trim() + " ";
-            }
-        })
-
-        return clearKeyword;
-    },
     onlyKeywordSetting: (request, keyword) => {
         const reSearchKeyword = request.reSearchKeyword || "";
-        let searchKeyword = keyword
+        let searchKeyword = keyword || "";
         if(reSearchKeyword.length > 0) {
             searchKeyword = keyword + " +" + reSearchKeyword
         }
@@ -189,7 +70,8 @@ let util = {
                 menu_cd: request.menu_cd,
                 siteType: request.siteType,
                 size: request.size,
-                cate_cd: request.cate_cd
+                cate_cd: request.cate_cd,
+                language: "en"
             }
         } else {
             return {
@@ -198,14 +80,15 @@ let util = {
                 s_site_cd: request.s_site_cd,
                 menu_cd: request.menu_cd,
                 siteType: request.siteType,
-                size: request.size
+                size: request.size,
+                language: "en"
             }
         }
     },
     m_site_cdType: (m_site_cd) => {
         switch (m_site_cd) {
             case "yuhs": 
-                return "headquarter"
+                return "hospital"
             case "sev": 
                 return "hospital"
             case "gs": 
@@ -246,6 +129,52 @@ let util = {
             cate_cd: cate_cd,
             size: size
         }
+    },
+    keywordType: (keyword, type) => {
+        let reKeyword = "";
+        keyword.split(' ').forEach(d => {
+            if(type === "keyword") {
+                if(d.indexOf('+') !== 0 && d.indexOf('-') !== 0 && d.indexOf('|') !== 0) {
+                    reKeyword += " " + d
+                }
+            } else if (type === "must") {
+                if(d.indexOf('+') === 0) {
+                    reKeyword += " " + d.substring(1, d.length)
+                }
+            } else if (type === "mustNot") {
+                if(d.indexOf('-') === 0) {
+                    reKeyword += " " + d.substring(1, d.length)
+                }
+            } else if (type === "should") {
+                if(d.indexOf('|') === 0) {
+                    reKeyword += " " + d.substring(1, d.length)
+                }
+            }
+        })
+        return reKeyword.trim();
+    },
+    setSrhKeyword: (keyword, must, mustNot, should) => {
+        let srhKeyword = ""
+
+        srhKeyword += keyword
+
+        must.split(' ').forEach(data => {
+            if(data.length > 0) {
+                srhKeyword += " +" + data
+            }
+        })
+        mustNot.split(' ').forEach(data => {
+            if(data.length > 0) {
+                srhKeyword += " -" + data
+            }
+        })
+        should.split(' ').forEach(data => {
+            if(data.length > 0) {
+                srhKeyword += " |" + data
+            }
+        })
+
+        return srhKeyword
     }
 }
 

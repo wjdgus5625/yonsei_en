@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Header from '../header/index'
-import Footer from '../footer/index'
+import Header from '../result/header'
+import Footer from '../result/footer'
 
 import qs from 'qs';
 import Axios from 'axios';
@@ -42,12 +42,12 @@ const Main = ({ location }) => {
             } else {
                 setCookie('recentkeyword', [keyword.trim()])
             }
-			window.location.href = '/search/result?' + qs.stringify(Util.searchKeywordSetting2({
+			window.location.href = '/search-en/result?' + qs.stringify(Util.searchKeywordSetting2({
                 m_site_cd: m_site_cd,
                 keyword: keyword
             }))
 		} else {
-            alert("검색어를 입력해주세요!!")
+            alert("Please enter a search term!")
             setKeywordMatch({})
 			return;
 		}
@@ -56,8 +56,16 @@ const Main = ({ location }) => {
     const getAutoComplete = async (keyword) => {
         if(keyword.length === 0 && cookies.recentkeyword !== undefined) {
             setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
-        } else {
-            const result = await Axios.get(ApiConfig.autocomplete_path + '?keyword=' + keyword + "&m_site_cd=" + m_site_cd)
+        } else if (keyword.length === 0 && cookies.recentkeyword === undefined) {
+            setKeywordMatch({ list: [], type: "recentkeyword" })
+        }  else {
+            const result = await Axios.get(ApiConfig.autocomplete_path, {
+                params: {
+                    keyword: keyword,
+                    m_site_cd: m_site_cd,
+                    language: "en"
+                }
+            })
             .then(resp => {
                 return resp.data;
             })
@@ -83,9 +91,10 @@ const Main = ({ location }) => {
     }
 
     const keywordFocus = () => {
-        console.log('focus')
         if(keyword.length === 0 && cookies.recentkeyword !== undefined) {
             setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
+        } else if(keyword.length === 0 && cookies.recentkeyword === undefined) {
+            setKeywordMatch({ list: [], type: "recentkeyword" })
         } else if(keyword.length > 0) {
             getAutoComplete(keyword)
         }
@@ -110,7 +119,7 @@ const Main = ({ location }) => {
     useEffect(() => {
         console.log('recommend useEffect')
         const getPopKeyword = async () => {
-          const result = await Axios.get(ApiConfig.recommend_path + '?m_site_cd=' + m_site_cd)
+          const result = await Axios.get(ApiConfig.recommend_path + '?m_site_cd=' + m_site_cd + "&language=en")
           .then(resp => {
             return resp.data;
           })
@@ -123,7 +132,7 @@ const Main = ({ location }) => {
           });
           if(result) {
             const htmlTitle = document.querySelector("title");
-            htmlTitle.innerText = "통합검색 | " + SearchViewSetting.m_site_cd[m_site_cd]
+            htmlTitle.innerText = "Search | " + SearchViewSetting.m_site_cd[m_site_cd]
             setRecommend(result)
           }
         }
@@ -143,8 +152,8 @@ const Main = ({ location }) => {
                         <div className="search-input-wrap">
                             <input type="text" 
                                 className="form-control searching text-title" 
-                                placeholder="검색어를 입력해주세요" 
-                                title="검색어 입력"
+                                placeholder="Please enter a search term" 
+                                title="Please enter a search term"
                                 style={{width: "100%"}}
                                 ref={searchInput}
                                 onChange={(e) => keywordChange(e.target.value)} value={keyword} 
@@ -155,7 +164,7 @@ const Main = ({ location }) => {
                             <span className="btn-icon-box">
                                 <button type="button" className="btn" onClick={() => getSearch()} >
                                     <i className="ico ico-totalsearch-index"></i>
-                                    <span className="sr-only">검색</span>
+                                    <span className="sr-only">Search</span>
                                 </button>
                             </span>
                         </div>

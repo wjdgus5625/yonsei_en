@@ -24,7 +24,9 @@ const AutoKeyword = (props) => {
                                         )
                                     })
                                 ) : (
-                                    <li>최근 검색어가 없습니다.</li>
+                                    <li onMouseDown={(e) => {
+                                        e.preventDefault()
+                                    }}>There are no recent search terms.</li>
                                 )
                             ) : (
                                 props.list.map((data, index) => {
@@ -32,7 +34,7 @@ const AutoKeyword = (props) => {
                                         <li key={index}>
                                             <a href="#;" style={{display: "block"}} onMouseDown={(e) => {
                                                 e.preventDefault()
-                                                window.location.href = "/search/result?keyword="+props.removeTagList[index]+"&m_site_cd="+props.m_site_cd
+                                                window.location.href = "/search-en/result?keyword="+props.removeTagList[index]+"&m_site_cd="+props.m_site_cd
                                                 }}>{parser(data)}
                                             </a>
                                         </li>
@@ -48,7 +50,7 @@ const AutoKeyword = (props) => {
                             <a href="#;" style={{display: "block"}} onMouseDown={(e) => {
                                 e.preventDefault()
                                 props.allDeleteRecentKeyword()
-                            }}>일괄 삭제</a>
+                            }}>Delete</a>
                         </div>
                     ) : ""
                 }

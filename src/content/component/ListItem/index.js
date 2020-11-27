@@ -5,10 +5,10 @@ import qs from 'qs';
 const ListItem = (props) => {
     return (
         <li>
-            <a href="#;" style={{width: "98%"}}
+            <a href="#;" style={{width: "96%"}}
                 onMouseDown={(e) => {
                     e.preventDefault()
-                    window.location.href = "/search/result?" + qs.stringify(Util.searchKeywordSetting2({
+                    window.location.href = "/search-en/result?" + qs.stringify(Util.searchKeywordSetting2({
                         m_site_cd: props.m_site_cd,
                         keyword: props.data
                     }))

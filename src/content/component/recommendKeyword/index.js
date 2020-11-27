@@ -7,7 +7,7 @@ const RecommendKeyword = (props) => {
                 props.recommend.map((data, index) => {
                     return (
                         <span key={index} className="keyword-item text-lg text-normal">
-                            <a href={"/search/result?keyword="+data+"&m_site_cd="+props.m_site_cd}>
+                            <a href={"/search-en/result?keyword="+data+"&m_site_cd="+props.m_site_cd}>
                                 #{data}
                             </a>
                         </span>

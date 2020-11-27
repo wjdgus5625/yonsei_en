@@ -19,6 +19,7 @@ build/
 
 # Package files
 *.jar
+*.zip
 
 # Maven
 target/
