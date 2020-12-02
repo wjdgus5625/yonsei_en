@@ -29,6 +29,7 @@ function Content({ location }) {
   });
 
   const m_site_cd = query.m_site_cd !== undefined ? query.m_site_cd : "sev"
+  const s_site_cd = query.s_site_cd !== undefined ? query.s_site_cd : "main"
 
   useEffect(() => {
     console.log('useEffect!')
@@ -68,7 +69,7 @@ function Content({ location }) {
             <SearchHeader request={request} />
             <SearchBody request={request} result={result} setRequest={setRequest}/>
         </div>
-        <Footer />
+        <Footer m_site_cd={m_site_cd} s_site_cd={s_site_cd} />
         <Loading visible={visible}/>
       </div>
   );

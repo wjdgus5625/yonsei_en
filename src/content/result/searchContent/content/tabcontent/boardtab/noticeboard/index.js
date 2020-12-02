@@ -22,7 +22,7 @@ const NoticeBoard = (props) => {
                                             </a>
                                             <p className="text-area">{data.contents !== undefined ? parser(data.contents) : ""}</p>
                                             <p className="route">
-                                                <a href={ApiConfig.main_host + data.page} target="_blank" rel="noopener noreferrer">https://sev.serverence.com/url</a>
+                                                <a href={ApiConfig.main_host + data.page} target="_blank" rel="noopener noreferrer">{data.navigation}</a>
                                             </p>
                                         </div>
                                     </div>

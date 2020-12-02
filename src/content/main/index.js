@@ -24,6 +24,8 @@ const Main = ({ location }) => {
     const [keywordMatch, setKeywordMatch] = useState({})
     const searchInput = useRef();
     const m_site_cd = query.m_site_cd !== undefined && query.m_site_cd.length > 0 && query.m_site_cd !== "undefined" ? query.m_site_cd : "sev"
+    const s_site_cd = query.s_site_cd !== undefined && query.s_site_cd.length > 0 && query.s_site_cd !== "undefined" ? query.s_site_cd : "main"
+    
     const getSearch = () => {
 		if(keyword !== undefined && keyword.trim().length > 0) {
             if(cookies.recentkeyword !== undefined) {
@@ -193,7 +195,7 @@ const Main = ({ location }) => {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <Footer m_site_cd={m_site_cd} s_site_cd={s_site_cd}/>
       </div>
     )
 }

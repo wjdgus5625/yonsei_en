@@ -96,5 +96,133 @@ export default {
 		center: "Center",
 		clinic: "Clinic",
 		all: "ALL"
+	},
+	footer: {
+		sev: {
+			main: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "SEVERANCE HOSPITAL"
+			},
+			all: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "SEVERANCE HOSPITAL"
+			},
+			cancer: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "YONSEI CANCER HOSPITAL"
+			},
+			heart: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "SEVERANCE CARDIOVASCULAR HOSPITAL"
+			},
+			children: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "SEVERANCE CHILDREN'S HOSPITAL"
+			},
+			eye: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "SEVERANCE EYE HOSPITAL"
+			},
+			rehabil: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "SEVERANCE REHABILITATION HOSPITAL"
+			}
+		},
+		gs: {
+			main: {
+				addr: "211, Eonju-ro, Gangnam-gu, Seoul 06273, Republic of Korea",
+				hospital_nm: "GANGNAM SEVERANCE HOSPITAL"
+			},
+			all: {
+				addr: "211, Eonju-ro, Gangnam-gu, Seoul 06273, Republic of Korea",
+				hospital_nm: "GANGNAM SEVERANCE HOSPITAL"
+			},
+			hbv: {
+				addr: "211, Eonju-ro, Gangnam-gu, Seoul 06273, Republic of Korea",
+				hospital_nm: "GANGNAM SEVERANCE HEART BRAIN VASCULA HOSPITAL"
+			},
+			cancer: {
+				addr: "211, Eonju-ro, Gangnam-gu, Seoul 06273, Republic of Korea",
+				hospital_nm: "GANGNAM SEVERANCE CANCER HOSPITAL"
+			},
+			spine: {
+				addr: "211, Eonju-ro, Gangnam-gu, Seoul 06273, Republic of Korea",
+				hospital_nm: "GANGNAM SEVERANCE SPINE HOSPITAL"
+			},
+			dent: {
+				addr: "211, Eonju-ro, Gangnam-gu, Seoul 06273, Republic of Korea",
+				hospital_nm: "GANGNAM SEVERANCE DENTAL HOSPITAL"
+			}
+		},
+		yuhs: {
+			main: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "YONSEI UNIVERSITY HEALTH SYSTEM"
+			},
+			all: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "YONSEI UNIVERSITY HEALTH SYSTEM"
+			}
+		},
+		dental: {
+			main: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "YONSEI UNIVERSITY DENTAL HOSPITAL"
+			},
+			all: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "YONSEI UNIVERSITY DENTAL HOSPITAL"
+			}
+		},
+		yi: {
+			main: {
+				addr: "363, Dongbaekjukjeon-daero, Giheung-gu, Yongin-si, Gyeonggi-do 16995, Republic of Korea",
+				hospital_nm: "YONGIN SEVERANCE HOSPITAL"
+			},
+			all: {
+				addr: "363, Dongbaekjukjeon-daero, Giheung-gu, Yongin-si, Gyeonggi-do 16995, Republic of Korea",
+				hospital_nm: "YONGIN SEVERANCE HOSPITAL"
+			}
+		},
+		medicine: {
+			main: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "YONSEI UNIVERSITY COLLEGE OF MEDICINE"
+			},
+			all: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "YONSEI UNIVERSITY COLLEGE OF MEDICINE"
+			}
+		},
+		dentistry: {
+			main: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "YONSEI UNIVERSITY COLLEGE OF DENTISTRY"
+			},
+			all: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "YONSEI UNIVERSITY COLLEGE OF DENTISTRY"
+			}
+		},
+		nursing: {
+			main: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "YONSEI UNIVERSITY COLLEGE OF NURSING"
+			},
+			all: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "YONSEI UNIVERSITY COLLEGE OF NURSING"
+			}
+		},
+		gsph: {
+			main: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "YONSEI UNIVERSITY GRADUATE SCHOOL OF PUBLIC HEALTH"
+			},
+			all: {
+				addr: "50-1, Yonsei-Ro, Seodaemun-gu, Seoul 03722, Republic of Korea",
+				hospital_nm: "YONSEI UNIVERSITY GRADUATE SCHOOL OF PUBLIC HEALTH"
+			}
+		}
 	}
 }
