@@ -106,6 +106,8 @@ const SearchHeader = (props) => {
 						getAutoComplete={getAutoComplete}
 						keywordMatch={keywordMatch}
 						setKeywordMatch={setKeywordMatch}
+						cookies={cookies}
+						setCookie={setCookie}
 					/>
 				</div>
 			</div>

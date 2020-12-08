@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { useCookies } from 'react-cookie'
 
 import AutoKeyword from '../../../component/autoKeyword/index'
 
@@ -25,13 +24,12 @@ const SearchBar = (props) => {
           </li>
         );
     }
-    const [cookies, setCookie] = useCookies('recentkeyword', [])
     const searchInput = useRef();
 
     const keywordFocus = () => {
-        if(keyword !== undefined && keyword.length === 0 && cookies.recentkeyword !== undefined) {
-            props.setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
-        } else if(keyword.length === 0 && cookies.recentkeyword === undefined) {
+        if(keyword.length === 0 && props.cookies.recentkeyword !== undefined) {
+            props.setKeywordMatch({ list: props.cookies.recentkeyword, type: "recentkeyword" })
+        } else if(keyword.length === 0 && props.cookies.recentkeyword !== undefined) {
             props.setKeywordMatch({ list: [], type: "recentkeyword" })
         } else if(keyword.length > 0) {
             props.getAutoComplete(keyword)
@@ -40,17 +38,17 @@ const SearchBar = (props) => {
 	
 	const deleteRecentKeyword = (keyword) => {
         searchInput.current.focus()
-        if(cookies.recentkeyword.includes(keyword)) {
-            cookies.recentkeyword.splice(cookies.recentkeyword.indexOf(keyword), 1)
-            setCookie('recentkeyword', cookies.recentkeyword)
-            props.setKeywordMatch({ list: cookies.recentkeyword, type: "recentkeyword" })
+        if(props.cookies.recentkeyword.includes(keyword)) {
+            props.cookies.recentkeyword.splice(props.cookies.recentkeyword.indexOf(keyword), 1)
+            props.setCookie('recentkeyword', props.cookies.recentkeyword)
+            props.setKeywordMatch({ list: props.cookies.recentkeyword, type: "recentkeyword" })
         }
     }
 
     const allDeleteRecentKeyword = () => {
         searchInput.current.focus()
-        cookies.recentkeyword = []
-        setCookie('recentkeyword', [])
+        props.cookies.recentkeyword = []
+        props.setCookie('recentkeyword', [])
         props.setKeywordMatch({ list: [], type: "recentkeyword" })
     }
 

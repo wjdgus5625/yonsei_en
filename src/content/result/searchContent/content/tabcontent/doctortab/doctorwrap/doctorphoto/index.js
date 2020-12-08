@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const DoctorPhoto = (props) => {
-    const [visible, setVisible] = useState(true)
-    useEffect(() => {
-        setVisible(true)
-    }, [props.src])
     return (
-        <div className={visible ? "photo" : "photo none"}>
+        <div className={props.img_src !== undefined && props.img_src !== null && props.img_src.length > 0 ? "photo" : "photo none"}>
             {
-                visible && props.img_src !== undefined && props.img_src !== null & props.img_src.length > 0 ? (
+                props.img_src !== undefined && props.img_src !== null && props.img_src.length > 0 ? (
                     <img src={props.src} 
-                        alt="프로필 사진"
-                        onError={() => {
-                            setVisible(false)
+                        alt="profile_photo"
+                        onError={(e) => {
+                            e.target.className = 'none';
+                            e.target.src = '/search-en/yuhs/_share/img/common/no-thumb.png'
+                            e.target.onerror = null;
+                        }} 
+                        onLoad={(e) => {
+                            e.target.className = e.target.src.indexOf('/search-en/yuhs/_share/img/common/no-thumb.png') > -1 ? 'none' : ''
                         }} /> 
                 ) : <span className="no-thumb"></span>
             }
