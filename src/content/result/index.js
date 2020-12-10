@@ -53,13 +53,14 @@ function Content({ location }) {
         htmlTitle.innerText = "Search | " + SearchViewSetting.m_site_cd[request.m_site_cd]
         setResult(result)
       }
+      setVisible(false)
     }
 
     if (request.keyword !== undefined && request.keyword.length > 0) {
       getSearch()
+    } else {
+      setVisible(false)
     }
-    
-    setVisible(false)
     
   }, [request]);
 
