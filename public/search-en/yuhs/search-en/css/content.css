@@ -1067,8 +1067,11 @@
   .doctor-card-wrap ul li {
     width: calc(50% - 15px);
   }
+  .doctor-card-wrap ul li:nth-child(4n) {
+    display: block;
+  }
   .doctor-card-wrap ul li:nth-child(5n) {
-    display: none;
+    display: none !important;
   }
 }
 

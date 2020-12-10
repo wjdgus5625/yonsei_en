@@ -7,17 +7,17 @@ export default {
     // autocomplete_path: "http://10.9.32.17:19700/autocomplete",
     // main_host: "http://10.9.32.14",
     //
-    search_path: "http://localhost:19700/search",
-    pop_path: "http://localhost:19700/popkeyword",
-    recommend_path: "http://localhost:19700/recommend",
-    autocomplete_path: "http://localhost:19700/autocomplete",
-    main_host: "https://search.severance.healthcare",
+    // search_path: "http://localhost:19700/search",
+    // pop_path: "http://localhost:19700/popkeyword",
+    // recommend_path: "http://localhost:19700/recommend",
+    // autocomplete_path: "http://localhost:19700/autocomplete",
+    // main_host: "https://search.severance.healthcare",
     //
-    // search_path: "/search/s.jsp",
-    // pop_path: "/search/p.jsp",
-    // recommend_path: "/search/r.jsp",
-    // autocomplete_path: "/search/a.jsp",
-    // main_host: "",
+    search_path: "/search/s.jsp",
+    pop_path: "/search/p.jsp",
+    recommend_path: "/search/r.jsp",
+    autocomplete_path: "/search/a.jsp",
+    main_host: "",
     //
     link1: "https://ir.ymlib.yonsei.ac.kr/simple-search?query=", // 대학 메뉴탭 논문 링크
     link2: "https://yhrn.yonsei.ac.kr/Search/Result.aspx?search_field=ALL&targetFd=ALL&search_word=" // 대학 메뉴탭 연구자료 링크
