@@ -119,7 +119,7 @@ const Main = ({ location }) => {
     }
 
     useEffect(() => {
-        console.log('recommend useEffect')
+        // console.log('recommend useEffect')
         const getPopKeyword = async () => {
           const result = await Axios.get(ApiConfig.recommend_path + '?m_site_cd=' + m_site_cd + "&language=en")
           .then(resp => {

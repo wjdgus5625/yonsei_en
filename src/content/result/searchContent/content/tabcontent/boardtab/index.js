@@ -10,12 +10,12 @@ const BoardTab = (props) => {
     const [board_nm, setBoard_nm] = useState("all")
     const [size, setSize] = useState(props.request.size)
     const getSearchBoardNm = async (board_nm, order) => {
-        console.log({
-            ...props.request,
-            board_nm: board_nm,
-            order: order,
-            size: size
-        })
+        // console.log({
+        //     ...props.request,
+        //     board_nm: board_nm,
+        //     order: order,
+        //     size: size
+        // })
         const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
             ...props.request,
             board_nm: board_nm,
@@ -36,12 +36,12 @@ const BoardTab = (props) => {
     }
 
     const getSearchMore = async (size) => {
-        console.log({
-            ...props.request,
-            board_nm: board_nm,
-            order: order,
-            size: size
-        })
+        // console.log({
+        //     ...props.request,
+        //     board_nm: board_nm,
+        //     order: order,
+        //     size: size
+        // })
         const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
             ...props.request,
             board_nm: board_nm,

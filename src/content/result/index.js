@@ -32,8 +32,8 @@ function Content({ location }) {
   const s_site_cd = query.s_site_cd !== undefined ? query.s_site_cd : "main"
 
   useEffect(() => {
-    console.log('useEffect!')
-    console.log(request)
+    // console.log('useEffect!')
+    // console.log(request)
     const getSearch = async () => {
       const result = await Axios.get(ApiConfig.search_path, {params: request})
       .then(resp => {
@@ -47,7 +47,7 @@ function Content({ location }) {
         }
         
       });
-      console.log(result)
+      // console.log(result)
       if(result) {
         const htmlTitle = document.querySelector("title");
         htmlTitle.innerText = "Search | " + SearchViewSetting.m_site_cd[request.m_site_cd]

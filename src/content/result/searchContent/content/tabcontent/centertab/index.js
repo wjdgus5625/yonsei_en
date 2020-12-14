@@ -11,11 +11,11 @@ const CenterTab = (props) => {
     const [size, setSize] = useState(props.request.size)
 
     const getSearchDepartment = async (cate_cd) => {
-        console.log({
-            ...props.request,
-            cate_cd: cate_cd,
-            size: size
-        })
+        // console.log({
+        //     ...props.request,
+        //     cate_cd: cate_cd,
+        //     size: size
+        // })
         const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
             ...props.request,
             cate_cd: cate_cd,
@@ -34,11 +34,11 @@ const CenterTab = (props) => {
     }
 
     const getSearchMore = async (size) => {
-        console.log({
-            ...props.request,
-            cate_cd: cate_cd,
-            size: size
-        })
+        // console.log({
+        //     ...props.request,
+        //     cate_cd: cate_cd,
+        //     size: size
+        // })
         const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
             ...props.request,
             cate_cd: cate_cd,

@@ -18,12 +18,12 @@ const DoctorTab = (props) => {
     const rootChosung = chosung !== undefined ? chosung : rootContext.request.chosung
 
     const getSearchChosung = async (chosung) => {
-        console.log({
-            ...props.request,
-            chosung: chosung,
-            cate_cd: cate_cd,
-            size: size
-        })
+        // console.log({
+        //     ...props.request,
+        //     chosung: chosung,
+        //     cate_cd: cate_cd,
+        //     size: size
+        // })
         const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
             ...props.request,
             chosung: chosung,
@@ -43,12 +43,12 @@ const DoctorTab = (props) => {
     }
 
     const getSearchDepartment = async (cate_cd) => {
-        console.log({
-            ...props.request,
-            chosung: chosung,
-            cate_cd: cate_cd,
-            size: size
-        })
+        // console.log({
+        //     ...props.request,
+        //     chosung: chosung,
+        //     cate_cd: cate_cd,
+        //     size: size
+        // })
         const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
             ...props.request,
             chosung: chosung,
@@ -68,12 +68,12 @@ const DoctorTab = (props) => {
     }
 
     const getSearchMore = async (size) => {
-        console.log({
-            ...props.request,
-            chosung: chosung,
-            cate_cd: cate_cd,
-            size: size
-        })
+        // console.log({
+        //     ...props.request,
+        //     chosung: chosung,
+        //     cate_cd: cate_cd,
+        //     size: size
+        // })
         const getSearchResult = await Axios.get(ApiConfig.search_path, {params: {
             ...props.request,
             chosung: chosung,
