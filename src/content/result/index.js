@@ -17,7 +17,7 @@ function Content({ location }) {
   const query = qs.parse(location.search, {
     ignoreQueryPrefix: true
   })
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const [result, setResult] = useState({});
   const [request, setRequest] = useState({
@@ -57,9 +57,8 @@ function Content({ location }) {
     }
 
     if (request.keyword !== undefined && request.keyword.length > 0) {
+      setVisible(true)
       getSearch()
-    } else {
-      setVisible(false)
     }
     
   }, [request]);
