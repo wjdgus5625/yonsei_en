@@ -6,7 +6,7 @@ import DoctorPhoto from './doctorphoto'
 
 const DoctorWrap = (props) => {
     return (
-        <div>
+        <div className={props.type === "all" ? "search-result-all" : "search-result-single"}>
             <div className="doctor-card-wrap">
                 <ul>
                     {

@@ -1055,10 +1055,10 @@
     margin-bottom: 3px;
     white-space: normal;
   }
-  .doctor-card-wrap ul li:nth-child(4n) {
+  .search-result-all .doctor-card-wrap ul li:nth-child(4n) {
     display: none;
   }
-  .doctor-card-wrap ul li:nth-child(5n) {
+  .search-result-all .doctor-card-wrap ul li:nth-child(5n) {
     display: none;
   }
 }
@@ -1067,10 +1067,10 @@
   .doctor-card-wrap ul li {
     width: calc(50% - 15px);
   }
-  .doctor-card-wrap ul li:nth-child(4n) {
+  .search-result-all .doctor-card-wrap ul li:nth-child(4n) {
     display: block;
   }
-  .doctor-card-wrap ul li:nth-child(5n) {
+  .search-result-all .doctor-card-wrap ul li:nth-child(5n) {
     display: none !important;
   }
 }
